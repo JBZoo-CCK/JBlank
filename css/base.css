@@ -1,0 +1,99 @@
+/**
+ * J!Blank Template for Joomla by Joomla-book.ru
+ * @category   JBlank
+ * @author     smet.denis <admin@joomla-book.ru>
+ * @copyright  Copyright (c) 2009-2012, Joomla-book.ru
+ * @license    GNU GPL
+ * @link       http://joomla-book.ru/projects/jblank JBlank project page
+ */
+
+/*main reset*/
+a,abbr,acronym,address,applet,article,aside,audio,b,big,blockquote,body,canvas,caption,center,cite,code,dd,del,details,
+dfn,div,dl,dt,em,embed,fieldset,figcaption,figure,font,footer,form,h1,h2,h3,h4,h5,h6,header,hgroup,hr,html,i,iframe,
+img,ins,kbd,label,legend,li,mark,menu,meter,nav,object,ol,output,p,pre,progress,q,rp,rt,ruby,s,samp,section,small,span,
+strike,strong,sub,summary,sup,table,tbody,td,tfoot,th,thead,time,tr,tt,u,ul,var,video,xmp {
+    margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent;
+}
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section {display: block;}
+html{font-size:100.01%;overflow-y:scroll;background-color:#fff;font-family:Helvetica,Arial,Sans-serif;height: 100%;}
+body{text-align:left;font-size:75%;height: 100%;}
+ol,ul{list-style:none;}
+li {display: list-item;}
+blockquote,q {quotes: none;}
+blockquote:before,blockquote:after,q:before,q:after{content:'';content:none;}
+sub,sup,small{font-size: 75%;}
+sub,sup {line-height: 0;position: relative;vertical-align: baseline;}
+sub{bottom: -0.25em;}
+sup{top: -0.5em;}
+svg {overflow: hidden;}
+ins{text-decoration:none;}
+table{border-collapse:collapse;border-spacing:0;font-size:100%;border:none;}
+th,td,caption{font-weight:normal;vertical-align:top;text-align:left;}
+font{color:inherit!important;font:inherit!important;}
+address,button,caption,cite,code,dfn,em,input,optgroup,option,select,strong,textarea,th,var{font: inherit;}
+option {width: 100%;}
+:focus{outline:0;}
+
+/*main typography*/
+strong,b,th,thead,tfoot,h1,h2,h3,h4,h5,h6{font-weight:bold;}
+cite,em,dfn{font-style:italic;}
+code,kbd,samp,pre,tt,var{font-family: "Courier New", Courier, monospace;}
+del{text-decoration:line-through;color:#666;}
+ins,dfn{border-bottom:1px solid #ccc;}
+big{font-size:125%;}
+abbr,acronym{text-transform:uppercase;font-size:85%;letter-spacing:1px;}
+abbr[title],acronym[title],dfn[title]{cursor:help;border-bottom:1px solid #ccc;}
+img{border:0;-ms-interpolation-mode:bicubic;vertical-align:middle;color:transparent;}
+
+/*links*/
+a{text-decoration:underline;}
+a:hover{text-decoration:none;cursor:pointer;}
+a abbr[title],a acronym[title]{text-decoration:none;}
+a:hover abbr[title],a:hover acronym[title]{text-decoration:none;}
+a,a:hover abbr,a:hover acronym{cursor:pointer;}
+address a{text-decoration:none!important;border-bottom:1px dotted #ccc;}
+address:hover a{border:none;}
+
+/*forms*/
+fieldset{border:1px solid #ccc;}
+textarea,input[type="text"],input[type="password"],select{border:1px solid #ccc; vertical-align: baseline; *vertical-align: middle;}
+textarea:hover,input[type="text"]:hover,input[type="password"]:hover,select:hover{border-color:#aaa;}
+textarea:focus,input[type="text"]:focus,input[type="password"]:focus,select:focus{border-color:#aaa;outline:1px solid #ff0;}
+label,select{cursor:pointer;}
+button,input[type="button"],input[type="reset"],input[type="submit"]{cursor:pointer;-webkit-appearance:button;*overflow:visible;}
+button[disabled],input[disabled],select[disabled]{cursor:default;}
+textarea,input[type="text"],input[type="password"]{cursor:text;}
+input[type="checkbox"],input[type="radio"]{box-sizing:border-box;padding:0;*width:13px;*height:13px;}
+textarea{overflow:auto;vertical-align:top;resize:vertical;}
+
+/*css3*/
+::-moz-selection{background:#d6e5f3;color:#2570bb;text-shadow:none;}
+::selection{background:#d6e5f3;color:#2570bb;text-shadow:none;}
+input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {color:#999;}
+input:-moz-placeholder, textarea:-moz-placeholder {color:#999;}
+.placeholder {color:#999;}
+
+/*clearfix*/
+.clear{clear:both!important;overflow:hidden!important;line-height:0!important;height:0!important;*zoom: 1;}
+.clear:before, .clear:after{content:""!important;display:table!important;}
+.clear:after{clear:both!important;}
+
+/*other important classes*/
+.chromeframe{margin:0.2em 0;background:#ccc;color:black;padding:0.2em 0;}
+a.ajax {border-bottom:1px dotted;text-decoration: none!important;}
+a.ajax:hover {border:none;text-decoration: none!important;}
+
+/* print version */
+@media print {
+    * { background: transparent !important; color: black !important; box-shadow:none !important; text-shadow: none !important; filter:none !important; -ms-filter: none !important; }
+    a, a:visited { text-decoration: underline; }
+    a[href]:after { content: " (" attr(href) ")"; }
+    abbr[title]:after { content: " (" attr(title) ")"; }
+    .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after { content: ""; }
+    pre, blockquote { border: 1px solid #999; page-break-inside: avoid; }
+    thead { display: table-header-group; }
+    tr,img{page-break-inside: avoid;}
+    img{max-width: 100% !important;}
+    p,h2,h3{orphans:3;widows: 3;}
+    h2,h3{page-break-after:avoid;}
+}

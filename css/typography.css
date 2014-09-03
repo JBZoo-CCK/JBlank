@@ -1,0 +1,150 @@
+/**
+ * J!Blank Template for Joomla by Joomla-book.ru
+ * @category   JBlank
+ * @author     smet.denis <admin@joomla-book.ru>
+ * @copyright  Copyright (c) 2009-2012, Joomla-book.ru
+ * @license    GNU GPL
+ * @link       http://joomla-book.ru/projects/jblank JBlank project page
+ */
+
+/*base size*/
+.content {font-size:1em;line-height:1.5em;color:#333;}
+.content h1{font-size:1.6em;margin:0 0 1em;}
+.content h2{font-size:1.5em;margin:1.6em 0 1em;}
+.content h3{font-size:1.2em;margin:1.5em 0 0.75em;}
+.content h4{font-size:1.1em;margin:1.2em 0 0.5em;}
+.content h5{font-size:1em;margin:1em 0 0.5em;}
+.content h6{font-size:1em;margin:1em 0 0.5em;}
+
+/*hr*/
+.content hr{display:block;background:#aaa;width:100%;height:1px;border:none;}
+
+/*list*/
+.content ul, .content ol{margin-left:2em;margin-bottom:1em;}
+.content ol ol{margin-left:2.5em;}
+.content ul > li{list-style:url('../images/list.gif');list-style-position:outside;}
+.content ol > li{list-style-image:none;list-style-type:decimal;}
+.content dt{font-weight:bold;}
+
+/*dt,dl,dd*/
+.content dl dt{margin-bottom:0.25em;font-weight:bold;}
+.content dl dd{padding-left:4em;margin-bottom:0.25em;}
+
+/*table )*/
+.content table {width:100%;border-top:solid 2px #222;}
+.content table caption {color:#999;font-style: italic;}
+.content table th {text-align: right;}
+.content table thead th {text-align: center;border-bottom:solid 2px #222;}
+.content table th, .content table td {line-height:1.5em;padding: 1.5em 0.75em 0.25em; background: none;}
+.content table thead th, .content table thead td {padding-top:0.75em}
+.content table tfoot th, .content table tfoot td {padding-bottom:0.75em; font-style: italic;}
+.content table tbody th, .content table tbody td, .content table tfoot th, .content table tfoot td {border-top:solid 1px #000}
+.content table tr:nth-child(even) td{}
+.content table tr:hover {background: none!important;}
+.content table tbody tr:nth-child(odd) th, .content table tbody tr:nth-child(odd) td {background:rgba(0, 0, 0, 0.05); }
+
+/*margin & padding*/
+.content blockquote p:first-child{margin:1em 0;}
+.content hr, .content p, .content ul, .content ol, .content dl, .content pre, .content blockquote, .content address, .content form, .content table{margin-bottom:0.5em;}
+.content p+p{margin-bottom:1em;}
+.content p{text-indent:0;}
+.content caption{padding:0.5em 0;}
+.content blockquote{padding:0 1em;margin:1.8em 0;}
+
+/*link*/
+.content a:link{text-decoration:underline;color:#36c;}
+.content a:visited{text-decoration:underline;color:#36c;}
+.content a:hover{text-decoration:none;color:#36c;}
+.content a:active, .content a:focus{text-decoration:underline;color:#36c;}
+.content a{text-decoration:underline;color:#36c;}
+.content a:hover{text-decoration:none;}
+.content a[target="_blank"], .content a.external{background:url("../images/external-link.gif")no-repeat 100% 50%;padding-right:13px;}
+
+/*code, pre*/
+.content pre {margin: 0.5em 0;padding: 0.5em 0 0.5em 1em;border: 1px dotted #aab4be;border-left: 1.8em solid #b4b4b4;background: #fafafa;font-size: 90%;color: #2E8B57;white-space: pre-wrap;}
+.content code {word-spacing: -2px;color: #D64514;}
+
+/*image*/
+.content img, .content img.alignImageLeft, .content img.alignImageRight{border:1px solid #ccc;}
+.content a:hover img {border-color:#aaa;outline:1px solid #ff0;}
+.content img[align="left"], .content img.alignImageLeft{float:left;margin:0 1em 0.5em 0;}
+.content img[align="right"], .content img.alignImageRight{float:right;margin:0 0 0.5em 1em;}
+
+/*quote*/
+.content blockquote{border-top:1px solid #ccc;border-bottom:1px solid #ccc;color:#666;font-style:italic;}
+blockquote *:before {content: "\201C";}
+blockquote *:after {content: "\201D";}
+q:before {content: "\00AB";}
+q:after {content: "\00BB";}
+
+/*form & control*/
+.content legend, .content fieldset, .content input,.content textarea,.content select, .content a.button, .content button {border-radius: 3px;}
+.content fieldset{padding:1em;margin:1.8em 0;}
+.content legend{padding:0.2em 0.5em; border: 1px solid #ccc; margin: 0.5em 0;white-space:normal;}
+.content legend+*{margin-top:1em;}
+.content input[type="checkbox"], .content input[type="radio"], .content option, .content select{margin:0 0.45em;}
+.content form.form-mode-1 label { display: block; }
+.content form .row{margin-bottom: 0.75em;}
+.content form .row-input-colonm input[type="radio"], .content form .row-input-colonm input[type="checkbox"] {float:left;}
+.content form .row-input-colonm label {display: block;margin-bottom: 0.5em;}
+
+/*form button*/
+.content input[type="text"], .content input[type="password"], .content select, .content textarea {
+    padding: 4px;
+    min-width: 200px;
+    border: 1px solid #d2d2d2;
+    border-top-color: #aeaeae;
+    background-color: #fcfcfc;
+    box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.04);
+    color: #777;
+}
+.content input[type="text"]:focus, .content input[type="password"]:focus, .content select:focus, .content textarea:focus {
+    outline: none;
+    color: #000;
+    border-color: #b9b9b9;
+    border-top-color: #919191;
+    background-color: #fff;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.12);
+}
+.content button, .content input[type="button"], .content input[type="reset"], .content input[type="submit"], .content .button {
+    padding: 3px 10px 2px 10px;
+    border: 1px solid #d9d9d9;
+    border-bottom-color: #bfbfbf;
+    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAABcCAYAAABugpUMAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAABZ0RVh0Q3JlYXRpb24gVGltZQAwMS8yMS8xMRTK2QYAAAAedEVYdFNvZnR3YXJlAEFkb2JlIEZpcmV3b3JrcyBDUzUuMasfSOsAAABpSURBVFiF7ZexDQBBCMPg9fsvS0PHDQFFpDgDWHYH2d0Th/suYRER/8ypoKOhYbK+Icn76SfrGwIECBAgQIAAdZZcDgbA82VV8dGLAfWT9Q0Nk/UNSd5PP1nfkOT9SN7P0NAwWd8Q4H4PLnBKWdfS9MUAAAAASUVORK5CYII=) 0 0 repeat-x;
+    background-clip: border-box;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,1.0), 0 1px 1px rgba(0,0,0,0.05);
+    line-height: 16px;
+    color: #777;
+    font-size: 11px;
+    text-shadow: 0 1px 0 rgba(255,255,255,1.0);
+    text-transform: uppercase;
+    text-decoration: none!important;
+    display: inline-block;
+    margin-left: 2px;
+}
+.content button:hover, .content input[type="button"]:hover, .content input[type="reset"]:hover, .content input[type="submit"]:hover,
+.content .button:hover, .content .button:hover {
+    border-color: #cfcfcf;
+    border-bottom-color: #b5b5b5;
+    background-position: 0 -50px;
+    color:#36c;
+}
+.content button:active, .content input[type="button"]:active, .content input[type="reset"]:active,
+.content input[type="submit"]:active, .content .button:active, .content .button:active {
+    border-color: #cfcfcf;
+    border-top-color: #a2a2a2;
+    border-bottom-color: #cfcfcf;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+/*form validate error*/
+.content input:invalid,.content textarea:invalid,.content input.error,.content textarea.error,.content legend.error,
+.content select.error{
+    background-color: #f0dddd!important;
+    border:1px solid #ffb4b4!important;
+    color:#000!important;
+}
+.content input:invalid:focus,.content textarea:invalid:focus,.content input.error:focus,.content textarea.error:focus,
+.content legend.error:focus,.content select.error:focus {
+    background-color: #fff!important;
+}
