@@ -1,0 +1,4 @@
+jblank
+======
+
+Joomla Blank Template
