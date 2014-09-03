@@ -1,0 +1,71 @@
+// import
+@import "vars";
+@import "mixins";
+@import "layouts/reset";
+@import "layouts/messages";
+
+/****************************************** FRONTEND STYLES ***********************************************************/
+
+// classic clear fix
+.clearfix {
+    display: block;
+    &:after {
+        visibility: hidden;
+        display: block;
+        font-size: 0;
+        content: " ";
+        clear: both;
+        height: 0;
+    }
+    * html & {
+        height: 1%;
+    }
+}
+
+// include own files
+//@import "layouts/some-layout.less";
+
+// OR write your code here!
+body {
+    background: #F0F0F0;
+    margin: 0;
+    padding: 0;
+
+    .component-wrapper {
+        width: 800px;
+        padding: 30px 50px 50px;
+        margin: 30px auto;
+        background: #fcfcfc;
+        border: 1px solid #b3b3b3;
+        .box-shadow(0 1px 10px #a7a7a7);
+        .border-radius(4px);
+    }
+}
+
+// base64 example
+.example-smallImage-to-base64 {
+    -test1-background: data-uri('test.png');
+    -test2-background: data-uri('/inner/test.png') 0 50% no-repeat;
+    //-test3-background: data-uri('not-exists-image.gif');
+}
+
+/****************************************** MEDIA QUERIES *************************************************************/
+@media print {
+    @import "media/print.less";
+}
+
+@media (min-width: 768px) {
+    @import "media/768.less";
+}
+
+@media (min-width: 992px) {
+    @import "media/992.less";
+}
+
+@media (min-width: 1200px) {
+    @import "media/1200.less";
+}
+
+@media screen and (-webkit-min-device-pixel-ratio: 1.5), screen and (max--moz-device-pixel-ratio: 1.5) {
+    @import "media/retina.less";
+}

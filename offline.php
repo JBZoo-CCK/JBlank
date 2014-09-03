@@ -1,77 +1,88 @@
 <?php
 /**
- * J!Blank Template for Joomla by Joomla-book.ru
- * @category   JBlank
- * @author     smet.denis <admin@joomla-book.ru>
- * @copyright  Copyright (c) 2009-2012, Joomla-book.ru
+ * J!Blank Template for Joomla by JBlank.pro (JBZoo.com)
+ *
+ * @package    JBlank
+ * @author     SmetDenis <admin@jbzoo.com>
+ * @copyright  Copyright (c) JBlank.pro
  * @license    GNU GPL
- * @link       http://joomla-book.ru/projects/jblank JBlank project page
+ * @link       http://jblank.pro/ JBlank project page
  */
-defined('_JEXEC') or die('Restricted access');
 
-require_once(dirname(__FILE__) . '/php/template.php');
+defined('_JEXEC') or die;
 
-$tpl = new JBlankTemplate($this);
-$tpl->includeCSS('base.css');
-$tpl->includeCSS('typography.css');
-$tpl->includeCSS('system.css');
 
-//$tpl->removeMootools(true);
-$tpl->loadLanguages();
+// init $tpl helper
+require dirname(__FILE__) . '/php/init.php';
 
-?><!doctype html>
-<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7 ie6 offline-page" lang="<?php echo $tpl->lang;?>"> <![endif]-->
-<!--[if IE 7]><html class="no-js lt-ie9 lt-ie8 ie7 offline-page" lang="<?php echo $tpl->lang;?>"> <![endif]-->
-<!--[if IE 8]><html class="no-js lt-ie9 ie8 offline-page" lang="<?php echo $tpl->lang;?>"> <![endif]-->
-<!--[if gt IE 8]><!--><html class="no-js offline-page" lang="<?php echo $tpl->lang;?>"> <!--<![endif]-->
+// add CSS
+$tpl->css('offline.less');
+$app = $tpl->app;
+
+// check Joomla auth method
+require_once JPATH_ADMINISTRATOR . '/components/com_users/helpers/users.php';
+$twoFactors = UsersHelper::getTwoFactorMethods();
+
+?><?php echo $tpl->renderHTML(); ?>
 <head>
     <jdoc:include type="head" />
 </head>
-<body>
+<body class="<?php echo $tpl->getBodyClasses(); ?>" id="page-offline">
 
-    <div class="content container">
-        <h1><?php echo $tpl->app->getCfg('sitename'); ?></h1>
+    <jdoc:include type="message" />
 
-        <?php if ($tpl->app->getCfg('offline_image')) : ?>
-            <div class="offline-image-wrapper"><img src="<?php echo $tpl->app->getCfg('offline_image'); ?>" alt="<?php echo $tpl->app->getCfg('sitename'); ?>" class="offline-image" /></div>
+    <div id="frame" class="outline component-wrapper">
+
+        <?php if ($app->get('offline_image') && file_exists($app->get('offline_image'))) : ?>
+            <img src="<?php echo $app->get('offline_image'); ?>" alt="<?php echo htmlspecialchars($app->get('sitename')); ?>" />
         <?php endif; ?>
 
-        <?php if ($tpl->app->getCfg('display_offline_message', 1) == 1 && str_replace(' ', '', $tpl->app->getCfg('offline_message')) != ''): ?>
-       		<p><?php echo $tpl->app->getCfg('offline_message'); ?></p>
+        <h1><?php echo htmlspecialchars($app->get('sitename')); ?></h1>
 
-       	<?php elseif ($tpl->app->getCfg('display_offline_message', 1) == 2 && str_replace(' ', '', JText::_('JBLANK_OFFLINE_MESSAGE')) != ''): ?>
-       		<p><?php echo JText::_('JBLANK_OFFLINE_MESSAGE'); ?></p>
-       	<?php  endif; ?>
+        <?php if ($app->get('display_offline_message', 1) == 1 && str_replace(' ', '', $app->get('offline_message')) != '') : ?>
+            <p><?php echo $app->get('offline_message'); ?></p>
+        <?php elseif ($app->get('display_offline_message', 1) == 2 && str_replace(' ', '', JText::_('JOFFLINE_MESSAGE')) != '') : ?>
+            <p><?php echo JText::_('JOFFLINE_MESSAGE'); ?></p>
+        <?php endif; ?>
 
         <form action="<?php echo JRoute::_('index.php', true); ?>" method="post" id="form-login">
-            <fieldset>
+            <fieldset class="input">
+                <p id="form-login-username">
+                    <label for="username"><?php echo JText::_('JGLOBAL_USERNAME'); ?></label>
+                    <input name="username" id="username" type="text" class="inputbox" alt="<?php echo JText::_('JGLOBAL_USERNAME'); ?>" size="18" />
+                </p>
 
-                <legend><?php echo JText::_('JBLANK_OFFLINE_AUTH') ?></legend>
+                <p id="form-login-password">
+                    <label for="passwd"><?php echo JText::_('JGLOBAL_PASSWORD'); ?></label>
+                    <input type="password" name="password" class="inputbox" size="18" alt="<?php echo JText::_('JGLOBAL_PASSWORD'); ?>" id="passwd" />
+                </p>
 
-                <div class="row">
-                    <input name="username" id="username" type="text" alt="<?php echo JText::_('JBLANK_OFFLINE_USERNAME') ?>" size="18" />
-                    <label for="username"><?php echo JText::_('JBLANK_OFFLINE_USERNAME') ?></label>
-                </div>
+                <?php if (count($twoFactors) > 1) : ?>
+                    <p id="form-login-secretkey">
+                        <label for="secretkey"><?php echo JText::_('JGLOBAL_SECRETKEY'); ?></label>
+                        <input type="text" name="secretkey" class="inputbox" size="18" alt="<?php echo JText::_('JGLOBAL_SECRETKEY'); ?>" id="secretkey" />
+                    </p>
+                <?php endif; ?>
 
-                <div class="row">
-                    <input type="password" name="password" size="18" alt="<?php echo JText::_('JBLANK_OFFLINE_PASSWORD') ?>" id="passwd" />
-                    <label for="passwd"><?php echo JText::_('JBLANK_OFFLINE_PASSWORD') ?></label>
-                </div>
+                <?php if (JPluginHelper::isEnabled('system', 'remember')) : ?>
+                    <p id="form-login-remember">
+                        <label for="remember"><?php echo JText::_('JGLOBAL_REMEMBER_ME'); ?></label>
+                        <input type="checkbox" name="remember" class="inputbox" value="yes" alt="<?php echo JText::_('JGLOBAL_REMEMBER_ME'); ?>" id="remember" />
+                    </p>
+                <?php endif; ?>
 
-                <div class="row">
-                    <input type="checkbox" name="remember" value="yes" alt="<?php echo JText::_('JBLANK_OFFLINE_REMEMBER_ME') ?>" id="remember" />
-                    <label for="remember"><?php echo JText::_('JBLANK_OFFLINE_REMEMBER_ME') ?></label>
-                </div>
+                <p id="submit-buton">
+                    <label>&nbsp;</label>
+                    <input type="submit" name="Submit" class="button login" value="<?php echo JText::_('JLOGIN'); ?>" />
+                </p>
 
-                <input type="submit" name="Submit" class="button" value="<?php echo JText::_('JBLANK_OFFLINE_LOGIN') ?>" />
                 <input type="hidden" name="option" value="com_users" />
                 <input type="hidden" name="task" value="user.login" />
-                <input type="hidden" name="return" value="<?php echo base64_encode(JURI::base()) ?>" />
+                <input type="hidden" name="return" value="<?php echo base64_encode(JUri::base()); ?>" />
                 <?php echo JHtml::_('form.token'); ?>
 
             </fieldset>
-       	</form>
+        </form>
 
     </div>
-
-</body>
+</body></html>

@@ -1,0 +1,90 @@
+#page-offline {
+    margin: 0;
+    padding: 0;
+    font-size: 12px;
+    color: #333333;
+    text-align: center;
+
+    img {
+        border: 0 none;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #frame {
+        margin: 20px auto;
+        width: 405px;
+        padding: 20px;
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+    }
+
+    /* -- form styles ----------------------------------- */
+    form {
+        margin: auto;
+        text-align: left;
+
+        p {
+            margin: 0;
+            padding: 4px 0 4px 0;
+        }
+
+        fieldset {
+            border: 0 none;
+            margin: 0em;
+            padding: 0.2em;
+            .input p {
+                clear: left;
+            }
+        }
+
+        label {
+            display: block;
+            float: left;
+            margin: 5px 0px 2px 0px;
+            width: 10em;
+        }
+
+        input {
+            padding: 3px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+
+            &[type=text], &[type=password], {
+                width: 200px;
+            }
+
+            &.button {
+                width: 120px;
+                height: 32px;
+                cursor: pointer;
+                background-color: white;
+                &:hover {
+                    border-color: #FC902E;
+                }
+            }
+        }
+
+        #frmlogin {
+            margin: 0 10px 0 10px;
+            fieldset.button {
+                text-align: right;
+            }
+        }
+    }
+
+    /* -- message styles ----------------------------------- */
+    #system-message {
+        margin: 10px auto;
+        padding: 20px 0 0;
+        width: 450px;
+        h4 {
+            display: none;
+        }
+    }
+
+}

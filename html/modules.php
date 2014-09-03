@@ -1,96 +1,184 @@
 <?php
 /**
- * J!Blank Template for Joomla by Joomla-book.ru
- * @category   JBlank
- * @author     smet.denis <admin@joomla-book.ru>
- * @copyright  Copyright (c) 2009-2012, Joomla-book.ru
+ * J!Blank Template for Joomla by JBlank.pro (JBZoo.com)
+ *
+ * @package    JBlank
+ * @author     SmetDenis <admin@jbzoo.com>
+ * @copyright  Copyright (c) JBlank.pro
  * @license    GNU GPL
- * @link       http://joomla-book.ru/projects/jblank JBlank project page
+ * @link       http://jblank.pro/ JBlank project page
  */
-defined('_JEXEC') or die('Restricted access');
+
+defined('_JEXEC') or die;
 
 
 /**
- * Chrome callback function for "header" style
+ * none (output raw module content)
  * @param $module
  * @param $params
  * @param $attribs
  */
-function modChrome_header($module, &$params, &$attribs)
+function modChrome_none($module, &$params, &$attribs)
 {
-    // default value for headerLevel attribute
-    if (!isset($attribs['headerLevel'])) {
-        $attribs['headerLevel'] = '3';
-    }
+    echo $module->content;
+}
 
-    // class names
-    $wrapperClass   = array();
-    $wrapperClass[] = 'module';
-    $wrapperClass[] = 'module-' . $attribs['name'];
-    $wrapperClass[] = 'module-' . $attribs['style'];
-    $wrapperClass[] = htmlspecialchars($params->get('moduleclass_sfx'));
+/*
+ * html5 (chosen html5 tag and font headder tags)
+ */
+function modChrome_html5($module, &$params, &$attribs)
+{
+    $moduleTag     = $params->get('module_tag', 'div');
+    $headerTag     = htmlspecialchars($params->get('header_tag', 'h3'));
+    $bootstrapSize = (int)$params->get('bootstrap_size', 0);
+    $moduleClass   = $bootstrapSize != 0 ? ' span' . $bootstrapSize : '';
 
-    $html = '';
+    // Temporarily store header class in variable
+    $headerClass = $params->get('header_class');
+    $headerClass = !empty($headerClass) ? ' class="' . htmlspecialchars($headerClass) . '"' : '';
 
-    if (!empty ($module->content)) {
+    if (!empty ($module->content)) : ?>
+        <<?php echo $moduleTag; ?> class="moduletable<?php echo htmlspecialchars($params->get('moduleclass_sfx')) . $moduleClass; ?>">
 
-        $html .= '<div class="' . implode(' ', $wrapperClass) . '">';
+        <?php if ((bool)$module->showtitle) : ?>
+            <<?php echo $headerTag . $headerClass . '>' . $module->title; ?></<?php echo $headerTag; ?>>
+        <?php endif; ?>
 
-        if ($module->showtitle != 0) {
-            $html .= '<h' . (int)$attribs['headerLevel'] . ' class="module-header">';
-            $html .= $module->title;
-            $html .= '</h' . (int)$attribs['headerLevel'] . '>';
-        }
+        <?php echo $module->content; ?>
 
-        $html .= '<div class="module-content">' . $module->content . '</div>';
-        $html .= '</div>';
+        </<?php echo $moduleTag; ?>>
 
-    }
-
-    echo $html;
-
+    <?php endif;
 }
 
 /**
- * Chrome callback function for "grid" style
+ * Module chrome that wraps the module in a table
  * @param $module
  * @param $params
  * @param $attribs
  */
-function modChrome_grid($module, $params, $attribs)
+function modChrome_table($module, &$params, &$attribs)
 {
+    ?>
+    <table cellpadding="0" cellspacing="0"
+           class="moduletable<?php echo htmlspecialchars($params->get('moduleclass_sfx')); ?>">
+        <?php if ((bool)$module->showtitle) : ?>
+            <tr>
+                <th><?php echo $module->title; ?></th>
+            </tr>
+        <?php endif; ?>
+        <tr>
+            <td><?php echo $module->content; ?></td>
+        </tr>
+    </table>
+<?php
+}
 
-    $gridNum = 12;
-    !isset($attribs['countModules']) && $attribs['countModules'] = '3';
-    (int)$attribs['countModules'] && $gridNum = 12 / (int)$attribs['countModules'];
+/**
+ * Module chrome that wraps the tabled module output in a <td> tag of another table*
+ * @param $module
+ * @param $params
+ * @param $attribs
+ */
+function modChrome_horz($module, &$params, &$attribs)
+{
+    ?>
+    <table cellspacing="1" cellpadding="0" width="100%">
+        <tr>
+            <td>
+                <?php modChrome_table($module, $params, $attribs); ?>
+            </td>
+        </tr>
+    </table>
+<?php
+}
 
-    // default value for headerLevel attribute
-    !isset($attribs['headerLevel']) && $attribs['headerLevel'] = '3';
+/**
+ * xhtml (divs and font headder tags)
+ * @param $module
+ * @param $params
+ * @param $attribs
+ */
+function modChrome_xhtml($module, &$params, &$attribs)
+{
+    if (!empty ($module->content)) : ?>
+        <div class="moduletable<?php echo htmlspecialchars($params->get('moduleclass_sfx')); ?>">
+            <?php if ((bool)$module->showtitle) : ?>
+                <h3><?php echo $module->title; ?></h3>
+            <?php endif; ?>
+            <?php echo $module->content; ?>
+        </div>
+    <?php endif;
+}
 
-    // class names
-    $wrapperClass   = array();
-    $wrapperClass[] = 'module';
-    $wrapperClass[] = 'module-' . $attribs['name'];
-    $wrapperClass[] = 'module-' . $attribs['style'];
-    $wrapperClass[] = 'grid_' . $gridNum;
-    $wrapperClass[] = htmlspecialchars($params->get('moduleclass_sfx'));
+/**
+ * Module chrome that allows for rounded corners by wrapping in nested div tags
+ * @param $module
+ * @param $params
+ * @param $attribs
+ */
+function modChrome_rounded($module, &$params, &$attribs)
+{
+    ?>
+    <div class="module<?php echo htmlspecialchars($params->get('moduleclass_sfx')); ?>">
+        <div>
+            <div>
+                <div>
+                    <?php if ((bool)$module->showtitle) : ?>
+                        <h3><?php echo $module->title; ?></h3>
+                    <?php endif; ?>
+                    <?php echo $module->content; ?>
+                </div>
+            </div>
+        </div>
+    </div>
+<?php
+}
 
-    $html = '';
+/**
+ * Module chrome that add preview information to the module
+ * @param $module
+ * @param $params
+ * @param $attribs
+ */
+function modChrome_outline($module, &$params, &$attribs)
+{
+    static $css = false;
+    if (!$css) {
+        $css = true;
+        $doc = JFactory::getDocument();
 
-    if (!empty ($module->content)) {
+        $doc->addStyleDeclaration(".mod-preview-info { padding: 2px 4px 2px 4px; border: 1px solid black; position: absolute; background-color: white; color: red;}");
+        $doc->addStyleDeclaration(".mod-preview-wrapper { background-color:#eee; border: 1px dotted black; color:#700;}");
+    }
+    ?>
+    <div class="mod-preview">
+        <div
+            class="mod-preview-info"><?php echo 'Position: ' . $module->position . ' [ Style: ' . $module->style . ']'; ?></div>
+        <div class="mod-preview-wrapper">
+            <?php echo $module->content; ?>
+        </div>
+    </div>
+<?php
+}
 
-        $html .= '<div class="' . implode(' ', $wrapperClass) . '">';
+/**
+ * Bootstrap well wrapper
+ * @param $module
+ * @param $params
+ * @param $attribs
+ */
+function modChrome_well($module, &$params, &$attribs)
+{
+    if (!$module->content) {
+        return;
+    }
+    echo "<div class=\"well well-sm" . htmlspecialchars($params->get('moduleclass_sfx')) . "\">";
 
-        if ($module->showtitle != 0) {
-            $html .= '<h' . (int)$attribs['headerLevel'] . ' class="module-header">';
-            $html .= $module->title;
-            $html .= '</h' . (int)$attribs['headerLevel'] . '>';
-        }
-
-        $html .= '<div class="module-content">' . $module->content . '</div>';
-        $html .= '</div>';
-
+    if ($module->showtitle) {
+        echo "<h3>" . $module->title . "</h3>";
     }
 
-    echo $html;
+    echo $module->content;
+    echo "</div>";
 }

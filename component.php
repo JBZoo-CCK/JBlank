@@ -1,28 +1,35 @@
 <?php
 /**
- * J!Blank Template for Joomla by Joomla-book.ru
- * @category   JBlank
- * @author     smet.denis <admin@joomla-book.ru>
- * @copyright  Copyright (c) 2009-2012, Joomla-book.ru
+ * J!Blank Template for Joomla by JBlank.pro (JBZoo.com)
+ *
+ * @package    JBlank
+ * @author     SmetDenis <admin@jbzoo.com>
+ * @copyright  Copyright (c) JBlank.pro
  * @license    GNU GPL
- * @link       http://joomla-book.ru/projects/jblank JBlank project page
+ * @link       http://jblank.pro/ JBlank project page
  */
-defined('_JEXEC') or die('Restricted access');
 
-require_once(dirname(__FILE__) . '/php/_code.php');
+defined('_JEXEC') or die;
 
-?><!doctype html>
-<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7 ie6" lang="<?php echo $tpl->lang;?>"> <![endif]-->
-<!--[if IE 7]><html class="no-js lt-ie9 lt-ie8 ie7" lang="<?php echo $tpl->lang;?>"> <![endif]-->
-<!--[if IE 8]><html class="no-js lt-ie9 ie8" lang="<?php echo $tpl->lang;?>"> <![endif]-->
-<!--[if gt IE 8]><!--><html class="no-js" lang="<?php echo $tpl->lang;?>"> <!--<![endif]-->
+
+// init $tpl helper
+require dirname(__FILE__) . '/php/init.php';
+
+$tpl->css('component.css');
+
+?><?php echo $tpl->renderHTML(); ?>
 <head>
-    <jdoc:include type="head" />
+    <jdoc:include type="head"/>
 </head>
-<body>
-    <div class="contentpane content">
-        <jdoc:include type="message" />
-        <jdoc:include type="component" />
+<body class="<?php echo $tpl->getBodyClasses(); ?>" id="page-print">
+
+    <div class="component-wrapper">
+        <jdoc:include type="message"/>
+        <jdoc:include type="component"/>
     </div>
-</body>
-</html>
+
+    <?php if ($tpl->request('print')): ?>
+        <script type="text/javascript">window.print();</script>
+    <?php endif; ?>
+
+</body></html>

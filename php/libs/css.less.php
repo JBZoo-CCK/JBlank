@@ -1,0 +1,143 @@
+<?php
+/**
+ * J!Blank Template for Joomla by JBlank.pro (JBZoo.com)
+ *
+ * @package    JBlank
+ * @author     SmetDenis <admin@jbzoo.com>
+ * @copyright  Copyright (c) JBlank.pro
+ * @license    GNU GPL
+ * @link       http://jblank.pro/ JBlank project page
+ */
+
+defined('_JEXEC') or die;
+
+
+/**
+ * Class JBlankCssLess
+ */
+class JBlankCssLess extends JBlankCss
+{
+    /**
+     * @var lessc
+     */
+    protected $_processor;
+
+    /**
+     * @var string
+     */
+    protected $_filter = '\.less';
+
+    /**
+     * @param JBlankTemplate $tpl
+     */
+    public function __construct(JBlankTemplate $tpl)
+    {
+        parent::__construct($tpl);
+        $this->_path = $this->_tpl->lessFull;
+    }
+
+    /**
+     * @param string $path
+     * @return string
+     */
+    protected function _compile($path)
+    {
+        try {
+            return $this->_processor->compileFile($path);
+        } catch (Exception $ex) {
+            die ('<strong>Less Error (JBlank):</strong><br/><pre>' . $ex->getMessage() . '</pre>');
+        }
+    }
+
+    /**
+     * @return JBlankLess
+     */
+    protected function _initProcessor()
+    {
+        // lazy load
+        if (!class_exists('lessc')) {
+            require_once dirname(__FILE__) . '/class.less.php';
+        }
+
+        $less = new lessc();
+
+        if ($this->_isDebug()) {
+            $formatter = new lessc_formatter_lessjs();
+
+            // set template view
+            $formatter->openSingle        = " { ";
+            $formatter->closeSingle       = "}\n";
+            $formatter->close             = "}\n";
+            $formatter->indentChar        = "    ";
+            $formatter->disableSingle     = true;
+            $formatter->breakSelectors    = true;
+            $formatter->assignSeparator   = ": ";
+            $formatter->selectorSeparator = ", ";
+            //$less->setPreserveComments(true);
+
+        } else {
+            $formatter = new lessc_formatter_compressed();
+            $less->setPreserveComments(false);
+        }
+
+        // set formatter
+        $less->setFormatter($formatter);
+
+        // add paths for imports
+        $less->addImportDir($this->_tpl->lessFull);
+        $less->addImportDir(JPATH_ROOT);
+
+        // from php
+        $less->setVariables(array(
+            'css'    => str_replace($this->_tpl->baseurl, '', $this->_tpl->css),
+            'less'   => str_replace($this->_tpl->baseurl, '', $this->_tpl->less),
+            'images' => str_replace($this->_tpl->baseurl, '', $this->_tpl->img),
+            'debug'  => (int)$this->_isDebug(),
+        ));
+
+        // add custom functions
+        $less->registerFunction('data-uri', array($this, 'lib_dataUri'));
+
+        return $less;
+    }
+
+    /**
+     * Convert image file to base64 string for CSS files
+     * @param $args
+     * @return string
+     * @throws Exception
+     */
+    public static function lib_dataUri($args)
+    {
+        if (!isset($args[2])) {
+            return '';
+        }
+
+        $tpl   = JBlankTemplate::getInstance();
+        $image = $args[2][0];
+
+        if (!empty($image)) {
+            $filePath = $tpl->imgFull . '/' . $image;
+        } else {
+            throw new Exception('data-uri: undefined argument ' . print_r($args, true));
+        }
+
+        $filePath = JPath::clean($filePath);
+        if (!JFile::exists($filePath)) {
+            throw new Exception('data-uri: file "' . $filePath . '" is not exists');
+        }
+
+        if ($tpl->isDebug()) {
+            $result = 'url(\'' . $tpl->img . '/' . ltrim($image, '/') . '\')';
+
+        } else {
+            $imgData = getimagesize($filePath);
+            $imgBin  = fread(fopen($filePath, 'r'), filesize($filePath));
+            $imgStr  = base64_encode($imgBin);
+            $result  = 'url(\'data:' . $imgData['mime'] . ';base64,' . $imgStr . '\')';
+        }
+
+        return $result;
+    }
+
+}
