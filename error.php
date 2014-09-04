@@ -5,7 +5,7 @@
  * @package    JBlank
  * @author     SmetDenis <admin@jbzoo.com>
  * @copyright  Copyright (c) JBlank.pro
- * @license    GNU GPL
+ * @license    http://www.gnu.org/licenses/gpl.html GNU/GPL
  * @link       http://jblank.pro/ JBlank project page
  */
 

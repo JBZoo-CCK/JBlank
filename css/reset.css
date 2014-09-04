@@ -1,4 +1,14 @@
-/*! normalize.css v3.0.1 | MIT License | git.io/normalize */
+/**
+ * J!Blank Template for Joomla by JBlank.pro (JBZoo.com)
+ *
+ * @package    JBlank
+ * @author     SmetDenis <admin@jbzoo.com>
+ * @copyright  Copyright (c) JBlank.pro
+ * @license    http://www.gnu.org/licenses/gpl.html GNU/GPL
+ * @link       http://jblank.pro/ JBlank project page
+ *
+ * normalize.css v3.0.1 | MIT License | git.io/normalize
+ */
 
 html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;overflow-y: scroll;}
 body{margin:0;}
