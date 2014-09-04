@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE install PUBLIC "-//Joomla! 2.5//DTD template 1.0//EN" "http://www.joomla.org/xml/dtd/1.6/template-install.dtd">
 <extension version="2.5" type="template" client="site">
-    <name>J!Blank</name>
-    <creationDate>2012.03.06</creationDate>
-    <author>Joomla-book.ru</author>
-    <authorEmail>admin@joomla-book.ru</authorEmail>
-    <authorUrl>http://joomla-book.ru</authorUrl>
-    <copyright>http://joomla-book.ru</copyright>
-    <license>GNU GPL</license>
-    <version>2.2.0</version>
-    <description>JBLANK_DESCRIPTION</description>
+    <name>J!Blank Template</name>
+    <creationDate>2014 09</creationDate>
+    <author>SmetDenis</author>
+    <authorEmail>admin@jbzoo.com</authorEmail>
+    <authorUrl>http://JBlank.pro/</authorUrl>
+    <copyright>Copyright (C) 2011 - 2014 J!Blank.Pro, All rights reserved.</copyright>
+    <license>http://www.gnu.org/licenses/gpl.html GNU/GPL</license>
+    <version>3.0</version>
+    <description>Joomla blank template for fast developing your own design</description>
     
     <files>
         <filename>component.php</filename>
@@ -23,112 +23,17 @@
         <filename>template_thumbnail.png</filename>
         <filename>templateDetails.xml</filename>
         <folder>css</folder>
-        <folder>flash</folder>
         <folder>html</folder>
         <folder>images</folder>
-        <folder>joomla</folder>
         <folder>js</folder>
-        <folder>language</folder>
+        <folder>less</folder>
         <folder>php</folder>
+        <folder>scss</folder>
     </files>
     
     <positions>
-        <position>logo</position>
-        <position>top-block</position>
-        <position>top</position>
-        <position>header</position>
-        <position>top</position>
-        <position>mainmenu</position>
-        <position>breadcrumbs</position>
-        <position>left</position>
-        <position>right</position>
         <position>pre_component</position>
         <position>post_component</position>
-        <position>bottom</position>
-        <position>footer</position>
-        <position>counters</position>
     </positions>
 
-    <languages folder="language">
-        <language tag="ru-RU">ru-RU/ru-RU.tpl_jblank.ini</language>
-        <language tag="en-GB">en-GB/en-GB.tpl_jblank.ini</language>
-    </languages>
-    
-    <config>
-        <fields name="params">
-            <fieldset name="css" addfieldpath="/templates/jblank/joomla/">
-                <field name="@spacer" type="jblankinit" />
-                <field name="css_styles" type="radio" default="0" label="JBLANK_CSS_STYLES" description="JBLANK_CSS_STYLES_DESC">
-                    <option value="0">JBLANK_NO</option>
-                    <option value="1">JBLANK_YES</option>
-                </field>
-                <field name="JBLANK_CSS_PACK" type="spacer" />
-                <field name="css_base" type="radio" default="0" label="JBLANK_CSS_BASE" description="JBLANK_CSS_BASE_DESC">
-                    <option value="0">JBLANK_NO</option>
-                    <option value="1">JBLANK_YES</option>
-                </field>
-                <field name="css_typography" type="radio" default="0" label="JBLANK_CSS_TYPOGRAPHY" description="JBLANK_CSS_TYPOGRAPHY_DESC">
-                    <option value="0">JBLANK_NO</option>
-                    <option value="1">JBLANK_YES</option>
-                </field>
-                <field name="css_grid" type="radio" default="0" label="JBLANK_CSS_GRID" description="JBLANK_CSS_GRID_DESC">
-                    <option value="0">JBLANK_NO</option>
-                    <option value="1">JBLANK_YES</option>
-                </field>
-                <field name="css_auto" type="radio" default="0" label="JBLANK_CSS_AUTO" description="JBLANK_CSS_AUTO_DESC">
-                    <option value="0">JBLANK_NO</option>
-                    <option value="1">JBLANK_YES</option>
-                </field>
-            </fieldset>
-
-            <fieldset name="javascript">
-                <field name="js_joomla" type="radio" default="1" label="JBLANK_JS_JOOMLA" description="JBLANK_JS_JOOMLA_DESC">
-                    <option value="0">JBLANK_NO</option>
-                    <option value="1">JBLANK_YES</option>
-                </field>
-                <field name="JQUERY_JS_FRAMEWORK" type="Spacer" value="" />
-                <field name="js_jquery_core" type="list" default="0" label="JBLANK_JQUERY_CORE" description="JBLANK_JQUERY_CORE_DESC">
-                    <option value="0">JBLANK_JQUERY_NONE</option>
-                    <option value="1">JBLANK_JQUERY_LOCAL</option>
-                    <option value="2">JBLANK_JQUERY_YANDEX</option>
-                    <option value="3">JBLANK_JQUERY_GOOGLE</option>
-                </field>
-                <field name="js_jquery_tools" type="radio" default="0" label="JBLANK_JQUERY_TOOLS" description="JBLANK_JQUERY_TOOLS_DESC">
-                    <option value="0">JBLANK_NO</option>
-                    <option value="1">JBLANK_YES</option>
-                </field>
-                <field name="js_jquery_validate" type="radio" default="0" label="JBLANK_JQUERY_VALIDATE" description="JBLANK_JQUERY_VALIDATE_DESC">
-                    <option value="0">JBLANK_NO</option>
-                    <option value="1">JBLANK_YES</option>
-                </field>
-                <field name="js_jquery_meiomask" type="radio" default="0" label="JBLANK_JQUERY_MEIOMASK" description="JBLANK_JQUERY_MEIOMASK_DESC">
-                    <option value="0">JBLANK_NO</option>
-                    <option value="1">JBLANK_YES</option>
-                </field>
-                <field name="js_script" type="radio" default="0" label="JBLANK_JS_SCRIPT" description="JBLANK_JS_SCRIPT_DESC">
-                    <option value="0">JBLANK_NO</option>
-                    <option value="1">JBLANK_YES</option>
-                </field>
-                <field name="JBLANK_HR" type="Spacer" value="" />
-                <field name="js_modernizr" type="radio" default="0" label="JBLANK_JS_MODERNIZR" description="JBLANK_JS_MODERNIZR_DESC">
-                    <option value="0">JBLANK_NO</option>
-                    <option value="1">JBLANK_YES</option>
-                </field>
-            </fieldset>
-
-            <fieldset name="others">
-                <field name="files_mdate" type="list" default="3" label="JBLANK_FILES_MDATE" description="JBLANK_FILES_MDATE_DESC">
-                    <option value="0">JBLANK_NO</option>
-                    <option value="1">JBLANK_JS_ONLY</option>
-                    <option value="2">JBLANK_CSS_ONLY</option>
-                    <option value="3">JBLANK_BOTH</option>
-                </field>
-                <field name="meta_generator" type="text" default="J!Blank Template by Joomla-book.ru" label="JBLANK_META_GENERATOR" description="JBLANK_META_GENERATOR_DESC" size="50" />
-                <field name="js_bottom" type="list" default="0" label="JBLANK_JS_BOTTOM" description="JBLANK_JS_BOTTOM_DESC">
-                    <option value="0">JBLANK_JS_TOP</option>
-                    <option value="1">JBLANK_JS_BOTTOM</option>
-                </field>
-            </fieldset>
-        </fields>
-    </config>
 </extension>
