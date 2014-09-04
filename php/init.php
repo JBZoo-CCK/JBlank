@@ -5,7 +5,7 @@
  * @package    JBlank
  * @author     SmetDenis <admin@jbzoo.com>
  * @copyright  Copyright (c) JBlank.pro
- * @license    GNU GPL
+ * @license    http://www.gnu.org/licenses/gpl.html GNU/GPL
  * @link       http://jblank.pro/ JBlank project page
  */
 
@@ -19,9 +19,9 @@ require_once dirname(__FILE__) . '/libs/template.php';
 /************************* runtime configurations *********************************************************************/
 $tpl = JBlankTemplate::getInstance();
 $tpl
-    // include CSS files
-    // compile less *.file to CSS
-    // compile scss *.file to CSS (experimental!)
+    // include CSS files if it's not empty
+    // compile less *.file to CSS and cache it
+    // compile scss *.file to CSS and cache it (experimental!)
     ->css(array(
         // 'template.css', // from jblank/css folder
         'template.less', // from jblank/less folder
@@ -50,7 +50,7 @@ $tpl
     ->generator('JBlank Template') // null for disable
 
     // set HTML5 mode (for <head> tag)
-    ->html5(true) // null for disable
+    ->html5(true)
 
     // add custom meta tags
     ->meta(array(
@@ -70,6 +70,7 @@ $tpl
     ));
 
 
+// add styles for debug mode
 if ($tpl->isDebug()) {
     $tpl->css('debug.less');
 }
