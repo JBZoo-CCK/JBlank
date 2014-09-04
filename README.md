@@ -1,4 +1,4 @@
-jblank
+J!Blank.pro
 ======
 
-Joomla Blank Template
+Joomla blank template for fast developing your own theme.
