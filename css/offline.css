@@ -1,0 +1,93 @@
+#page-offline {
+    margin: 0;
+    padding: 0;
+    font-size: 12px;
+    color: #333333;
+    text-align: center;
+    /* -- form styles ----------------------------------- */
+    /* -- message styles ----------------------------------- */
+}
+
+#page-offline img {
+    border: 0 none;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#page-offline #frame {
+    margin: 20px auto;
+    width: 405px;
+    padding: 20px;
+}
+
+#page-offline #frame img {
+    max-width: 100%;
+    height: auto;
+}
+
+#page-offline form {
+    margin: auto;
+    text-align: left;
+}
+
+#page-offline form p {
+    margin: 0;
+    padding: 4px 0 4px 0;
+}
+
+#page-offline form fieldset {
+    border: 0 none;
+    margin: 0em;
+    padding: 0.2em;
+}
+
+#page-offline form fieldset .input p {
+    clear: left;
+}
+
+#page-offline form label {
+    display: block;
+    float: left;
+    margin: 5px 0px 2px 0px;
+    width: 10em;
+}
+
+#page-offline form input {
+    padding: 3px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+#page-offline form input[type=text],
+#page-offline form input[type=password] {
+    width: 200px;
+}
+
+#page-offline form input.button {
+    width: 120px;
+    height: 32px;
+    cursor: pointer;
+    background-color: white;
+}
+
+#page-offline form input.button:hover {
+    border-color: #FC902E;
+}
+
+#page-offline form #frmlogin {
+    margin: 0 10px 0 10px;
+}
+
+#page-offline form #frmlogin fieldset.button {
+    text-align: right;
+}
+
+#page-offline #system-message {
+    margin: 10px auto;
+    padding: 20px 0 0;
+    width: 450px;
+}
+
+#page-offline #system-message h4 {
+    display: none;
+}
