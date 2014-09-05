@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE install PUBLIC "-//Joomla! 2.5//DTD template 1.0//EN" "http://www.joomla.org/xml/dtd/1.6/template-install.dtd">
+<!DOCTYPE install PUBLIC "-//Joomla! 2.5//DTD template 1.0//EN"
+        "http://www.joomla.org/xml/dtd/1.6/template-install.dtd">
 <extension version="2.5" type="template" client="site">
     <name>J!Blank Template</name>
     <creationDate>2014 09</creationDate>
@@ -10,8 +11,15 @@
     <license>http://www.gnu.org/licenses/gpl.html GNU/GPL</license>
     <version>3.0</version>
     <description>Joomla blank template for fast developing your own design</description>
-    
+
     <files>
+        <folder>css</folder>
+        <folder>html</folder>
+        <folder>images</folder>
+        <folder>js</folder>
+        <folder>less</folder>
+        <folder>php</folder>
+        <folder>scss</folder>
         <filename>component.php</filename>
         <filename>error.php</filename>
         <filename>favicon.ico</filename>
@@ -22,18 +30,22 @@
         <filename>template_preview.png</filename>
         <filename>template_thumbnail.png</filename>
         <filename>templateDetails.xml</filename>
-        <folder>css</folder>
-        <folder>html</folder>
-        <folder>images</folder>
-        <folder>js</folder>
-        <folder>less</folder>
-        <folder>php</folder>
-        <folder>scss</folder>
     </files>
-    
+
     <positions>
         <position>pre_component</position>
         <position>post_component</position>
     </positions>
+
+    <config>
+        <fields name="params">
+            <fieldset name="advanced">
+                <field name="less_processor" type="radio" default="leafo" label="Less processor lib">
+                    <option value="gpeasy">lessphp.gpeasy.com</option>
+                    <option value="leafo">leafo.net/lessphp</option>
+                </field>
+            </fieldset>
+        </fields>
+    </config>
 
 </extension>

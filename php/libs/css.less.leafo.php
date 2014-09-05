@@ -13,9 +13,9 @@ defined('_JEXEC') or die;
 
 
 /**
- * Class JBlankCssLess
+ * Class JBlankCssLessLeafo
  */
-class JBlankCssLess extends JBlankCss
+class JBlankCssLessLeafo extends JBlankCss
 {
     /**
      * @var lessc
@@ -56,7 +56,7 @@ class JBlankCssLess extends JBlankCss
     {
         // lazy load
         if (!class_exists('lessc')) {
-            require_once dirname(__FILE__) . '/class.less.php';
+            require_once dirname(__FILE__) . '/class.less.leafo.php';
         }
 
         $less = new lessc();

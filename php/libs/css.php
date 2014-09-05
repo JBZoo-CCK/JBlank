@@ -43,6 +43,11 @@ abstract class JBlankCss
     protected $_path = null;
 
     /**
+     * @var string
+     */
+    protected $_cacheMix = '';
+
+    /**
      * @param JBlankTemplate $tpl
      */
     public function __construct(JBlankTemplate $tpl)
@@ -59,8 +64,14 @@ abstract class JBlankCss
      * @throws Exception
      * @return JBlankCss
      */
-    public static function getProcessor($type = 'native', JBlankTemplate $tpl)
+    public static function getProcessor($type = 'less.leafo', JBlankTemplate $tpl)
     {
+        $pluginPath = dirname(__FILE__) . '/css.' . $type . '.php';
+        if (file_exists($pluginPath)) {
+            include_once $pluginPath;
+        }
+
+        $type  = str_replace('.', '', $type);
         $class = 'JBlankCss' . $type;
 
         if (class_exists($class)) {
@@ -107,7 +118,11 @@ abstract class JBlankCss
             }
         }
 
-        return $relPath;
+        if (!empty($css)) {
+            return $relPath;
+        }
+
+        return null;
     }
 
     /**
@@ -130,6 +145,7 @@ abstract class JBlankCss
             '_file'   => $file,
             '_dir'    => $this->_path,
             '_filter' => $this->_filter,
+            '_mix'    => $$this->_cacheMix,
             '_debug'  => $this->_isDebug(),
         );
 

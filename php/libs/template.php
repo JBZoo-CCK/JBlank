@@ -19,8 +19,9 @@ jimport('joomla.filesystem.file');
 // load own libs
 $tmplPath = dirname(__FILE__);
 require_once $tmplPath . '/css.php';
-require_once $tmplPath . '/css.less.php';
-require_once $tmplPath . '/css.scss.php';
+require_once $tmplPath . '/css.less.leafo.php';
+require_once $tmplPath . '/css.less.gpeasy.php';
+require_once $tmplPath . '/css.scss.leafo.php';
 require_once $tmplPath . '/class.mobiledetect.php';
 
 /**
@@ -206,9 +207,11 @@ class JBlankTemplate
 
             } else if ($ext == 'less') {
 
+                $lessMode = $this->params->get('less_processor', 'leafo');
+
                 $path = JPath::clean($this->lessFull . '/' . $prefix . $filename);
                 if ($this->_checkFile($path)) {
-                    if ($cssPath = JBlankCss::getProcessor('less', $this)->compile($path)) {
+                    if ($cssPath = JBlankCss::getProcessor('less.' . $lessMode, $this)->compile($path)) {
                         $this->doc->addStylesheet($cssPath, 'text/css', $type);
                     }
                 }
@@ -217,7 +220,7 @@ class JBlankTemplate
 
                 $path = JPath::clean($this->scssFull . '/' . $prefix . $filename);
                 if ($this->_checkFile($path)) {
-                    if ($cssPath = JBlankCss::getProcessor('scss', $this)->compile($path)) {
+                    if ($cssPath = JBlankCss::getProcessor('scss.leafo', $this)->compile($path)) {
                         $this->doc->addStylesheet($cssPath, 'text/css', $type);
                     }
                 }
