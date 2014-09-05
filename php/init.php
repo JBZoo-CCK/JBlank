@@ -69,12 +69,6 @@ $tpl
         '<meta name="yandex-verification" content="... yandex verification hash ..." />',
     ));
 
-
-// add styles for debug mode
-if ($tpl->isDebug()) {
-    $tpl->css('debug.less');
-}
-
 /************************* your php code below this line **************************************************************/
 
 // mobile detect using (just example)

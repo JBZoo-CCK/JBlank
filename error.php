@@ -15,11 +15,6 @@ defined('_JEXEC') or die;
 // init $tpl helper
 require dirname(__FILE__) . '/php/init.php';
 
-$tpl->css('error.less');
-if ($tpl->isDebug()) {
-    $tpl->css('debug.less');
-}
-
 ?><?php echo $tpl->renderHTML(); ?>
 <head>
     <?php echo $tpl->renderHead(); ?>

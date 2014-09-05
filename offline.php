@@ -16,7 +16,6 @@ defined('_JEXEC') or die;
 require dirname(__FILE__) . '/php/init.php';
 
 // add CSS
-$tpl->css('offline.less');
 $app = $tpl->app;
 
 // check Joomla auth method

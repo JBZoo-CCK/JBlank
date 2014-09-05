@@ -15,8 +15,6 @@ defined('_JEXEC') or die;
 // init $tpl helper
 require dirname(__FILE__) . '/php/init.php';
 
-$tpl->css('component.css');
-
 ?><?php echo $tpl->renderHTML(); ?>
 <head>
     <jdoc:include type="head"/>
