@@ -50,7 +50,7 @@ class JBlankCssLess extends JBlankCss
     }
 
     /**
-     * @return JBlankLess
+     * @return lessc
      */
     protected function _initProcessor()
     {
@@ -64,7 +64,7 @@ class JBlankCssLess extends JBlankCss
         if ($this->_isDebug()) {
             $formatter = new lessc_formatter_lessjs();
 
-            // set template view
+            // configurate css view
             $formatter->openSingle        = " { ";
             $formatter->closeSingle       = "}\n";
             $formatter->close             = "}\n";
@@ -73,15 +73,16 @@ class JBlankCssLess extends JBlankCss
             $formatter->breakSelectors    = true;
             $formatter->assignSeparator   = ": ";
             $formatter->selectorSeparator = ", ";
-            //$less->setPreserveComments(true);
-
         } else {
-            $formatter = new lessc_formatter_compressed();
-            $less->setPreserveComments(false);
+            // compress mode
+            $formatter              = new lessc_formatter_compressed();
+            $formatter->closeSingle = "}\n";
+            $formatter->close       = "}\n";
         }
 
         // set formatter
         $less->setFormatter($formatter);
+        $less->setPreserveComments(false);
 
         // add paths for imports
         $less->addImportDir($this->_tpl->lessFull);
