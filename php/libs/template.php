@@ -409,7 +409,10 @@ class JBlankTemplate
                 $this->meta($metaRow);
             }
         } else {
-            $this->doc->addCustomTag($metaRows);
+            $data = $this->doc->getHeadData();
+            if (!in_array($metaRows, $data['custom'])) {
+                $this->doc->addCustomTag($metaRows);
+            }
         }
 
         return $this;

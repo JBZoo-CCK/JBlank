@@ -60,21 +60,14 @@ abstract class JBlankCss
      */
     public static function getProcessor($type = 'native', JBlankTemplate $tpl)
     {
-        static $types;
+        $class = 'JBlankCss' . $type;
 
-        if (!isset($types)) {
-            $types = array();
+        if (class_exists($class)) {
+            $processor       = new $class($tpl);
+            $processor->type = $type;
         }
 
-        if (!isset($types[$type])) {
-            $class = 'JBlankCss' . $type;
-            if (class_exists($class)) {
-                $types[$type]       = new $class($tpl);
-                $types[$type]->type = $type;
-            }
-        }
-
-        return $types[$type];
+        return $processor;
     }
 
     /**
@@ -96,7 +89,7 @@ abstract class JBlankCss
             // build it always
             $css = $this->_compile($file);
             $this->_save($cachePath, $css);
-            $relPath .= '?' . mt_rand(100, 999); // forced disable browser cache
+            $relPath .= '?' . substr(filemtime($cachePath), -3); // forced disable browser cache
 
         } else {
             // check is cached fils exists
