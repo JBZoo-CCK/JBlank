@@ -56,6 +56,7 @@ abstract class JBlankCss
     /**
      * @param string $type
      * @param JBlankTemplate $tpl
+     * @throws Exception
      * @return JBlankCss
      */
     public static function getProcessor($type = 'native', JBlankTemplate $tpl)
@@ -65,6 +66,8 @@ abstract class JBlankCss
         if (class_exists($class)) {
             $processor       = new $class($tpl);
             $processor->type = $type;
+        } else {
+            throw new Exception('Undefined CSS processor');
         }
 
         return $processor;
@@ -76,6 +79,12 @@ abstract class JBlankCss
      */
     public function compile($file)
     {
+        static $random;
+
+        if (!isset($random)) {
+            $random = mt_rand(100, 999);
+        }
+
         $debug    = $this->_isDebug();
         $file     = JPath::clean($file);
         $filename = pathinfo($file, PATHINFO_FILENAME);
@@ -89,7 +98,7 @@ abstract class JBlankCss
             // build it always
             $css = $this->_compile($file);
             $this->_save($cachePath, $css);
-            $relPath .= '?' . substr(filemtime($cachePath), -3); // forced disable browser cache
+            $relPath .= '?' . $random; // forced disable browser cache
 
         } else {
             // check is cached fils exists
