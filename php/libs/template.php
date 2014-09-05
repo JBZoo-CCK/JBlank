@@ -21,7 +21,6 @@ $tmplPath = dirname(__FILE__);
 require_once $tmplPath . '/css.php';
 require_once $tmplPath . '/css.less.php';
 require_once $tmplPath . '/css.scss.php';
-require_once $tmplPath . '/css.native.php';
 require_once $tmplPath . '/class.mobiledetect.php';
 
 /**
