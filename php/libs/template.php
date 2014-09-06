@@ -139,6 +139,7 @@ class JBlankTemplate
         $this->lessFull = JPath::clean($this->pathFull . '/less');
         $this->scssFull = JPath::clean($this->pathFull . '/scss');
         $this->jsFull   = JPath::clean($this->pathFull . '/js');
+        $this->partial  = JPath::clean($this->pathFull . '/partial');
 
         // init template vars
         $this->lang    = $this->_getLangCurrent();
@@ -640,4 +641,38 @@ class JBlankTemplate
     {
         return $this->mobile->isAndroidOS();
     }
+
+    /**
+     * Attention! Function chanage template contect.
+     * It means that $this will be instance of JBlankTemplate
+     *
+     * @param $name
+     * @param array $args
+     * @return string
+     */
+    public function partial($name, array $args = array())
+    {
+        $file = preg_replace('/[^A-Z0-9_\.-]/i', '', $name);
+
+        $args['tpl']   = $this;
+        $args['_this'] = $this->doc; // experimental
+
+        // load the partial
+        $__file = $this->partial . '/' . $file;
+
+        // render the partial
+        if (JFile::exists($__file)) {
+
+            // import vars and get content
+            extract($args);
+            ob_start();
+            include($__file);
+            $output = ob_get_contents();
+            ob_end_clean();
+            return $output;
+        }
+
+        return null;
+    }
+
 }
