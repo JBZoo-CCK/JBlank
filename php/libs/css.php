@@ -118,7 +118,7 @@ abstract class JBlankCss
             }
         }
 
-        if (!empty($css)) {
+        if (filesize($cachePath) > 5) {
             return $relPath;
         }
 
@@ -145,7 +145,7 @@ abstract class JBlankCss
             '_file'   => $file,
             '_dir'    => $this->_path,
             '_filter' => $this->_filter,
-            '_mix'    => $$this->_cacheMix,
+            '_mix'    => $this->_cacheMix,
             '_debug'  => $this->_isDebug(),
         );
 
