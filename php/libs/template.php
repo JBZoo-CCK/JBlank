@@ -675,4 +675,21 @@ class JBlankTemplate
         return null;
     }
 
+   /**
+     * Simple checking type of current page
+     * @return bool
+     */
+    public function isFront()
+    {
+        $defId = $this->menu->getDefault()->id;
+        $curId = 0;
+
+        $active = $this->menu->getActive();
+        if ($active && $active->id) {
+            $curId = $active->id;
+        }
+
+        return $defId == $curId;
+    }    
+    
 }
