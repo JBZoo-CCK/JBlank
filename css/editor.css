@@ -10,49 +10,77 @@
 
 body {
     background: #fff;
-    font: normal normal normal 75%/125% arial, sans-serif;
+    font-size: 14px;
+    line-height: 18px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     color: #000;
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: Helvetica, Arial, sans-serif;
     font-weight: bold;
-    color: #333;
 }
 
 h1 {
-    font-size: 18px;
+    font-size: 24px;
 }
 
 h2 {
-    font-size: 16px;
+    font-size: 20px;
 }
 
 h3 {
-    font-size: 14px;
+    font-size: 18px;
 }
 
 h4 {
-    font-size: 12px;
+    font-size: 16px;
 }
 
 h5, h6 {
-    font-size: 10px;
+    font-size: 14px;
+}
+
+strong {
+    color: #555;
+}
+
+em {
+    color: #d05;
+}
+em strong {
+    color: #d05;
 }
 
 a, a:link, a:visited {
-    color: #1B57B1;
-    text-decoration: none;
-    font-weight: normal;
-}
-
-a:hover {
-    color: #00c;
+    color: #00f;
     text-decoration: underline;
     font-weight: normal;
 }
 
-/* Styles for Joomla editor */
+a:hover {
+    text-decoration: none;
+}
+
+code, kbd, samp, pre, tt, var {
+    font-size: 14px;
+    font-family: "Lucida Console";
+}
+
+code {
+    border: 1px solid #c00;
+    padding: 2px;
+}
+
+pre {
+    border: 1px dashed #aaa;
+    line-height: 18px;
+    background: #eee;
+    color: #c33;
+    padding: 3px;
+    margin: 6px 0;
+}
+
+/* Specific styles for Joomla features */
 .caption {
     padding: 0 10px 0 10px;
 }
