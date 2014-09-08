@@ -20,7 +20,9 @@ $app = $tpl->app;
 
 // check Joomla auth method
 require_once JPATH_ADMINISTRATOR . '/components/com_users/helpers/users.php';
-$twoFactors = UsersHelper::getTwoFactorMethods();
+if (method_exists('UsersHelper','getTwoFactorMethods')) {
+    $twoFactors = UsersHelper::getTwoFactorMethods();
+}
 
 ?><?php echo $tpl->renderHTML(); ?>
 <head>
@@ -56,7 +58,7 @@ $twoFactors = UsersHelper::getTwoFactorMethods();
                     <input type="password" name="password" class="inputbox" size="18" alt="<?php echo JText::_('JGLOBAL_PASSWORD'); ?>" id="passwd" />
                 </p>
 
-                <?php if (count($twoFactors) > 1) : ?>
+                <?php if (isset($twoFactors) && count($twoFactors) > 1) : ?>
                     <p id="form-login-secretkey">
                         <label for="secretkey"><?php echo JText::_('JGLOBAL_SECRETKEY'); ?></label>
                         <input type="text" name="secretkey" class="inputbox" size="18" alt="<?php echo JText::_('JGLOBAL_SECRETKEY'); ?>" id="secretkey" />
