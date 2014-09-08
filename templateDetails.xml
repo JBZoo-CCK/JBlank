@@ -18,6 +18,7 @@
         <folder>images</folder>
         <folder>js</folder>
         <folder>less</folder>
+        <folder>partial</folder>
         <folder>php</folder>
         <folder>scss</folder>
         <filename>component.php</filename>
