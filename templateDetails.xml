@@ -2,7 +2,7 @@
 <!DOCTYPE install PUBLIC "-//Joomla! 2.5//DTD template 1.0//EN"
         "http://www.joomla.org/xml/dtd/1.6/template-install.dtd">
 <extension version="2.5" type="template" client="site">
-    <name>J!Blank Template</name>
+    <name>J!Blank</name>
     <creationDate>2014 09</creationDate>
     <author>SmetDenis</author>
     <authorEmail>admin@jbzoo.com</authorEmail>
@@ -10,7 +10,7 @@
     <copyright>Copyright (C) 2011 - 2014 J!Blank.Pro, All rights reserved.</copyright>
     <license>http://www.gnu.org/licenses/gpl.html GNU/GPL</license>
     <version>3.0</version>
-    <description>Joomla blank template for fast developing your own design</description>
+    <description>Joomla blank template for fast developing your own design. See full tutorial on http://jblank.pro/</description>
 
     <files>
         <folder>css</folder>
