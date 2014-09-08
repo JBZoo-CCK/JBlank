@@ -318,8 +318,10 @@ class JBlankTemplate
         $docData  = $document->getHeadData();
         $html     = array();
 
+        $isHtml5 = method_exists($this->doc, 'isHtml5') && $this->doc->isHtml5();
+
         // Generate charset when using HTML5 (should happen first)
-        if ($this->doc->isHtml5()) {
+        if ($isHtml5) {
             $html[] = '<meta charset="' . $document->getCharset() . '" />';
         }
 
@@ -332,7 +334,7 @@ class JBlankTemplate
         // Generate META tags (needs to happen as early as possible in the head)
         foreach ($docData['metaTags'] as $type => $tag) {
             foreach ($tag as $name => $content) {
-                if ($type == 'http-equiv' && !($document->isHtml5() && $name == 'content-type')) {
+                if ($type == 'http-equiv' && !($isHtml5 && $name == 'content-type')) {
                     $html[] = '<meta http-equiv="' . $name . '" content="' . htmlspecialchars($content) . '" />';
                 } elseif ($type == 'standard' && !empty($content)) {
                     $html[] = '<meta name="' . $name . '" content="' . htmlspecialchars($content) . '" />';
@@ -354,7 +356,7 @@ class JBlankTemplate
         foreach ($docData['styleSheets'] as $strSrc => $strAttr) {
             $tag = '<link rel="stylesheet" href="' . $strSrc . '"';
 
-            if (!is_null($strAttr['mime']) && (!$document->isHtml5() || $strAttr['mime'] != 'text/css')) {
+            if (!is_null($strAttr['mime']) && (!$isHtml5 || $strAttr['mime'] != 'text/css')) {
                 $tag .= ' type="' . $strAttr['mime'] . '"';
             }
 
@@ -377,7 +379,7 @@ class JBlankTemplate
 
             $defaultMimes = array('text/javascript', 'application/javascript', 'text/x-javascript', 'application/x-javascript');
 
-            if (!is_null($strAttr['mime']) && (!$document->isHtml5() || !in_array($strAttr['mime'], $defaultMimes))) {
+            if (!is_null($strAttr['mime']) && (!$isHtml5 || !in_array($strAttr['mime'], $defaultMimes))) {
                 $tag .= ' type="' . $strAttr['mime'] . '"';
             }
 
@@ -469,15 +471,26 @@ class JBlankTemplate
      */
     protected function _getRequest()
     {
-        $request = new Joomla\Registry\Registry();
-        $request->loadArray(array(
+        $data = array(
             'option' => $this->request('option'),
             'view'   => $this->request('view'),
             'layout' => $this->request('layout'),
             'tmpl'   => $this->request('tmpl', 'index'),
             'lang'   => $this->request('lang', $this->langDef),
             'Itemid' => $this->request('Itemid', 0, 'int'),
-        ));
+        );
+
+        if (class_exists('Joomla\Registry\Registry')) {
+            $request = new Joomla\Registry\Registry();
+            $request->loadArray($data);
+
+        } else if (class_exists('JRegistry')) { // is depricated since J!3
+            $request = new JRegistry();
+            $request->loadArray($data);
+
+        } else {
+            $request = (object)$data;
+        }
 
         return $request;
     }
@@ -538,7 +551,10 @@ class JBlankTemplate
      */
     public function html5($state)
     {
-        $this->doc->setHtml5((int)$state);
+        if (method_exists($this->doc, 'setHtml5')) {
+            $this->doc->setHtml5((int)$state);
+        }
+
         return $this;
     }
 
@@ -675,7 +691,7 @@ class JBlankTemplate
         return null;
     }
 
-   /**
+    /**
      * Simple checking type of current page
      * @return bool
      */
@@ -690,6 +706,6 @@ class JBlankTemplate
         }
 
         return $defId == $curId;
-    }    
-    
+    }
+
 }
