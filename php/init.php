@@ -30,8 +30,8 @@ $tpl
 
     // include JavaScript files
     ->js(array(
-        'libs/jquery-1.11.1.min.js',
-        'template.js',
+        // 'libs/jquery-1.11.1.min.js',
+        // 'template.js',
     ))
 
     // exclude css files from system or components (experimental!)
@@ -47,7 +47,7 @@ $tpl
     ))
 
     // set custom generator
-    ->generator('JBlank Template') // null for disable
+    ->generator('J!Blank Template') // null for disable
 
     // set HTML5 mode (for <head> tag)
     ->html5(true)
