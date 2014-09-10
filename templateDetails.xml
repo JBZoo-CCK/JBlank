@@ -42,8 +42,9 @@
         <fields name="params">
             <fieldset name="advanced">
                 <field name="less_processor" type="radio" default="leafo" label="Less processor lib">
-                    <option value="gpeasy">lessphp.gpeasy.com</option>
                     <option value="leafo">leafo.net/lessphp</option>
+                    <option value="gpeasy">lessphp.gpeasy.com</option>
+                    <option value="js">lesscss.org (JS in Browser, no cache!)</option>
                 </field>
             </fieldset>
         </fields>
