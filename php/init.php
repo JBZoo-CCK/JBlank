@@ -30,7 +30,7 @@ $tpl
 
     // include JavaScript files
     ->js(array(
-        // 'libs/jquery-1.11.1.min.js',
+        // 'libs/jquery-1.x.min.js',
         // 'template.js',
     ))
 
