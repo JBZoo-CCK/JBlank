@@ -13,9 +13,9 @@ defined('_JEXEC') or die;
 
 
 /**
- * Class JBlankCssScss
+ * Class JBlankCssScssLeafo
  */
-class JBlankCssScss extends JBlankCss
+class JBlankCssScssLeafo extends JBlankCss
 {
     /**
      * @var scssc
@@ -52,8 +52,8 @@ class JBlankCssScss extends JBlankCss
     protected function _initProcessor()
     {
         // lazy load
-        if (!class_exists('scss')) {
-            include dirname(__FILE__) . '/class.scssc.php';
+        if (!class_exists('scssc')) {
+            include dirname(__FILE__) . '/class.scssc.leafo.php';
         }
 
         $sass = new scssc();
