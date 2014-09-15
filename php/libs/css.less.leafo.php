@@ -118,24 +118,28 @@ class JBlankCssLessLeafo extends JBlankCss
         $image = $args[2][0];
 
         if (!empty($image)) {
-            $filePath = $tpl->imgFull . '/' . $image;
+            $filePath = $tpl->lessFull . '/' . $image;
         } else {
             throw new Exception('data-uri: undefined argument ' . print_r($args, true));
         }
 
-        $filePath = JPath::clean($filePath);
-        if (!JFile::exists($filePath)) {
+        $filePath = realpath(JPath::clean($filePath));
+        if (empty($filePath) || !JFile::exists($filePath)) {
             throw new Exception('data-uri: file "' . $filePath . '" is not exists');
         }
 
-        if ($tpl->isDebug()) {
-            $result = 'url(\'' . $tpl->img . '/' . ltrim($image, '/') . '\')';
+        $kbSize = filesize($filePath) / 1024;
+
+        if ($tpl->isDebug() || $kbSize > 32) {
+            $relPath = str_replace(array(JPATH_ROOT, $tpl->imgFull), '', $filePath);
+            $relPath = str_replace("\\", '/', $relPath);
+            $result  = 'url("' . $tpl->img . '/' . ltrim($relPath, '/') . '")';
 
         } else {
             $imgData = getimagesize($filePath);
             $imgBin  = fread(fopen($filePath, 'r'), filesize($filePath));
             $imgStr  = base64_encode($imgBin);
-            $result  = 'url(\'data:' . $imgData['mime'] . ';base64,' . $imgStr . '\')';
+            $result  = 'url("data:' . $imgData['mime'] . ';base64,' . $imgStr . '"\'")';
         }
 
         return $result;
