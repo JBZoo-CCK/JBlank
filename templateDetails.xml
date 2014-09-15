@@ -9,7 +9,7 @@
     <authorUrl>http://JBlank.pro/</authorUrl>
     <copyright>Copyright (C) 2011 - 2014 J!Blank.Pro, All rights reserved.</copyright>
     <license>http://www.gnu.org/licenses/gpl.html GNU/GPL</license>
-    <version>3.0.1</version>
+    <version>3.0.2</version>
     <description>Joomla blank template for fast developing your own design. See full tutorial on http://jblank.pro/</description>
 
     <files>
@@ -41,9 +41,9 @@
     <config>
         <fields name="params">
             <fieldset name="advanced">
-                <field name="less_processor" type="radio" default="leafo" label="Less processor lib">
+                <field name="less_processor" type="radio" default="gpeasy" label="Less processor lib">
+                    <option value="gpeasy">lessphp.gpeasy.com (recommended)</option>
                     <option value="leafo">leafo.net/lessphp</option>
-                    <option value="gpeasy">lessphp.gpeasy.com</option>
                     <option value="js">lesscss.org (JS in Browser, no cache!)</option>
                 </field>
             </fieldset>
