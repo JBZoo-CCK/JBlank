@@ -56,8 +56,9 @@ body {
 
 // base64 example
 .example-smallImage-to-base64 {
-    -test1-background: data-uri('test.png');
-    -test2-background: data-uri('/inner/test.png') 0 50% no-repeat;
+    background: url('../images/test.png'); // test simple rel path
+    -test1-background: data-uri('../images/test.png');
+    -test2-background: data-uri('../images/inner/test.png') 0 50% no-repeat;
     //-test3-background: data-uri('not-exists-image.gif');
 }
 
