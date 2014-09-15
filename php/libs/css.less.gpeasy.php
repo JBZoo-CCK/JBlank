@@ -43,8 +43,7 @@ class JBlankCssLessGpeasy extends JBlankCss
     protected function _compile($path)
     {
         try {
-
-            $this->_processor->parseFile($path);
+            $this->_processor->parseFile($path, $this->_tpl->less);
             $resultCss = $this->_processor->getCss();
 
             $this->_cacheMix = $this->_processor->allParsedFiles();
@@ -67,22 +66,27 @@ class JBlankCssLessGpeasy extends JBlankCss
         }
 
         $options = array(
-            'compress'     => true, // option - whether to compress
-            'strictUnits'  => false, // whether units need to evaluate correctly
-            'strictMath'   => false, // whether math has to be within parenthesis
+            'compress'     => 1, // option - whether to compress
+            'strictUnits'  => 0, // whether units need to evaluate correctly
+            'strictMath'   => 0, // whether math has to be within parenthesis
+            'relativeUrls' => 1, // option - whether to adjust URL's to be relative
             'numPrecision' => 4,
-            'cache_method' => false,
+            'cache_method' => 0,
+            'sourceMap'    => 0,
         );
 
         if ($this->_isDebug()) {
-            $options['compress'] = false;
+            $options['compress']          = 0;
+            $options['sourceMap']         = 1;
+            $options['sourceMapRootpath'] = $this->_tpl->less;
+            $options['sourceMapBasepath'] = $path = JPath::clean($this->_tpl->lessFull, '/');
         }
 
         $less = new Less_Parser($options);
 
         // set paths
         $less->SetImportDirs(array(
-            $this->_tpl->lessFull => $this->_tpl->baseurl
+            $this->_tpl->lessFull => $this->_tpl->less
         ));
 
         // add custom vars
