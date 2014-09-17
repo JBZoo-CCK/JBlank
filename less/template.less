@@ -1,13 +1,7 @@
 /**
  * J!Blank Template for Joomla by JBlank.pro (JBZoo.com)
- *
- * @package    JBlank
- * @author     SmetDenis <admin@jbzoo.com>
- * @copyright  Copyright (c) JBlank.pro
- * @license    http://www.gnu.org/licenses/gpl.html GNU/GPL
- * @link       http://jblank.pro/ JBlank project page
+ * Examples and test styles
  */
-/****************************************** IMPORT REQUERED LIBS ******************************************************/
 @import "misc/vars";
 @import "misc/mixins";
 @import "layouts/reset";
@@ -48,16 +42,17 @@ body {
         padding: 30px 50px 50px;
         margin: 30px auto;
         background: #fcfcfc;
-        border: 1px solid #b3b3b3;
-        .box-shadow(0 1px 10px #a7a7a7);
-        .border-radius(4px);
+        border: 1px solid #aaa;
+        .box-shadow(0 3px 10px #bbb);
+        .border-radius(6px);
+        #gradient.directional(#ddd, #fff);
     }
 }
 
 // base64 example
 .example-smallImage-to-base64 {
-    background: url('../images/test.png'); // test simple rel path
-    -test1-background: data-uri('../images/test.png');
+    background: url('../images/test.png'); // test simple relation path
+    -test1-background: data-uri('../images/test.png'); // test convertion image to base64
     -test2-background: data-uri('../images/inner/test.png') 0 50% no-repeat;
     //-test3-background: data-uri('not-exists-image.gif');
 }
