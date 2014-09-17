@@ -19,6 +19,9 @@ require_once dirname(__FILE__) . '/libs/template.php';
 /************************* runtime configurations *********************************************************************/
 $tpl = JBlankTemplate::getInstance();
 $tpl
+    // enable or disable debug mode. Default in Joomla configuration.php
+    //->debug(true)
+
     // include CSS files if it's not empty
     // compile less *.file to CSS and cache it
     // compile scss *.file to CSS and cache it (experimental!)
@@ -31,7 +34,7 @@ $tpl
     // include JavaScript files
     ->js(array(
         // 'libs/jquery-1.x.min.js',
-        // 'template.js',
+        'template.js',
     ))
 
     // exclude css files from system or components (experimental!)

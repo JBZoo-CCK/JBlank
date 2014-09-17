@@ -95,6 +95,11 @@ class JBlankTemplate
     public $langDef;
 
     /**
+     * @var bool
+     */
+    protected $_debugMode = false;
+
+    /**
      * Create and get instance
      * @return JBlankTemplate
      */
@@ -149,6 +154,8 @@ class JBlankTemplate
 
         // init mobile detect
         $this->mobile = $this->_getMobile();
+
+        $this->_debugMode = defined('JDEBUG') && JDEBUG;
     }
 
     /**
@@ -156,7 +163,7 @@ class JBlankTemplate
      */
     public function isDebug()
     {
-        return defined('JDEBUG') && JDEBUG;
+        return $this->_debugMode;
     }
 
     /**
@@ -720,6 +727,17 @@ class JBlankTemplate
         }
 
         return $defId == $curId;
+    }
+
+    /**
+     * Enable or disable debug mode
+     * @param bool $state
+     * @return $this
+     */
+    public function debug($state = true)
+    {
+        $this->_debugMode = (bool)$state;
+        return $this;
     }
 
 }
