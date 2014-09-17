@@ -63,7 +63,7 @@ require dirname(__FILE__) . '/php/init.php';
     </div>
 
     <!-- partial example -->
-    <?php echo $tpl->partial('counters.php', array(
+    <?php echo $tpl->partial('counters', array(
         'myVar' => 123
     ));?>
 

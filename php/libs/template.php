@@ -670,11 +670,16 @@ class JBlankTemplate
     {
         $file = preg_replace('/[^A-Z0-9_\.-]/i', '', $name);
 
+        $ext = pathinfo($file, PATHINFO_EXTENSION);
+        if (empty($ext)) {
+            $file .= '.php';
+        }
+
         $args['tpl']   = $this;
-        $args['_this'] = $this->doc; // experimental
+        $args['_this'] = $this->doc;
 
         // load the partial
-        $__file = $this->partial . '/' . $file;
+        $__file = JPath::clean($this->partial . '/' . $file);
 
         // render the partial
         if (JFile::exists($__file)) {
