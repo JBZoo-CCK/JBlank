@@ -18,8 +18,6 @@ defined('_JEXEC') or die;
 class JBlankCssLessJS extends JBlankCss
 {
 
-    static $isInit = false;
-
     /**
      * @var string
      */
