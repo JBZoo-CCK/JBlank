@@ -45,9 +45,6 @@ class JBlankCssLessGpeasy extends JBlankCss
         try {
             $this->_processor->parseFile($path, $this->_tpl->less);
             $resultCss = $this->_processor->getCss();
-
-            $this->_cacheMix = $this->_processor->allParsedFiles();
-
             return $resultCss;
 
         } catch (Exception $ex) {
