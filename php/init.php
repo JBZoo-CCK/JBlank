@@ -43,7 +43,9 @@ $tpl
     // exclude JS files from system or components (experimental!)
     ->excludeJS(array(
         // 'regex pattern or filename',
-        // 'mootools',
+        // 'mootools',             // remove Mootools lib
+        // 'media\/jui\/js',       // remove jQuery lib
+        // 'media\/system\/js',    // remove system libs
     ))
 
     // set custom generator
@@ -71,7 +73,7 @@ $tpl
 
 /************************* your php code below this line **************************************************************/
 
-// mobile detect using (just example)
+// mobile detect using (just for example!)
 if ($tpl->isMobile()) {
     $tpl->css('media-mobile.less'); // css only for mobiles
 

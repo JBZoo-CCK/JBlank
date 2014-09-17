@@ -580,6 +580,8 @@ class JBlankTemplate
 
     /**
      * Cleanup system links from Joomla, Zoo, JBZoo
+     * @param array $allPatterns
+     * @return $this
      */
     protected function _excludeAssets(array $allPatterns)
     {
@@ -588,21 +590,28 @@ class JBlankTemplate
         foreach ($allPatterns as $type => $patterns) {
             foreach ($data[$type] as $path => $meta) {
 
-                $found = false;
                 foreach ($patterns as $pattern) {
                     if (preg_match('#' . $pattern . '#iu', $path)) {
-                        $found = true;
+                        unset($data[$type][$path]);
                         break;
                     }
                 }
 
-                if ($found) {
-                    unset($data[$type][$path]);
+                // hack for empty scripts or styles arrays
+                if (!empty($data[$type])) {
+                    $this->doc->setHeadData($data);
+
+                } else if ($type == 'scripts') {
+                    $this->doc->_scripts = array();
+
+                } else if ($type == 'styleSheets') {
+                    $this->doc->_styleSheets = array();
                 }
+
             }
         }
 
-        $this->doc->setHeadData($data);
+        return $this;
     }
 
     /**
