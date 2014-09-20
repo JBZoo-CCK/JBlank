@@ -358,3 +358,38 @@
         background-image: linear-gradient(@angle, rgba(255,255,255,.15) 25%, transparent 25%, transparent 50%, rgba(255,255,255,.15) 50%, rgba(255,255,255,.15) 75%, transparent 75%, transparent);
     }
 }
+
+// Force line breaks
+// -----------------
+.word-break() {
+    word-break: break-all;
+    word-wrap: break-word;
+    white-space: normal;
+}
+
+// No wrap
+// -------------------------
+.no-wrap() {
+    word-break: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+}
+
+// Line overflow
+// -------------------------
+.line-overflow(@line) {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: @line; /* number of lines to show */
+    -webkit-box-orient: vertical;
+}
+
+// Blur
+// -------------------------
+.blur(@process) {
+  -webkit-filter: blur(@process);
+     -moz-filter: blur(@process);
+      -ms-filter: blur(@process);
+          filter: blur(@process);
+}
