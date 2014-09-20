@@ -29,11 +29,13 @@ $tpl
         // 'template.css', // from jblank/css folder
         'template.less', // from jblank/less folder
         // 'template.scss',// from jblank/scss folder
+        // '//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css', // any external lib (you can use http:// or https:// urls)
     ))
 
     // include JavaScript files
     ->js(array(
-        // 'libs/jquery-1.x.min.js',
+        // '//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js', // any external lib (you can use http:// or https:// urls)
+        // 'libs/jquery-1.x.min.js', // your own local lib
         'template.js',
     ))
 
@@ -52,7 +54,7 @@ $tpl
     ))
 
     // set custom generator
-    ->generator('J!Blank Template') // null for disable
+    ->generator('J!Blank.pro Joomla Template') // null for disable
 
     // set HTML5 mode (for <head> tag)
     ->html5(true)

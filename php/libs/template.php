@@ -194,11 +194,18 @@ class JBlankTemplate
 
         } else if ($filename) {
 
-            $ext    = pathinfo($filename, PATHINFO_EXTENSION);
+            $ext    = $this->_getExtension($filename);
             $prefix = (!empty($prefix) ? $prefix . '_' : '');
 
             if ($ext == 'css') {
 
+                // include external
+                if ($this->_isExternal($filename)) {
+                    $this->doc->addStylesheet($filename, 'text/css', $type);
+                    return $this;
+                }
+
+                // include in css folder
                 $path = JPath::clean($this->cssFull . '/' . $prefix . $filename);
                 if ($mtime = $this->_checkFile($path)) {
                     $cssPath = $this->css . '/' . $prefix . $filename . '?' . $mtime;
@@ -206,6 +213,7 @@ class JBlankTemplate
                     return $this;
                 }
 
+                // include related root site path
                 $path = JPath::clean(JPATH_ROOT . '/' . $filename);
                 if ($mtime = $this->_checkFile($path)) {
                     $cssPath = rtrim($this->baseurl, '/') . '/' . ltrim($filename, '/') . '?' . $mtime;
@@ -258,7 +266,10 @@ class JBlankTemplate
             $prefix = (!empty($prefix) ? $prefix . '_' : '');
             $path   = JPath::clean($this->jsFull . '/' . $prefix . $filename);
 
-            if ($mtime = $this->_checkFile($path)) {
+            if ($this->_isExternal($filename)) {
+                $this->doc->addScript($filename, "text/javascript", $defer, $async);
+
+            } else if ($mtime = $this->_checkFile($path)) {
                 $filePath = $this->js . '/' . $prefix . $filename . '?' . $mtime;
                 $this->doc->addScript($filePath, "text/javascript", $defer, $async);
             }
@@ -438,6 +449,34 @@ class JBlankTemplate
     {
         $path = pathinfo($this->_getTemplatePathFull(), PATHINFO_BASENAME);
         return rtrim($this->baseurl, '/') . '/templates/' . $path;
+    }
+
+    /**
+     * Check is path external
+     * @param string $path
+     * @return int
+     */
+    protected function _isExternal($path)
+    {
+        $regs = array('http:\/\/', 'https:\/\/', '\/\/');
+        $reg = '#^(' . implode('|', $regs) . ')#iu';
+
+        return preg_match($reg, $path);
+    }
+
+    /**
+     * @param $filename
+     * @return mixed|string
+     */
+    protected function _getExtension($filename)
+    {
+        $ext = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
+
+        if (strpos($ext, '?')) {
+            $ext = preg_replace('#(\?.*)$#', '', $ext);
+        }
+
+        return $ext;
     }
 
     /**
