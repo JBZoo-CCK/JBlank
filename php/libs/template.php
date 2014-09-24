@@ -284,6 +284,7 @@ class JBlankTemplate
     public function getBodyClasses()
     {
         return implode(' ', array(
+            'tmpl-' . $this->request->get('tmpl', 'index'),
             'itemid-' . $this->request->get('Itemid', 0),
             'lang-' . $this->request->get('lang', $this->langDef),
             'com-' . str_replace('com_', '', $this->request->get('option')),
