@@ -1,0 +1,102 @@
+// Popular simple aliases for mixins
+// ---------------------------------------------------------------------------------------------------------------------
+.animate(...) {
+    #animation > .simple(@arguments)
+}
+
+.anime(...) {
+    #animation > .simple(@arguments)
+}
+
+.background-size(@size) {
+    #background > .size(@size);
+}
+
+.border-image(...) {
+    #border-image > .simple(@arguments)
+}
+
+.border-radius(...) {
+    #border > .simple(@arguments);
+}
+
+.box-shadow(...) {
+    #box > .shadow(@arguments);
+}
+
+.center() {
+    #box > .center();
+}
+
+.clearfix() {
+    #box > .clearfix();
+}
+
+.clear() {
+    #box > .clear();
+}
+
+.columns(...) {
+    #columns > .simple(@arguments);
+}
+
+.content-columns(@count, @gap) {
+    #columns > .count(@count);
+    #columns > .gap(@gap);
+}
+
+.font-face(@name, @filename, @path, @weight:normal, @style:normal) {
+    #text > .font(@name, @filename, @path, @weight, @style);
+}
+
+.gradient(@startColor: #555, @endColor: #333) {
+    #gradient > .vertical(@startColor, @endColor);
+}
+
+.opacity(...) {
+    #box > .opacity(@arguments);
+}
+
+.overflow() {
+    #box > .overflow();
+}
+
+.no-transparent() {
+    #box > .opacity(1);
+}
+
+.scale (...) {
+    #scale > .simple(@arguments);
+}
+
+.selection (@text, @background) {
+    #box > .selection(@text, @background);
+}
+
+.size(@height, @width) {
+    #box > .size(@height, @width);
+}
+
+.skew(...) {
+    #skew > .simple(@arguments);
+}
+
+.square(@size) {
+    #box > .square(@size);
+}
+
+.transition(...) {
+    #transition > .simple(@arguments);
+}
+
+.translate(...) {
+    #translate > .simple(@arguments);
+}
+
+.transparent() {
+    #box > .opacity(0);
+}
+
+.text-shadow(...) {
+    #text > .shadow(@arguments);
+}

@@ -1,5 +1,8 @@
 /**
+ * I was inspired by ...
+ *
  * http://css3please.com/
+ * http://lesselements.com/
  * http://css-tricks.com/snippets/css/useful-css3-less-mixins/
  * https://github.com/madebysource/lesshat
  * https://github.com/mateuszkocz/3l/
@@ -7,433 +10,492 @@
  * https://github.com/uikit/uikit
  */
 
-// Clearfix
-// For clearing floats like a boss h5bp.com/q
+// Align
 // ---------------------------------------------------------------------------------------------------------------------
-.clearfix() {
-    *zoom: 1;
-    &:before,
-    &:after {
-        display: table;
-        content: "";
-        line-height: 0;
+#align {
+
+    .justify(@alignment) {
+        -webkit-justify-content: @alignment;
+                justify-content: @alignment;
     }
-    &:after {
-        clear: both;
+
+    .content(@alignment) {
+        -webkit-align-content: @alignment;
+                align-content: @alignment;
     }
-}
 
-// Webkit-style focus
-// ---------------------------------------------------------------------------------------------------------------------
-.tab-focus() {
-    // Default
-    outline: thin dotted #333;
-    // Webkit
-    outline: 5px auto -webkit-focus-ring-color;
-    outline-offset: -2px;
-}
-
-// Center-align a block level element
-// ---------------------------------------------------------------------------------------------------------------------
-.center-block() {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-// Sizing shortcuts
-// ---------------------------------------------------------------------------------------------------------------------
-.size(@height, @width) {
-    width: @width;
-    height: @height;
-}
-
-.square(@size) {
-    .size(@size, @size);
-}
-
-// Placeholder text
-// ---------------------------------------------------------------------------------------------------------------------
-.placeholder(@color: #00a) {
-    &:-moz-placeholder {
-        color: @color;
+    .items(@alignment) {
+        -webkit-align-items: @alignment;
+                align-items: @alignment;
     }
-    &:-ms-input-placeholder {
-        color: @color;
-    }
-    &::-webkit-input-placeholder {
-        color: @color;
+
+    .self(@alignment) {
+        -webkit-align-self: @alignment;
+                align-self: @alignment;
     }
 }
 
-// Text overflow
-// Requires inline-block or block for proper styling
+// Animations
 // ---------------------------------------------------------------------------------------------------------------------
-.text-overflow() {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+#animation {
+
+    .simple (...) {
+        -webkit-animation: @arguments;
+                animation: @arguments;
+    }
+
+    .name(...) {
+        -webkit-animation-name: @arguments;
+                animation-name: @arguments;
+    }
+
+    .duration(...) {
+        -webkit-animation-duration: @arguments;
+                animation-duration: @arguments;
+    }
+
+    .timing-function(...) {
+        -webkit-animation-timing-function: @arguments;
+                animation-timing-function: @arguments;
+    }
+
+    .delay(...) {
+        -webkit-animation-delay: @arguments;
+                animation-delay: @arguments;
+    }
+
+    .iteration-count(...) {
+        -webkit-animation-iteration-count: @arguments;
+                animation-iteration-count: @arguments;
+    }
+
+    .direction(...) {
+        -webkit-animation-direction: @arguments;
+                animation-direction: @arguments;
+    }
+
+    .fill-mode(...) {
+        -webkit-animation-fill-mode: @arguments;
+                animation-fill-mode: @arguments;
+    }
 }
 
-// CSS image replacement
-// Source: https://github.com/h5bp/html5-boilerplate/commit/aa0396eae757
+// Background
 // ---------------------------------------------------------------------------------------------------------------------
-.hide-text() {
-    font: 0/0 a;
-    color: transparent;
-    text-shadow: none;
-    background-color: transparent;
-    border: 0;
+#background {
+
+    .clip(@clip) {
+        -webkit-background-clip: @clip;
+           -moz-background-clip: @clip;
+                background-clip: @clip;
+    }
+
+    .size(@size) {
+        -webkit-background-size: @size;
+           -moz-background-size: @size;
+             -o-background-size: @size;
+                background-size: @size;
+    }
 }
 
-// Border Radius
+// Borders
 // ---------------------------------------------------------------------------------------------------------------------
-.border-radius(@radius) {
-    -webkit-border-radius: @radius;
-       -moz-border-radius: @radius;
-            border-radius: @radius;
+#border {
+
+    .simple(@radius) {
+        -webkit-border-radius: @radius;
+           -moz-border-radius: @radius;
+                border-radius: @radius;
+    }
+
+    .radius-fix() {
+        .background-clip(padding-box);
+    }
+
+    .ellipse(@radius1, @radius2) {
+        -webkit-border-radius: @radius1 ~"/" @radius2;
+           -moz-border-radius: @radius1 ~"/" @radius2;
+                border-radius: @radius1 ~"/" @radius2;
+    }
+
+    // Single Corner Border Radius
+    .top-left-radius(@radius) {
+        -webkit-border-top-left-radius: @radius;
+            -moz-border-radius-topleft: @radius;
+                border-top-left-radius: @radius;
+    }
+
+    .top-right-radius(@radius) {
+        -webkit-border-top-right-radius: @radius;
+            -moz-border-radius-topright: @radius;
+                border-top-right-radius: @radius;
+    }
+
+    .bottom-right-radius(@radius) {
+        -webkit-border-bottom-right-radius: @radius;
+            -moz-border-radius-bottomright: @radius;
+                border-bottom-right-radius: @radius;
+    }
+
+    .bottom-left-radius(@radius) {
+        -webkit-border-bottom-left-radius: @radius;
+            -moz-border-radius-bottomleft: @radius;
+                border-bottom-left-radius: @radius;
+    }
+
+    // Single Side Border Radius
+    .top-radius(@radius) {
+        #border > .top-right-radius(@radius);
+        #border > .top-left-radius(@radius);
+    }
+
+    .right-radius(@radius) {
+        #border > .top-right-radius(@radius);
+        #border > .bottom-right-radius(@radius);
+    }
+
+    .bottom-radius(@radius) {
+        #border > .bottom-right-radius(@radius);
+        #border > .bottom-left-radius(@radius);
+    }
+
+    .left-radius(@radius) {
+        #border > .top-left-radius(@radius);
+        #border > .bottom-left-radius(@radius);
+    }
 }
 
-.border-radius-fix() {
-    .background-clip(padding-box);
+// Border image
+// ---------------------------------------------------------------------------------------------------------------------
+#border-image {
+
+    .simple(@url, @rest...) {
+        -webkit-border-image: url(@url) @rest;
+           -moz-border-image: url(@url) @rest;
+             -o-border-image: url(@url) @rest;
+                border-image: url(@url) @rest;
+    }
+
+    .source(@url) {
+        -webkit-border-image-source: url(@url);
+           -moz-border-image-source: url(@url);
+             -o-border-image-source: url(@url);
+                border-image-source: url(@url);
+    }
+
+    .slice(@slice) {
+        -webkit-border-image-slice: @slice;
+           -moz-border-image-slice: @slice;
+             -o-border-image-slice: @slice;
+                border-image-slice: @slice;
+    }
+
+    .width(@width) {
+        -webkit-border-image-width: @width;
+           -moz-border-image-width: @width;
+             -o-border-image-width: @width;
+                border-image-width: @width;
+    }
+
+    .outset(@outset) {
+        -webkit-border-image-outset: @outset;
+           -moz-border-image-outset: @outset;
+             -o-border-image-outset: @outset;
+                border-image-outset: @outset;
+    }
+
+    .repeat(@repeat) {
+        -webkit-border-image-repeat: @repeat;
+           -moz-border-image-repeat: @repeat;
+             -o-border-image-repeat: @repeat;
+                border-image-repeat: @repeat;
+    }
 }
 
-.elliptical-border-radius (@radius1, @radius2) {
-    -webkit-border-radius: @radius1 ~"/" @radius2;
-       -moz-border-radius: @radius1 ~"/" @radius2;
-            border-radius: @radius1 ~"/" @radius2;
-}
+// Blocks
+// ---------------------------------------------------------------------------------------------------------------------
+#box {
 
-// Single Corner Border Radius
-.border-top-left-radius(@radius) {
-    -webkit-border-top-left-radius: @radius;
-        -moz-border-radius-topleft: @radius;
-            border-top-left-radius: @radius;
-}
+    // custom classic clear fix
+    .clearfix() {
+        display: block;
+        &:after {
+            visibility: hidden;
+            display: block;
+            font-size: 0;
+            content: " ";
+            clear: both;
+            height: 0;
+        }
+        * html & {
+            height: 1%;
+        }
+    }
 
-.border-top-right-radius(@radius) {
-    -webkit-border-top-right-radius: @radius;
-        -moz-border-radius-topright: @radius;
-            border-top-right-radius: @radius;
-}
+    // Clearfix
+    .clear() {
+        *zoom: 1;
+        &:before,
+        &:after {
+            display: table;
+            content: "";
+            line-height: 0;
+        }
+        &:after {
+            clear: both;
+        }
+    }
 
-.border-bottom-right-radius(@radius) {
-    -webkit-border-bottom-right-radius: @radius;
-        -moz-border-radius-bottomright: @radius;
-            border-bottom-right-radius: @radius;
-}
+    // Text overflow. Requires inline-block or block for proper styling
+    .overflow() {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
 
-.border-bottom-left-radius(@radius) {
-    -webkit-border-bottom-left-radius: @radius;
-        -moz-border-radius-bottomleft: @radius;
-            border-bottom-left-radius: @radius;
-}
+    // Center-align a block level element
+    .center() {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
 
-// Single Side Border Radius
-.border-top-radius(@radius) {
-    .border-top-right-radius(@radius);
-    .border-top-left-radius(@radius);
-}
+    // Sizing shortcuts
+    .size(@height, @width) {
+        width: @width;
+        height: @height;
+    }
 
-.border-right-radius(@radius) {
-    .border-top-right-radius(@radius);
-    .border-bottom-right-radius(@radius);
-}
+    .square(@size) {
+        #box > .size(@size, @size);
+    }
 
-.border-bottom-radius(@radius) {
-    .border-bottom-right-radius(@radius);
-    .border-bottom-left-radius(@radius);
-}
+    // Drop shadows
+    .shadow(@shadow) {
+        -webkit-box-shadow: @shadow;
+           -moz-box-shadow: @shadow;
+                box-shadow: @shadow;
+    }
 
-.border-left-radius(@radius) {
-    .border-top-left-radius(@radius);
-    .border-bottom-left-radius(@radius);
+    // Backface visibility
+    .backface-visibility(@visibility) {
+        -webkit-backface-visibility: @visibility;
+           -moz-backface-visibility: @visibility;
+                backface-visibility: @visibility;
+    }
+
+    // Box sizing
+    .box-sizing(@boxmodel) {
+        -webkit-box-sizing: @boxmodel;
+           -moz-box-sizing: @boxmodel;
+                box-sizing: @boxmodel;
+    }
+
+    // Resize anything
+    .resizable(@direction) {
+        resize: @direction; // Options: horizontal, vertical, both
+        overflow: auto; // Safari fix
+    }
+
+    // webkit-style focus
+    .focus() {
+        outline: thin dotted #333; // Default
+        outline: 5px auto -webkit-focus-ring-color; // Webkit
+        outline-offset: -2px;
+    }
+
+    // Opacity You can use 0.5 or 50
+    .opacity (@value) when (isnumber(@value)) and (@value =< 1) {
+        zoom: 1;
+        filter: ~"alpha(opacity="@value*100~")";
+        -khtml-opacity: @value;
+          -moz-opacity: @value;
+               opacity: @value;
+    }
+
+    .opacity (@value) when (isnumber(@value)) and (@value > 1) and not (ispercentage(@value)){
+        zoom: 1;
+        filter: ~"alpha(opacity="@value~")";
+        -khtml-opacity: @value/100;
+          -moz-opacity: @value/100;
+               opacity: @value/100;
+    }
+
+    // Appearance
+    .appearance (@appearance) {
+        -webkit-appearance: @appearance;
+           -moz-appearance: @appearance;
+    }
 }
 
 // Columns
 // ---------------------------------------------------------------------------------------------------------------------
-.columns (...) {
-    -webkit-columns: @arguments;
-       -moz-columns: @arguments;
-            columns: @arguments;
+#columns {
+
+    .simple (...) {
+        -webkit-columns: @arguments;
+           -moz-columns: @arguments;
+                columns: @arguments;
+    }
+
+    .gap (@gap) {
+        -webkit-column-gap: @gap;
+           -moz-column-gap: @gap;
+                column-gap: @gap;
+    }
+
+    .rule (...) {
+        -webkit-column-rule: @arguments;
+           -moz-column-rule: @arguments;
+                column-rule: @arguments;
+    }
+
+    .fill (@fill) {
+        -webkit-column-fill: @fill;
+           -moz-column-fill: @fill;
+                column-fill: @fill;
+    }
+
+    .count (@count) {
+        -webkit-column-count: @count;
+           -moz-column-count: @count;
+                column-count: @count;
+    }
 }
 
-.column-gap (@gap) {
-    -webkit-column-gap: @gap;
-       -moz-column-gap: @gap;
-            column-gap: @gap;
-}
-
-.columns-gap (@gap) {
-    .column-gap(@gap);
-}
-
-.column-rule (...) {
-    -webkit-column-rule: @arguments;
-       -moz-column-rule: @arguments;
-            column-rule: @arguments;
-}
-
-.columns-rule (...) {
-    .column-rule(@arguments);
-}
-
-.column-fill (@fill) {
-    -webkit-column-fill: @fill;
-       -moz-column-fill: @fill;
-            column-fill: @fill;
-}
-
-.columns-fill (@fill) {
-    .column-fill(@fill);
-}
-
-
-// Drop shadows
+// Display
 // ---------------------------------------------------------------------------------------------------------------------
-.box-shadow(@shadow) {
-    -webkit-box-shadow: @shadow;
-       -moz-box-shadow: @shadow;
-            box-shadow: @shadow;
+#display {
+
+    .flex() {
+        display: -webkit-flex;
+        display:         flex;
+    }
+
+    .inline-flex() {
+        display: -webkit-inline-flex;
+        display:         inline-flex;
+    }
 }
 
-// Transitions
+// Filters
 // ---------------------------------------------------------------------------------------------------------------------
-.transition(@transition) {
-    -webkit-transition: @transition;
-       -moz-transition: @transition;
-         -o-transition: @transition;
-            transition: @transition;
+#filter {
+
+    .grayscale(@amount) {
+        -webkit-filter: grayscale(@arguments);
+           -moz-filter: grayscale(@arguments);
+            -ms-filter: grayscale(@arguments);
+                filter: grayscale(@arguments);
+    }
+
+    .sepia(@amount) {
+        -webkit-filter: sepia(@arguments);
+           -moz-filter: sepia(@arguments);
+            -ms-filter: sepia(@arguments);
+                filter: sepia(@arguments);
+    }
+
+    .saturate(@amount) {
+        -webkit-filter: saturate(@arguments);
+           -moz-filter: saturate(@arguments);
+            -ms-filter: saturate(@arguments);
+                filter: saturate(@arguments);
+    }
+
+    .hue-rotate(@angle) {
+        -webkit-filter: hue-rotate(@arguments);
+           -moz-filter: hue-rotate(@arguments);
+            -ms-filter: hue-rotate(@arguments);
+                filter: hue-rotate(@arguments);
+    }
+
+    .invert(@amount) {
+        -webkit-filter: invert(@arguments);
+           -moz-filter: invert(@arguments);
+            -ms-filter: invert(@arguments);
+                filter: invert(@arguments);
+    }
+
+    .opacity(@amount) {
+        -webkit-filter: opacity(@arguments);
+           -moz-filter: opacity(@arguments);
+            -ms-filter: opacity(@arguments);
+                filter: opacity(@arguments);
+    }
+
+    .brightness(@amount) {
+        -webkit-filter: brightness(@arguments);
+           -moz-filter: brightness(@arguments);
+            -ms-filter: brightness(@arguments);
+                filter: brightness(@arguments);
+    }
+
+    .contrast(@amount) {
+        -webkit-filter: contrast(@arguments);
+           -moz-filter: contrast(@arguments);
+            -ms-filter: contrast(@arguments);
+                filter: contrast(@arguments);
+    }
+
+    .blur(@radius) {
+        -webkit-filter: blur(@arguments);
+           -moz-filter: blur(@arguments);
+            -ms-filter: blur(@arguments);
+                filter: blur(@arguments);
+    }
+
+    .drop-shadow(@shadow) {
+        -webkit-filter: drop-shadow(@arguments);
+           -moz-filter: drop-shadow(@arguments);
+            -ms-filter: drop-shadow(@arguments);
+                filter: drop-shadow(@arguments);
+    }
 }
 
-.transition-delay(@transition-delay) {
-    -webkit-transition-delay: @transition-delay;
-       -moz-transition-delay: @transition-delay;
-         -o-transition-delay: @transition-delay;
-            transition-delay: @transition-delay;
-}
-
-.transition-duration(@transition-duration) {
-    -webkit-transition-duration: @transition-duration;
-       -moz-transition-duration: @transition-duration;
-         -o-transition-duration: @transition-duration;
-            transition-duration: @transition-duration;
-}
-
-.transition-transform (@transition-transform) {
-    -webkit-transition: -webkit-transform @transition-transform;
-       -moz-transition:    -moz-transform @transition-transform;
-         -o-transition:      -o-transform @transition-transform;
-            transition:         transform @transition-transform;
- }
-
-.transition-property (@transition-property) {
-    -webkit-transition-property: @transition-property;
-       -moz-transition-property: @transition-property;
-         -o-transition-property: @transition-property;
-            transition-property: @transition-property;
-}
-
-.transition-timing-function(@transition-timing-function) {
-    -webkit-transition-timing-function: @transition-timing-function;
-       -moz-transition-timing-function: @transition-timing-function;
-         -o-transition-timing-function: @transition-timing-function;
-            transition-timing-function: @transition-timing-function;
-}
-
-// Rotate
+// Flexible Box Model
 // ---------------------------------------------------------------------------------------------------------------------
-.rotate(@degrees) {
-    -webkit-transform: rotate(@degrees);
-       -moz-transform: rotate(@degrees);
-        -ms-transform: rotate(@degrees);
-         -o-transform: rotate(@degrees);
-            transform: rotate(@degrees);
-}
+#flex {
 
-.rotate3d (@deg1, @deg2:0, @deg3:0) {
-    -webkit-transform: rotateX(@deg1) rotateY(@deg2) rotateZ(@deg3);
-       -moz-transform: rotateX(@deg1) rotateY(@deg2) rotateZ(@deg3);
-        -ms-transform: rotateX(@deg1) rotateY(@deg2) rotateZ(@deg3);
-         -o-transform: rotateX(@deg1) rotateY(@deg2) rotateZ(@deg3);
-            transform: rotateX(@deg1) rotateY(@deg2) rotateZ(@deg3);
-}
+    .simple(@arguments) {
+        -webkit-flex: @arguments;
+                flex: @arguments;
+    }
 
-// Scale
-// ---------------------------------------------------------------------------------------------------------------------
-.scale(@ratio) {
-    -webkit-transform: scale(@ratio);
-       -moz-transform: scale(@ratio);
-        -ms-transform: scale(@ratio);
-         -o-transform: scale(@ratio);
-            transform: scale(@ratio);
-}
+    .basis(@basis) {
+        -webkit-flex-basis: @basis;
+                flex-basis: @basis;
+    }
 
-.scale (@scale) {
-    -webkit-transform: scale(@scale);
-       -moz-transform: scale(@scale);
-        -ms-transform: scale(@scale);
-         -o-transform: scale(@scale);
-            transform: scale(@scale);
-}
+    .grow(@grow) {
+        -webkit-flex-grow: @grow;
+                flex-grow: @grow;
+    }
 
-.scale (@scale1,@scale2) {
-    -webkit-transform: scale(@scale1, @scale2);
-       -moz-transform: scale(@scale1, @scale2);
-        -ms-transform: scale(@scale1, @scale2);
-         -o-transform: scale(@scale1, @scale2);
-            transform: scale(@scale1, @scale2);
-}
+    .shrink(@shrink) {
+        -webkit-flex-shrink: @shrink;
+                flex-shrink: @shrink;
+    }
 
-.scaleX (@scale) {
-    -webkit-transform: scaleX(@scale);
-       -moz-transform: scaleX(@scale);
-        -ms-transform: scaleX(@scale);
-         -o-transform: scaleX(@scale);
-            transform: scaleX(@scale);
-}
+    .flow(@arguments) {
+        -webkit-flex-flow: @arguments;
+                flex-flow: @arguments;
+    }
 
-.scaleY (@scale) {
-    -webkit-transform: scaleY(@scale);
-       -moz-transform: scaleY(@scale);
-        -ms-transform: scaleY(@scale);
-         -o-transform: scaleY(@scale);
-            transform: scaleY(@scale);
-}
+    .direction(@direction) {
+        -webkit-flex-direction: @direction;
+                flex-direction: @direction;
+    }
 
-// Skew
-// ---------------------------------------------------------------------------------------------------------------------
-.skew(@x, @y) {
-    -webkit-transform: skew(@x, @y);
-       -moz-transform: skew(@x, @y);
-        -ms-transform: skewX(@x) skewY(@y); // See https://github.com/twitter/bootstrap/issues/4885
-         -o-transform: skew(@x, @y);
-            transform: skew(@x, @y);
-    -webkit-backface-visibility: hidden; // See https://github.com/twitter/bootstrap/issues/5319
-}
+    .wrap(@wrap) {
+        -webkit-flex-wrap: @wrap;
+                flex-wrap: @wrap;
+    }
 
-.skewX (@skew) {
-    -webkit-transform: skewX(@skew);
-       -moz-transform: skewX(@skew);
-        -ms-transform: skewX(@skew);
-         -o-transform: skewX(@skew);
-            transform: skewX(@skew);
-}
-
-.skewY (@skew) {
-    -webkit-transform: skewY(@skew);
-       -moz-transform: skewY(@skew);
-        -ms-transform: skewY(@skew);
-         -o-transform: skewY(@skew);
-            transform: skewY(@skew);
-}
-
-// Translate
-// ---------------------------------------------------------------------------------------------------------------------
-.translate(@x, @y) {
-    -webkit-transform: translate(@x, @y);
-       -moz-transform: translate(@x, @y);
-        -ms-transform: translate(@x, @y);
-         -o-transform: translate(@x, @y);
-            transform: translate(@x, @y);
-}
-
-.translateX (@translateX) {
-    -webkit-transform: translateX(@translateX);
-       -moz-transform: translateX(@translateX);
-        -ms-transform: translateX(@translateX);
-         -o-transform: translateX(@translateX);
-            transform: translateX(@translateX);
-}
-
-.translateY (@translateY) {
-    -webkit-transform: translateY(@translateY);
-       -moz-transform: translateY(@translateY);
-        -ms-transform: translateY(@translateY);
-         -o-transform: translateY(@translateY);
-            transform: translateY(@translateY);
-}
-
-.translate3d(@x, @y, @z) {
-    -webkit-transform: translate3d(@x, @y, @z);
-       -moz-transform: translate3d(@x, @y, @z);
-        -ms-transform: translate3d(@x, @y, @z);
-         -o-transform: translate3d(@x, @y, @z);
-            transform: translate3d(@x, @y, @z);
-}
-
-
-// Backface visibility
-// ---------------------------------------------------------------------------------------------------------------------
-.backface-visibility(@visibility) {
-    -webkit-backface-visibility: @visibility;
-       -moz-backface-visibility: @visibility;
-            backface-visibility: @visibility;
-}
-
-// Background clipping
-// ---------------------------------------------------------------------------------------------------------------------
-.background-clip(@clip) {
-    -webkit-background-clip: @clip;
-       -moz-background-clip: @clip;
-            background-clip: @clip;
-}
-
-// Background sizing
-// ---------------------------------------------------------------------------------------------------------------------
-.background-size(@size) {
-    -webkit-background-size: @size;
-       -moz-background-size: @size;
-         -o-background-size: @size;
-            background-size: @size;
-}
-
-// Box sizing
-// ---------------------------------------------------------------------------------------------------------------------
-.box-sizing(@boxmodel) {
-    -webkit-box-sizing: @boxmodel;
-       -moz-box-sizing: @boxmodel;
-            box-sizing: @boxmodel;
-}
-
-// User select
-// For selecting text on the page
-// ---------------------------------------------------------------------------------------------------------------------
-.user-select(@select) {
-    -webkit-user-select: @select;
-       -moz-user-select: @select;
-        -ms-user-select: @select;
-         -o-user-select: @select;
-            user-select: @select;
-}
-
-// Resize anything
-// ---------------------------------------------------------------------------------------------------------------------
-.resizable(@direction) {
-    resize: @direction; // Options: horizontal, vertical, both
-    overflow: auto; // Safari fix
-}
-
-// CSS3 Content Columns
-// ---------------------------------------------------------------------------------------------------------------------
-.content-columns(@columnCount, @columnGap: @gridGutterWidth) {
-    -webkit-column-count: @columnCount;
-       -moz-column-count: @columnCount;
-            column-count: @columnCount;
-    -webkit-column-gap: @columnGap;
-       -moz-column-gap: @columnGap;
-            column-gap: @columnGap;
-}
-
-// Optional hyphenation
-// ---------------------------------------------------------------------------------------------------------------------
-.hyphens(@mode: auto) {
-    word-wrap: break-word;
-    -webkit-hyphens: @mode;
-       -moz-hyphens: @mode;
-        -ms-hyphens: @mode;
-         -o-hyphens: @mode;
-            hyphens: @mode;
+    .order(@order) {
+        -webkit-order: @order;
+                order: @order;
+    }
 }
 
 // Gradients
@@ -512,338 +574,273 @@
     }
 }
 
-// Force line breaks
+// Rotate
 // ---------------------------------------------------------------------------------------------------------------------
-.word-break() {
-    word-break: break-all;
-    word-wrap: break-word;
-    white-space: normal;
-}
+#rotate {
 
-// No wrap
-// ---------------------------------------------------------------------------------------------------------------------
-.no-wrap() {
-    word-break: normal;
-    word-wrap: normal;
-    white-space: nowrap;
-}
+    .simple(@degrees) {
+        -webkit-transform: rotate(@degrees);
+           -moz-transform: rotate(@degrees);
+            -ms-transform: rotate(@degrees);
+             -o-transform: rotate(@degrees);
+                transform: rotate(@degrees);
+    }
 
-// Line overflow
-// ---------------------------------------------------------------------------------------------------------------------
-.line-overflow(@line) {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: @line; /* number of lines to show */
-    -webkit-box-orient: vertical;
-}
-
-// Font face
-// ---------------------------------------------------------------------------------------------------------------------
-.font-face(@name, @filename, @path, @weight:normal, @style:normal) {
-    @font-face {
-        font-family: @name;
-        src: url('@{path}@{filename}.eot');
-        src: local('O'),
-             url('@{path}@{filename}.woff') format('woff'),
-             url('@{path}@{filename}.ttf') format('truetype'),
-             url('@{path}@{filename}.svg') format('svg');
-        font-weight: @weight;
-        font-style: @style;
+    .xyz (@deg1, @deg2:0, @deg3:0) {
+        -webkit-transform: rotateX(@deg1) rotateY(@deg2) rotateZ(@deg3);
+           -moz-transform: rotateX(@deg1) rotateY(@deg2) rotateZ(@deg3);
+            -ms-transform: rotateX(@deg1) rotateY(@deg2) rotateZ(@deg3);
+             -o-transform: rotateX(@deg1) rotateY(@deg2) rotateZ(@deg3);
+                transform: rotateX(@deg1) rotateY(@deg2) rotateZ(@deg3);
     }
 }
 
-// Opacity
-// You can use 0.5 or 50
+// Scale
 // ---------------------------------------------------------------------------------------------------------------------
-.opacity (@value) when (isnumber(@value)) and (@value =< 1) {
-    zoom: 1;
-    filter: ~"alpha(opacity="@value*100~")";
-    -khtml-opacity: @value;
-      -moz-opacity: @value;
-           opacity: @value;
-}
+#scale {
 
-.opacity (@value) when (isnumber(@value)) and (@value > 1) and not (ispercentage(@value)){
-    zoom: 1;
-    filter: ~"alpha(opacity="@value~")";
-    -khtml-opacity: @value/100;
-      -moz-opacity: @value/100;
-           opacity: @value/100;
-}
-
-.transparent() {
-    .opacity(0);
-}
-
-.no-transparent() {
-    .opacity(1);
-}
-
-
-// Filters
-// ---------------------------------------------------------------------------------------------------------------------
-.grayscale(@amount) {
-    -webkit-filter: grayscale(@arguments);
-       -moz-filter: grayscale(@arguments);
-        -ms-filter: grayscale(@arguments);
-            filter: grayscale(@arguments);
-}
-
-.sepia(@amount) {
-    -webkit-filter: sepia(@arguments);
-       -moz-filter: sepia(@arguments);
-        -ms-filter: sepia(@arguments);
-            filter: sepia(@arguments);
-}
-
-.saturate(@amount) {
-    -webkit-filter: saturate(@arguments);
-       -moz-filter: saturate(@arguments);
-        -ms-filter: saturate(@arguments);
-            filter: saturate(@arguments);
-}
-
-.hue-rotate(@angle) {
-    -webkit-filter: hue-rotate(@arguments);
-       -moz-filter: hue-rotate(@arguments);
-        -ms-filter: hue-rotate(@arguments);
-            filter: hue-rotate(@arguments);
-}
-
-.invert(@amount) {
-    -webkit-filter: invert(@arguments);
-       -moz-filter: invert(@arguments);
-        -ms-filter: invert(@arguments);
-            filter: invert(@arguments);
-}
-
-.opacity-filter(@amount) {
-    -webkit-filter: opacity(@arguments);
-       -moz-filter: opacity(@arguments);
-        -ms-filter: opacity(@arguments);
-            filter: opacity(@arguments);
-}
-
-.brightness(@amount) {
-    -webkit-filter: brightness(@arguments);
-       -moz-filter: brightness(@arguments);
-        -ms-filter: brightness(@arguments);
-            filter: brightness(@arguments);
-}
-
-.contrast(@amount) {
-    -webkit-filter: contrast(@arguments);
-       -moz-filter: contrast(@arguments);
-        -ms-filter: contrast(@arguments);
-            filter: contrast(@arguments);
-}
-
-.blur(@radius) {
-    -webkit-filter: blur(@arguments);
-       -moz-filter: blur(@arguments);
-        -ms-filter: blur(@arguments);
-            filter: blur(@arguments);
-}
-
-.drop-shadow(@shadow) {
-    -webkit-filter: drop-shadow(@arguments);
-       -moz-filter: drop-shadow(@arguments);
-        -ms-filter: drop-shadow(@arguments);
-            filter: drop-shadow(@arguments);
-}
-
-
-// Appearance
-// ---------------------------------------------------------------------------------------------------------------------
-.appearance (@appearance) {
-    -webkit-appearance: @appearance;
-    -moz-appearance: @appearance;
-}
-
-// Selection
-// ---------------------------------------------------------------------------------------------------------------------
-.selection(@text-color, @background-color) {
-    &::-moz-selection {
-        color: @text-color;
-        background-color: @background-color;
+    .simple(@scale) {
+        -webkit-transform: scale(@scale);
+           -moz-transform: scale(@scale);
+            -ms-transform: scale(@scale);
+             -o-transform: scale(@scale);
+                transform: scale(@scale);
     }
-    &::selection {
-        color: @text-color;
-        background-color: @background-color;
+
+    .simple(@scale1, @scale2) {
+        -webkit-transform: scale(@scale1, @scale2);
+           -moz-transform: scale(@scale1, @scale2);
+            -ms-transform: scale(@scale1, @scale2);
+             -o-transform: scale(@scale1, @scale2);
+                transform: scale(@scale1, @scale2);
+    }
+
+    .x(@scale) {
+        -webkit-transform: scaleX(@scale);
+           -moz-transform: scaleX(@scale);
+            -ms-transform: scaleX(@scale);
+             -o-transform: scaleX(@scale);
+                transform: scaleX(@scale);
+    }
+
+    .y(@scale) {
+        -webkit-transform: scaleY(@scale);
+           -moz-transform: scaleY(@scale);
+            -ms-transform: scaleY(@scale);
+             -o-transform: scaleY(@scale);
+                transform: scaleY(@scale);
     }
 }
 
-// Flexible Box Model
+// Skew
 // ---------------------------------------------------------------------------------------------------------------------
-.display-flex() {
-    display: -webkit-flex;
-    display:         flex;
+#skew {
+
+    .simple(@x, @y) {
+        -webkit-transform: skew(@x, @y);
+           -moz-transform: skew(@x, @y);
+            -ms-transform: skewX(@x) skewY(@y);
+             -o-transform: skew(@x, @y);
+                transform: skew(@x, @y);
+        #box > .backface-visibility(hidden);
+    }
+
+    .x(@skew) {
+        -webkit-transform: skewX(@skew);
+           -moz-transform: skewX(@skew);
+            -ms-transform: skewX(@skew);
+             -o-transform: skewX(@skew);
+                transform: skewX(@skew);
+    }
+
+    .y(@skew) {
+        -webkit-transform: skewY(@skew);
+           -moz-transform: skewY(@skew);
+            -ms-transform: skewY(@skew);
+             -o-transform: skewY(@skew);
+                transform: skewY(@skew);
+    }
 }
 
-.display-inline-flex() {
-    display: -webkit-inline-flex;
-    display:         inline-flex;
-}
-
-.flex-direction(@direction) {
-    -webkit-flex-direction: @direction;
-            flex-direction: @direction;
-}
-
-.justify-content(@alignment) {
-    -webkit-justify-content: @alignment;
-            justify-content: @alignment;
-}
-
-.align-content(@alignment) {
-    -webkit-align-content: @alignment;
-            align-content: @alignment;
-}
-
-.align-items(@alignment) {
-    -webkit-align-items: @alignment;
-            align-items: @alignment;
-}
-
-.align-self(@alignment) {
-    -webkit-align-self: @alignment;
-            align-self: @alignment;
-}
-
-.flex(@arguments) {
-    -webkit-flex: @arguments;
-            flex: @arguments;
-}
-
-.flex-basis(@basis) {
-    -webkit-flex-basis: @basis;
-            flex-basis: @basis;
-}
-
-.flex-grow(@grow) {
-    -webkit-flex-grow: @grow;
-            flex-grow: @grow;
-}
-
-.flex-shrink(@shrink) {
-    -webkit-flex-shrink: @shrink;
-            flex-shrink: @shrink;
-}
-
-.flex-flow(@arguments) {
-    -webkit-flex-flow: @arguments;
-            flex-flow: @arguments;
-}
-
-.flex-direction(@direction) {
-    -webkit-flex-direction: @direction;
-            flex-direction: @direction;
-}
-
-.flex-wrap(@wrap) {
-    -webkit-flex-wrap: @wrap;
-            flex-wrap: @wrap;
-}
-
-.order(@order) {
-    -webkit-order: @order;
-            order: @order;
-}
-
-// Border image
-// https://developer.mozilla.org/pl/docs/CSS/border-image
-// http://caniuse.com/#feat=border-image
-// http://dev.w3.org/csswg/css-backgrounds/#border-image
+// Text
 // ---------------------------------------------------------------------------------------------------------------------
-.border-image(@url, @rest...) {
-    -webkit-border-image: url(@url) @rest;
-       -moz-border-image: url(@url) @rest;
-         -o-border-image: url(@url) @rest;
-            border-image: url(@url) @rest;
+#text {
+
+    // CSS image replacement
+    .hide() {
+        font: 0/0 a;
+        color: transparent;
+        text-shadow: none;
+        background-color: transparent;
+        border: 0;
+    }
+
+    // Placeholder text
+    .placeholder(@color: #00a) {
+        &:-moz-placeholder {
+            color: @color;
+        }
+        &:-ms-input-placeholder {
+            color: @color;
+        }
+        &::-webkit-input-placeholder {
+            color: @color;
+        }
+    }
+
+    // Selection
+    .selection(@text, @background) {
+        &::-moz-selection {
+            color: @text;
+            background-color: @background;
+        }
+        &::selection {
+            color: @text;
+            background-color: @background;
+        }
+    }
+
+    // For selected text on the page
+    .user-select(@select) {
+        -webkit-user-select: @select;
+           -moz-user-select: @select;
+            -ms-user-select: @select;
+             -o-user-select: @select;
+                user-select: @select;
+    }
+
+    // Optional hyphenation
+    .hyphens(@mode: auto) {
+        word-wrap: break-word;
+        -webkit-hyphens: @mode;
+           -moz-hyphens: @mode;
+            -ms-hyphens: @mode;
+             -o-hyphens: @mode;
+                hyphens: @mode;
+    }
+
+    // Force line breaks
+    .word-break() {
+        word-break: break-all;
+        word-wrap: break-word;
+        white-space: normal;
+    }
+
+    // No wrap
+    .no-wrap() {
+        word-break: normal;
+        word-wrap: normal;
+        white-space: nowrap;
+    }
+
+    // Line overflow
+    .overflow-lines(@line:3) {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: @line; // number of lines to show
+        -webkit-box-orient: vertical;
+    }
+
+    // Font face
+    .font(@name, @filename, @path, @weight:normal, @style:normal) {
+        @font-face {
+            font-family: @name;
+            src: url('@{path}@{filename}.eot');
+            src: local('O'),
+                 url('@{path}@{filename}.woff') format('woff'),
+                 url('@{path}@{filename}.ttf') format('truetype'),
+                 url('@{path}@{filename}.svg') format('svg');
+            font-weight: @weight;
+            font-style: @style;
+        }
+    }
+
+    .shadow(@string: 0 1px 3px rgba(0, 0, 0, 0.25)) {
+        text-shadow: @string;
+    }
 }
 
-.border-image-source(@url) {
-    -webkit-border-image-source: url(@url);
-       -moz-border-image-source: url(@url);
-         -o-border-image-source: url(@url);
-            border-image-source: url(@url);
-}
-
-.border-image-slice(@slice) {
-    -webkit-border-image-slice: @slice;
-       -moz-border-image-slice: @slice;
-         -o-border-image-slice: @slice;
-            border-image-slice: @slice;
-}
-
-.border-image-width(@width) {
-    -webkit-border-image-width: @width;
-       -moz-border-image-width: @width;
-         -o-border-image-width: @width;
-            border-image-width: @width;
-}
-
-.border-image-outset(@outset) {
-    -webkit-border-image-outset: @outset;
-       -moz-border-image-outset: @outset;
-         -o-border-image-outset: @outset;
-            border-image-outset: @outset;
-}
-
-.border-image-repeat(@repeat) {
-    -webkit-border-image-repeat: @repeat;
-       -moz-border-image-repeat: @repeat;
-         -o-border-image-repeat: @repeat;
-            border-image-repeat: @repeat;
-}
-
-// Animations
+// Transitions
 // ---------------------------------------------------------------------------------------------------------------------
-.animation (...) {
-    -webkit-animation: @arguments;
-            animation: @arguments;
+#transition {
+
+    .simple(@transition) {
+        -webkit-transition: @transition;
+           -moz-transition: @transition;
+             -o-transition: @transition;
+                transition: @transition;
+    }
+
+    .delay(@delay) {
+        -webkit-transition-delay: @delay;
+           -moz-transition-delay: @delay;
+             -o-transition-delay: @delay;
+                transition-delay: @delay;
+    }
+
+    .duration(@duration) {
+        -webkit-transition-duration: @duration;
+           -moz-transition-duration: @duration;
+             -o-transition-duration: @duration;
+                transition-duration: @duration;
+    }
+
+    .transform (@transform) {
+        -webkit-transition: -webkit-transform @transform;
+           -moz-transition:    -moz-transform @transform;
+             -o-transition:      -o-transform @transform;
+                transition:         transform @transform;
+     }
+
+    .property (@property) {
+        -webkit-transition-property: @property;
+           -moz-transition-property: @property;
+             -o-transition-property: @property;
+                transition-property: @property;
+    }
+
+    .timing-function(@timing-function) {
+        -webkit-transition-timing-function: @timing-function;
+           -moz-transition-timing-function: @timing-function;
+             -o-transition-timing-function: @timing-function;
+                transition-timing-function: @timing-function;
+    }
 }
 
-.animate (...) {
-    .animation(@arguments);
-}
+// Translate
+// ---------------------------------------------------------------------------------------------------------------------
+#translate {
 
-.anime (...) {
-    .animation(@arguments);
-}
+    .simple(@translateX, @translateY) {
+        -webkit-transform: translate(@translateX, @translateY);
+           -moz-transform: translate(@translateX, @translateY);
+            -ms-transform: translate(@translateX, @translateY);
+             -o-transform: translate(@translateX, @translateY);
+                transform: translate(@translateX, @translateY);
+    }
 
-.animation-name(...) {
-    -webkit-animation-name: @arguments;
-            animation-name: @arguments;
-}
+    .x (@translateX) {
+        -webkit-transform: translateX(@translateX);
+           -moz-transform: translateX(@translateX);
+            -ms-transform: translateX(@translateX);
+             -o-transform: translateX(@translateX);
+                transform: translateX(@translateX);
+    }
 
-.animation-duration(...) {
-    -webkit-animation-duration: @arguments;
-            animation-duration: @arguments;
-}
+    .y (@translateY) {
+        -webkit-transform: translateY(@translateY);
+           -moz-transform: translateY(@translateY);
+            -ms-transform: translateY(@translateY);
+             -o-transform: translateY(@translateY);
+                transform: translateY(@translateY);
+    }
 
-.animation-timing-function(...) {
-    -webkit-animation-timing-function: @arguments;
-            animation-timing-function: @arguments;
-}
-
-.animation-delay(...) {
-    -webkit-animation-delay: @arguments;
-            animation-delay: @arguments;
-}
-
-.animation-iteration-count(...) {
-    -webkit-animation-iteration-count: @arguments;
-            animation-iteration-count: @arguments;
-}
-
-.animation-direction(...) {
-    -webkit-animation-direction: @arguments;
-            animation-direction: @arguments;
-}
-
-.animation-fill-mode(...) {
-    -webkit-animation-fill-mode: @arguments;
-            animation-fill-mode: @arguments;
+    .xyz(@x, @y, @z) {
+        -webkit-transform: translate3d(@x, @y, @z);
+           -moz-transform: translate3d(@x, @y, @z);
+            -ms-transform: translate3d(@x, @y, @z);
+             -o-transform: translate3d(@x, @y, @z);
+                transform: translate3d(@x, @y, @z);
+    }
 }
