@@ -2,30 +2,20 @@
  * J!Blank Template for Joomla by JBlank.pro (JBZoo.com)
  * Examples and test styles
  */
-@import "misc/vars";
-@import "misc/mixins";
-@import "layouts/reset";
-@import "layouts/messages";
-@import "layouts/error";
-@import "layouts/debug";
-@import "layouts/offline";
+@import "misc/vars";        // your template vars
+@import "misc/mixins";      // custom mixin libs
+@import "misc/aliases";     // popuplar mixin's names
+@import "layouts/reset";    // Simple style resets
+@import "layouts/messages"; // Joomla messages (<jdoc:include type="message" />)
+@import "layouts/error";    // Joomla error page markup (when fatal error appeared)
+@import "layouts/debug";    // Joomla profiler's styles (when debug is mode on)
+@import "layouts/offline";  // Joomla offline page (when offline is mode on)
 
 /****************************************** FRONTEND STYLES ***********************************************************/
 
 // classic clear fix
 .clearfix {
-    display: block;
-    &:after {
-        visibility: hidden;
-        display: block;
-        font-size: 0;
-        content: " ";
-        clear: both;
-        height: 0;
-    }
-    * html & {
-        height: 1%;
-    }
+    .clearfix();
 }
 
 // include own files
@@ -38,14 +28,14 @@ body {
     padding: 0;
 
     .component-wrapper {
-        width: 800px;
+        .size();
         padding: 30px 50px 50px;
         margin: 30px auto;
         background: #fcfcfc;
         border: 1px solid #aaa;
         .box-shadow(0 3px 10px #bbb);
         .border-radius(6px);
-        #gradient.vertical(#ddd, #fff);
+        .gradient(#ddd, #fff);
     }
 }
 
