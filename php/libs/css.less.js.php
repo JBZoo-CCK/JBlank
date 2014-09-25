@@ -46,14 +46,16 @@ class JBlankCssLessJS extends JBlankCss
             'fileAsync'       => false,
             'relativeUrls'    => false,
             'env'             => 'production',
-            'dumpLineNumbers' => 'mediaquery',
+            'dumpLineNumbers' => '',
             'rootpath'        => $this->_tpl->baseurl,
+            'globalVars'      => $this->_getCustomVars(),
         );
 
         if ($this->_isDebug()) {
-            $params['env']      = 'development';
-            $params['logLevel'] = 1;
-            $params['poll']     = 1500;
+            $params['env']             = 'development';
+            $params['logLevel']        = 1;
+            $params['poll']            = 2500;
+            $params['dumpLineNumbers'] = 'all';
         }
 
         $basename = pathinfo($path, PATHINFO_BASENAME);

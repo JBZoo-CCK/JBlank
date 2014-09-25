@@ -18,6 +18,9 @@
     .clearfix();
 }
 
+// example for custom fonts
+// .font-face('FontAwesome', 'fontawesome-webfont');
+
 // include own files
 //@import "layouts/some-layout.less";
 
@@ -28,11 +31,11 @@ body {
     padding: 0;
 
     .component-wrapper {
-        .size();
         padding: 30px 50px 50px;
         margin: 30px auto;
         background: #fcfcfc;
         border: 1px solid #aaa;
+        .size(800px, 500px);
         .box-shadow(0 3px 10px #bbb);
         .border-radius(6px);
         .gradient(#ddd, #fff);

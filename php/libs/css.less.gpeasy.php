@@ -87,10 +87,7 @@ class JBlankCssLessGpeasy extends JBlankCss
         ));
 
         // add custom vars
-        $less->ModifyVars(array(
-            //'varname1' => 'value1'
-            //'varname2' => 'value2'
-        ));
+        $less->ModifyVars($this->_getCustomVars());
 
         return $less;
     }

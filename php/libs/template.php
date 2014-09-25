@@ -81,6 +81,8 @@ class JBlankTemplate
     public $baseurl;
     public $path;
     public $pathFull;
+    public $fonts;
+    public $fontsFull;
     public $img;
     public $imgFull;
     public $less;
@@ -130,21 +132,23 @@ class JBlankTemplate
         $this->baseurl = $this->_getBaseUrl();
 
         // relative paths
-        $this->path = $this->_getTemplatePath();
-        $this->img  = $this->path . '/images';
-        $this->less = $this->path . '/less';
-        $this->scss = $this->path . '/scss';
-        $this->css  = $this->path . '/css';
-        $this->js   = $this->path . '/js';
+        $this->path  = $this->_getTemplatePath();
+        $this->img   = $this->path . '/images';
+        $this->fonts = $this->path . '/fonts';
+        $this->less  = $this->path . '/less';
+        $this->scss  = $this->path . '/scss';
+        $this->css   = $this->path . '/css';
+        $this->js    = $this->path . '/js';
 
         // absolute paths
-        $this->pathFull = $this->_getTemplatePathFull();
-        $this->imgFull  = JPath::clean($this->pathFull . '/images');
-        $this->cssFull  = JPath::clean($this->pathFull . '/css');
-        $this->lessFull = JPath::clean($this->pathFull . '/less');
-        $this->scssFull = JPath::clean($this->pathFull . '/scss');
-        $this->jsFull   = JPath::clean($this->pathFull . '/js');
-        $this->partial  = JPath::clean($this->pathFull . '/partial');
+        $this->pathFull  = $this->_getTemplatePathFull();
+        $this->imgFull   = JPath::clean($this->pathFull . '/images');
+        $this->fontsFull = JPath::clean($this->pathFull . '/fonts');
+        $this->cssFull   = JPath::clean($this->pathFull . '/css');
+        $this->lessFull  = JPath::clean($this->pathFull . '/less');
+        $this->scssFull  = JPath::clean($this->pathFull . '/scss');
+        $this->jsFull    = JPath::clean($this->pathFull . '/js');
+        $this->partial   = JPath::clean($this->pathFull . '/partial');
 
         // init template vars
         $this->lang    = $this->_getLangCurrent();
@@ -460,7 +464,7 @@ class JBlankTemplate
     protected function _isExternal($path)
     {
         $regs = array('http:\/\/', 'https:\/\/', '\/\/');
-        $reg = '#^(' . implode('|', $regs) . ')#iu';
+        $reg  = '#^(' . implode('|', $regs) . ')#iu';
 
         return preg_match($reg, $path);
     }

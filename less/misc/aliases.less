@@ -45,7 +45,7 @@
     #columns > .gap(@gap);
 }
 
-.font-face(@name, @filename, @path, @weight:normal, @style:normal) {
+.font-face(@name, @filename, @path:'@{fontpath}/', @weight:normal, @style:normal) {
     #text > .font(@name, @filename, @path, @weight, @style);
 }
 
@@ -73,8 +73,8 @@
     #box > .selection(@text, @background);
 }
 
-.size(@height, @width) {
-    #box > .size(@height, @width);
+.size(@width, @height) {
+    #box > .size(@width, @height);
 }
 
 .skew(...) {

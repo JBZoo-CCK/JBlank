@@ -89,12 +89,7 @@ class JBlankCssLessLeafo extends JBlankCss
         $less->addImportDir(JPATH_ROOT);
 
         // from php
-        $less->setVariables(array(
-            'css'    => str_replace($this->_tpl->baseurl, '', $this->_tpl->css),
-            'less'   => str_replace($this->_tpl->baseurl, '', $this->_tpl->less),
-            'images' => str_replace($this->_tpl->baseurl, '', $this->_tpl->img),
-            'debug'  => (int)$this->_isDebug(),
-        ));
+        $less->setVariables($this->_getCustomVars());
 
         // add custom functions
         $less->registerFunction('data-uri', array($this, 'lib_dataUri'));

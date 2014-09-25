@@ -185,6 +185,19 @@ abstract class JBlankCss
     }
 
     /**
+     * @return array
+     */
+    protected function _getCustomVars()
+    {
+        return array(
+            'fontpath' => '"' . $this->_tpl->fonts . '"',
+            'imgpath'  => '"' . $this->_tpl->img . '"',
+            'basepath' => '"' . $this->_tpl->baseurl . '"',
+            'isdebug'  => (int)$this->_isDebug(),
+        );
+    }
+
+    /**
      * @param string $path
      * @return string
      */

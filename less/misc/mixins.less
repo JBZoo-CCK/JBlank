@@ -261,9 +261,9 @@
     }
 
     // Sizing shortcuts
-    .size(@height, @width) {
-        width: @width;
+    .size(@width, @height) {
         height: @height;
+        width: @width;
     }
 
     .square(@size) {
@@ -746,11 +746,11 @@
     .font(@name, @filename, @path, @weight:normal, @style:normal) {
         @font-face {
             font-family: @name;
-            src: url('@{path}@{filename}.eot');
-            src: local('O'),
-                 url('@{path}@{filename}.woff') format('woff'),
-                 url('@{path}@{filename}.ttf') format('truetype'),
-                 url('@{path}@{filename}.svg') format('svg');
+            src: url('@{path}@{filename}.eot');                                    // IE9 Compat Modes
+            src: url('@{path}@{filename}.eot?#iefix') format('embedded-opentype'), // IE6-IE8
+                 url('@{path}@{filename}.woff')       format('woff'),              // Modern Browsers
+                 url('@{path}@{filename}.ttf')        format('truetype'),          // Safari, Android, iOS
+                 url('@{path}@{filename}.svg')        format('svg');               // Legacy iOS
             font-weight: @weight;
             font-style: @style;
         }
