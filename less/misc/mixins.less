@@ -305,7 +305,7 @@
     }
 
     // Opacity You can use 0.5 or 50
-    .opacity (@value) when (isnumber(@value)) and (@value =< 1) {
+    .opacity(@value) when (isnumber(@value)) and (@value =< 1) {
         zoom: 1;
         filter: ~"alpha(opacity="@value*100~")";
         -khtml-opacity: @value;
@@ -313,7 +313,7 @@
                opacity: @value;
     }
 
-    .opacity (@value) when (isnumber(@value)) and (@value > 1) and not (ispercentage(@value)){
+    .opacity(@value) when (isnumber(@value)) and (@value > 1) and not (ispercentage(@value)){
         zoom: 1;
         filter: ~"alpha(opacity="@value~")";
         -khtml-opacity: @value/100;
@@ -322,7 +322,7 @@
     }
 
     // Appearance
-    .appearance (@appearance) {
+    .appearance(@appearance) {
         -webkit-appearance: @appearance;
            -moz-appearance: @appearance;
     }
@@ -332,31 +332,31 @@
 // ---------------------------------------------------------------------------------------------------------------------
 #columns {
 
-    .simple (...) {
+    .simple(...) {
         -webkit-columns: @arguments;
            -moz-columns: @arguments;
                 columns: @arguments;
     }
 
-    .gap (@gap) {
+    .gap(@gap) {
         -webkit-column-gap: @gap;
            -moz-column-gap: @gap;
                 column-gap: @gap;
     }
 
-    .rule (...) {
+    .rule(...) {
         -webkit-column-rule: @arguments;
            -moz-column-rule: @arguments;
                 column-rule: @arguments;
     }
 
-    .fill (@fill) {
+    .fill(@fill) {
         -webkit-column-fill: @fill;
            -moz-column-fill: @fill;
                 column-fill: @fill;
     }
 
-    .count (@count) {
+    .count(@count) {
         -webkit-column-count: @count;
            -moz-column-count: @count;
                 column-count: @count;
@@ -586,7 +586,7 @@
                 transform: rotate(@degrees);
     }
 
-    .xyz (@deg1, @deg2:0, @deg3:0) {
+    .xyz(@deg1, @deg2:0, @deg3:0) {
         -webkit-transform: rotateX(@deg1) rotateY(@deg2) rotateZ(@deg3);
            -moz-transform: rotateX(@deg1) rotateY(@deg2) rotateZ(@deg3);
             -ms-transform: rotateX(@deg1) rotateY(@deg2) rotateZ(@deg3);
@@ -786,14 +786,14 @@
                 transition-duration: @duration;
     }
 
-    .transform (@transform) {
+    .transform(@transform) {
         -webkit-transition: -webkit-transform @transform;
            -moz-transition:    -moz-transform @transform;
              -o-transition:      -o-transform @transform;
                 transition:         transform @transform;
      }
 
-    .property (@property) {
+    .property(@property) {
         -webkit-transition-property: @property;
            -moz-transition-property: @property;
              -o-transition-property: @property;
@@ -820,7 +820,7 @@
                 transform: translate(@translateX, @translateY);
     }
 
-    .x (@translateX) {
+    .x(@translateX) {
         -webkit-transform: translateX(@translateX);
            -moz-transform: translateX(@translateX);
             -ms-transform: translateX(@translateX);
@@ -828,7 +828,7 @@
                 transform: translateX(@translateX);
     }
 
-    .y (@translateY) {
+    .y(@translateY) {
         -webkit-transform: translateY(@translateY);
            -moz-transform: translateY(@translateY);
             -ms-transform: translateY(@translateY);
