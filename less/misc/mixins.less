@@ -307,7 +307,8 @@
     // Opacity You can use 0.5 or 50
     .opacity(@value) when (isnumber(@value)) and (@value =< 1) {
         zoom: 1;
-        filter: ~"alpha(opacity="@value*100~")";
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity="@value*100~")";
+            filter: ~"alpha(opacity="@value*100~")";
         -khtml-opacity: @value;
           -moz-opacity: @value;
                opacity: @value;
@@ -315,7 +316,8 @@
 
     .opacity(@value) when (isnumber(@value)) and (@value > 1) and not (ispercentage(@value)){
         zoom: 1;
-        filter: ~"alpha(opacity="@value~")";
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity="@value~")";
+            filter: ~"alpha(opacity="@value~")";
         -khtml-opacity: @value/100;
           -moz-opacity: @value/100;
                opacity: @value/100;
@@ -369,11 +371,13 @@
 
     .flex() {
         display: -webkit-flex;
+        display:  -ms-flexbox;
         display:         flex;
     }
 
     .inline-flex() {
         display: -webkit-inline-flex;
+        display:  -ms-inline-flexbox;
         display:         inline-flex;
     }
 }
@@ -746,13 +750,15 @@
     .font(@name, @filename, @path, @weight:normal, @style:normal) {
         @font-face {
             font-family: @name;
-            src: url('@{path}@{filename}.eot');                                    // IE9 Compat Modes
-            src: url('@{path}@{filename}.eot?#iefix') format('embedded-opentype'), // IE6-IE8
-                 url('@{path}@{filename}.woff')       format('woff'),              // Modern Browsers
-                 url('@{path}@{filename}.ttf')        format('truetype'),          // Safari, Android, iOS
-                 url('@{path}@{filename}.svg')        format('svg');               // Legacy iOS
             font-weight: @weight;
             font-style: @style;
+
+            src: url('@{path}@{filename}.eot');                                             // IE9 Compat Modes
+            src: url('@{path}@{filename}.eot?#iefix')          format('embedded-opentype'), // IE6-IE8
+                 url('@{path}@{filename}.woff')                format('woff'),              // Modern Browsers
+                 url('@{path}@{filename}.ttf')                 format('truetype'),          // Safari, Android, iOS
+                 url('@{path}@{filename}.svg#@{name}')         format('svg');               // Legacy iOS
+
         }
     }
 
