@@ -22,8 +22,8 @@ require dirname(__FILE__) . '/php/init.php';
 <body class="<?php echo $tpl->getBodyClasses(); ?>" id="page-print">
 
     <div class="component-wrapper">
-        <jdoc:include type="message"/>
-        <jdoc:include type="component"/>
+        <jdoc:include type="message" />
+        <jdoc:include type="component" />
     </div>
 
     <?php if ($tpl->request('print')): ?>
