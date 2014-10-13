@@ -11,34 +11,36 @@
 
 defined('_JEXEC') or die;
 
-
 $msgList = $displayData['msgList'];
 
 ?>
+    <div id="system-message-container">
 
-<div id="system-message-container">
-    <?php if (is_array($msgList) && !empty($msgList)) : ?>
+        <?php if (is_array($msgList) && !empty($msgList)) : ?>
 
-        <div id="system-message">
-            <?php foreach ($msgList as $type => $msgs) : ?>
+            <div id="system-message">
+                <?php foreach ($msgList as $type => $msgs) : ?>
 
-                <div class="alert alert-<?php echo $type; ?>">
+                    <div class="alert alert-<?php echo $type; ?> alert-dismissible" role="<?php echo $type; ?>">
+                        <a href="#close-alert" class="close" data-dismiss="alert">&times;</a>
 
-                    <a class="close" data-dismiss="alert">×</a>
+                        <?php foreach ($msgs as $msg) : ?>
+                            <p>
+                                <!-- <strong class="alert-heading"><?php echo JText::_($type); ?>:</strong> -->
+                                <?php echo $msg; ?>
+                            </p>
+                        <?php endforeach; ?>
 
-                    <?php if (!empty($msgs)) : ?>
-                        <h4 class="alert-heading"><?php echo JText::_($type); ?></h4>
-                        <div>
-                            <?php foreach ($msgs as $msg) : ?>
-                                <p><?php echo $msg; ?></p>
-                            <?php endforeach; ?>
-                        </div>
-                    <?php endif; ?>
+                    </div>
 
-                </div>
+                <?php endforeach; ?>
+            </div>
 
-            <?php endforeach; ?>
-        </div>
+        <?php endif; ?>
 
-    <?php endif; ?>
-</div>
+    </div>
+
+<?php
+
+$displayData['msgList'] = array(); // hack for double messages
+

@@ -8,79 +8,109 @@
  * @link       http://jblank.pro/ JBlank project page
  */
 
-// Joomla 3.x
-#system-message {
-    .alert {
-        padding: 8px 35px 8px 14px;
-        margin-bottom: 20px;
-        text-shadow: 0 1px 0 rgba(255, 255, 255, .5);
-        background-color: #fcf8e3;
-        border: 1px solid #fbeed5;
-        color: #c09853;
-        .border-radius(4px);
 
-        h4 {
-            display: none;
-        }
+// For Joomla 3.x
+// Gets from Bootstrap 3.2.0
+// ---------------------------------------------------------------------------------------------------------------------
+@alert-padding: 15px;
+@alert-border-radius: 4px;
 
-        .close {
-            position: relative;
-            top: -2px;
-            right: -21px;
-            line-height: 20px;
-            float: right;
-            font-size: 20px;
-            font-weight: bold;
-            color: #000;
-            text-shadow: 0 1px 0 rgba(255, 255, 255, 1);
-            .opacity(20);
-            &:hover,
-            &:focus {
-                color: #000;
-                text-decoration: none;
-                cursor: pointer;
-                .opacity(40);
-            }
-        }
+@font-size-base: 14px;
+@line-height-base: 1.428571429;
+@line-height-computed: floor((@font-size-base * @line-height-base));
 
-        &.alert-success {
-            background-color: #dff0d8;
-            border-color: #d6e9c6;
-            color: #468847;
-        }
+@state-success-text: #3c763d;
+@state-success-bg: #dff0d8;
+@state-success-border: darken(spin(@state-success-bg, -10), 5%);
 
-        &.alert-danger,
-        &.alert-error {
-            background-color: #f2dede;
-            border-color: #eed3d7;
-            color: #b94a48;
-        }
+@state-info-text: #31708f;
+@state-info-bg: #d9edf7;
+@state-info-border: darken(spin(@state-info-bg, -10), 7%);
 
-        &.alert-danger
-        &.alert-info {
-            background-color: #d9edf7;
-            border-color: #bce8f1;
-            color: #3a87ad;
-        }
+@state-warning-text: #8a6d3b;
+@state-warning-bg: #fcf8e3;
+@state-warning-border: darken(spin(@state-warning-bg, -10), 5%);
 
-        & > div {
-            padding-top: 6px;
+@state-danger-text: #a94442;
+@state-danger-bg: #f2dede;
+@state-danger-border: darken(spin(@state-danger-bg, -10), 5%);
 
-            & > p, & > ul {
-                margin-bottom: 0;
-            }
 
-            p {
-                margin: 0 0 10px;
-                & + p {
-                    margin-top: 5px;
-                }
-            }
-        }
+.alert-variant(@background; @border; @text-color) {
+    background-color: @background;
+    border-color: @border;
+    color: @text-color;
+
+    hr {
+        border-top-color: darken(@border, 5%);
+    }
+    .alert-link {
+        color: darken(@text-color, 10%);
     }
 }
 
-// Joomla 2.5
+#system-message {
+
+    .alert {
+        padding: @alert-padding;
+        margin-bottom: @line-height-computed;
+        border: 1px solid transparent;
+        .border-radius(@alert-border-radius);
+
+        // Provide class for links that match alerts
+        .alert-link {
+            font-weight: bold;
+        }
+
+        > p,
+        > ul {
+            margin-bottom: 0;
+        }
+
+        > p + p {
+            margin-top: 5px;
+        }
+    }
+
+    // close alerts
+    .close {
+        position: relative;
+        line-height: 20px;
+        float: right;
+        font-size: 20px;
+        font-weight: bold;
+        color: #000;
+        text-shadow: 0 1px 0 rgba(255, 255, 255, 1);
+        text-decoration: none;
+        .opacity(20);
+        &:hover,
+        &:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+            .opacity(40);
+        }
+    }
+
+    .alert-notice {
+        .alert-variant(@state-success-bg; @state-success-border; @state-success-text);
+    }
+
+    .alert-message {
+        .alert-variant(@state-info-bg; @state-info-border; @state-info-text);
+    }
+
+    .alert-warning {
+        .alert-variant(@state-warning-bg; @state-warning-border; @state-warning-text);
+    }
+
+    .alert-error {
+        .alert-variant(@state-danger-bg; @state-danger-border; @state-danger-text);
+    }
+}
+
+// For Joomla 2.5
+// ---------------------------------------------------------------------------------------------------------------------
 #system-message {
     border: 0;
     margin: 0;
