@@ -9,7 +9,7 @@ if (typeof jQuery != "undefined") jQuery(function ($) {
 
     // close Joomla system messages (just example)
     $('#system-message .close').click(function () {
-        $(this).closest('.alert').animate({height: 0, opacity: 0}, 'slow', function () {
+        $(this).closest('.alert').animate({height: 0, opacity: 0, MarginBottom: 0}, 'slow', function () {
             $(this).remove();
         });
         return false;
