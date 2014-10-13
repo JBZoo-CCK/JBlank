@@ -294,7 +294,7 @@
     // Resize anything
     .resizable(@direction) {
         resize: @direction; // Options: horizontal, vertical, both
-        overflow: auto; // Safari fix
+        overflow: auto;     // Safari fix
     }
 
     // webkit-style focus
@@ -327,6 +327,40 @@
     .appearance(@appearance) {
         -webkit-appearance: @appearance;
            -moz-appearance: @appearance;
+    }
+
+    // Hide block
+    .hide () {
+        display: none !important;
+        visibility: hidden;
+    }
+
+    .visuallyhidden () {
+        border: 0;
+        clip: rect(0 0 0 0);
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+        width: 1px;
+    }
+
+    .focusable () {
+        #box > .visuallyhidden();
+        &:active, &:focus {
+            clip: auto;
+            height: auto;
+            margin: 0;
+            overflow: visible;
+            position: static;
+            width: auto;
+        }
+    }
+
+    // Hide visually and from screenreaders, but maintain layout.
+    .invisible () {
+        visibility: hidden;
     }
 }
 
@@ -455,6 +489,10 @@
             -ms-filter: drop-shadow(@arguments);
                 filter: drop-shadow(@arguments);
     }
+    
+    .resetIE() {
+        filter: e(%("progid:DXImageTransform.Microsoft.gradient(enabled = false)"));
+    }    
 }
 
 // Flexible Box Model
@@ -681,15 +719,10 @@
 
     // Placeholder text
     .placeholder(@color: #00a) {
-        &:-moz-placeholder {
-            color: @color;
-        }
-        &:-ms-input-placeholder {
-            color: @color;
-        }
-        &::-webkit-input-placeholder {
-            color: @color;
-        }
+        &:-moz-placeholder           { color: @color; } /* Firefox 4-18 */
+        &::-moz-placeholder          { color: @color; } /* Firefox 19+ */
+        &:-ms-input-placeholder      { color: @color; } /* IE 10+ */
+        &::-webkit-input-placeholder { color: @color; } /* Safari and Chrome */
     }
 
     // Selection
@@ -744,6 +777,15 @@
         display: -webkit-box;
         -webkit-line-clamp: @line; // number of lines to show
         -webkit-box-orient: vertical;
+    }
+
+    // Truncate
+    .truncate(@width: auto) {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        display: inline-block;
+        max-width: @width;
     }
 
     // Font face
@@ -848,5 +890,126 @@
             -ms-transform: translate3d(@x, @y, @z);
              -o-transform: translate3d(@x, @y, @z);
                 transform: translate3d(@x, @y, @z);
+    }
+}
+
+// Hooks for retina display (experimental)
+// ---------------------------------------------------------------------------------------------------------------------
+#retina {
+
+    // add image for different display resolutions
+    .image(@file-1x, @file-2x, @width-1x, @height-1x) {
+        background-image: url("@{file-1x}");
+
+        @media
+            only screen and (-webkit-min-device-pixel-ratio: 2),
+            only screen and (   min--moz-device-pixel-ratio: 2),
+            only screen and (     -o-min-device-pixel-ratio: 2/1),
+            only screen and (        min-device-pixel-ratio: 2),
+            only screen and (                min-resolution: 192dpi),
+            only screen and (                min-resolution: 2dppx) {
+                background-image: url("@{file-2x}");
+                background-size: @width-1x @height-1x;
+        }
+    }
+}
+
+// Other stuff (sometimes it's useful)
+// ---------------------------------------------------------------------------------------------------------------------
+#helpers {
+
+    // Show some HTML markups problems
+    // Gets this mixin from 3L lib
+    // Docs https://github.com/mateuszkocz/3l/wiki/Seo-and-HTML-Debugging
+    .debug () {
+
+        // empty tags or attrs
+        img:not([alt]),
+        img[alt=""],
+        img[alt^=" "],
+        a[href=""],
+        a[href^=" "],
+        a[href="#"],
+        a[rel*="nofollow"],
+        div:empty,
+        span:empty,
+        li:empty,
+        p:empty,
+        td:empty,
+        th:empty,
+        *[title=""],
+        *[class=""],
+        *[id=""] {
+            outline: 2px solid red !important;
+            outline-offset: 3px !important;
+        }
+
+        // hide system things
+        head,
+        title:empty,
+        link,
+        meta {
+            display: block;
+        }
+
+        // Show empty browser title
+        title:empty:before {
+            content: "You've left the <title> empty!"
+        }
+
+        // empty title
+        link:before {
+            content: "You don't have a <title>!"
+        }
+
+        title ~ link {
+            display: none;
+        }
+
+        // Show empty
+        meta[name="description"][content=""]:before,
+        meta[name="description"][content=" "]:before
+        {
+            content: "You've left description empty!";
+        }
+    }
+
+    // Image replacement
+    .ir () {
+        border: 0;
+        overflow: hidden;
+        background-color: transparent;
+        *text-indent: -9999px;
+        &:before {
+            content: "";
+            display: block;
+            width: 0;
+            height: 100%;
+        }
+    }
+
+    // For issues, TODO lists and etc...
+    .incomplete() {
+        outline: 3px dotted green
+    }
+    .fixme() {
+        outline: 3px dotted yellow
+    }
+    .todo() {
+        outline: 3px dotted blue
+    }
+    .xxx() {
+        outline: 3px dotted red
+    }
+
+    // A hack for IE
+    .hasLayout() {
+        *zoom: 1;
+    }
+
+    // For black backgrounds of couse =)
+    .ninja(@color: black) {
+        color: @color !important;
+        #box > .invisible() !important;
     }
 }
