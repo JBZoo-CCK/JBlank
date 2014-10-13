@@ -28,9 +28,8 @@ require dirname(__FILE__) . '/php/init.php';
 
 
     <!--
-        your HTML code here
+        Your HTML code starts here!
     -->
-
 
     <?php if ($tpl->isMobile()) : ?>
         <!-- only for mobiles  -->
@@ -42,11 +41,11 @@ require dirname(__FILE__) . '/php/init.php';
 
     <?php
     // test Joomla messages
-    if (class_exists('JError')) { // it depricated
-        JError::raiseNotice(0, 'Notice message example');
-        JError::raiseWarning(0, 'Warning message example');
-        //JError::raiseError(500, 'Fatal error message example');
-    }
+    $tpl->app->enqueueMessage('Notice message example', 'notice');
+    $tpl->app->enqueueMessage('Warning message example', 'warning');
+    $tpl->app->enqueueMessage('Error message example', 'error');
+    $tpl->app->enqueueMessage('Simple message example');
+    //throw new Exception('Fatal error message example');
     ?>
 
     <!-- show modules and components -->
