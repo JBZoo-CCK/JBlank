@@ -10,7 +10,25 @@
     <copyright>Copyright (C) 2011 - 2014 J!Blank.Pro, All rights reserved.</copyright>
     <license>http://www.gnu.org/licenses/gpl.html GNU/GPL</license>
     <version>3.0.5</version>
-    <description>Joomla blank template for fast developing your own design. See full tutorial on http://jblank.pro/</description>
+    <description><![CDATA[
+        <p>Joomla blank template for fast developing your own design.</p>
+        <ul>
+            <li>
+                See full tutorial on <a href="http://en.jblank.pro/" target="_blank">J!Blank.pro (eng)</a> /
+                <a href="http://jblank.pro/" target="_blank">J!Blank.pro (rus)</a> websites.
+            </li>
+            <li>
+                Project on <a href="https://github.com/smetdenis/jblank" target="_blank">Github.com</a>
+            </li>
+            <li>
+                Found a bug or you have a good idea? <a href="https://github.com/smetdenis/jblank/issues" target="_blank">No problem!</a>
+            </li>
+            <li>
+                Buy me a beer =)
+                <a href="http://en.jblank.pro/#donate" target="_blank">eng</a> / <a href="http://jblank.pro/#donate" target="_blank">rus</a>
+            </li>
+        </ul>
+    ]]></description>
 
     <files>
         <folder>css</folder>
