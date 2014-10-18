@@ -15,7 +15,6 @@ defined('_JEXEC') or die;
 // init $tpl helper
 require dirname(__FILE__) . '/php/init.php';
 
-
 ?><?php echo $tpl->renderHTML(); ?>
 <head>
     <jdoc:include type="head" />
@@ -41,10 +40,10 @@ require dirname(__FILE__) . '/php/init.php';
 
     <?php
     // test Joomla messages
-    $tpl->app->enqueueMessage('Notice message example', 'notice');
-    $tpl->app->enqueueMessage('Warning message example', 'warning');
-    $tpl->app->enqueueMessage('Error message example', 'error');
-    $tpl->app->enqueueMessage('Simple message example');
+    $tpl->app->enqueueMessage('Notice message, example', 'notice');
+    $tpl->app->enqueueMessage('Warning message, example', 'warning');
+    $tpl->app->enqueueMessage('Error message, example', 'error');
+    $tpl->app->enqueueMessage('Simple message, example');
     //throw new Exception('Fatal error message example');
     ?>
 
