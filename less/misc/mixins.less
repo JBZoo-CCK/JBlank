@@ -488,10 +488,10 @@
             -ms-filter: drop-shadow(@arguments);
                 filter: drop-shadow(@arguments);
     }
-    
+
     .resetIE() {
         filter: e(%("progid:DXImageTransform.Microsoft.gradient(enabled = false)"));
-    }    
+    }
 }
 
 // Flexible Box Model
@@ -1002,5 +1002,29 @@
     .ninja(@color: black) {
         color: @color !important;
         #box > .invisible() !important;
+    }
+}
+// Other stuff (sometimes it's useful)
+// ---------------------------------------------------------------------------------------------------------------------
+#sprite {
+
+    // example:
+    // i {
+    //     #sprite > .init("icons.png", 20px, 5px);
+    //     &.github   { #sprite > .image(0, 0); }
+    //     &.dribbble { #sprite > .image(0, 1); }
+    //     &.twitter  { #sprite > .image(1, 0); }
+    //     &.google   { #sprite > .image(1, 1); }
+    // }
+    .init (@path, @size, @pad: 0) when (isstring(@path)) {
+        background-image: url(@path);
+        width: @size;
+        height: @size;
+        display: inline-block;
+        font-size: @size + @pad;
+    }
+
+    .image(@x, @y) {
+        background-position: -@x * 1em -@y * 1em;
     }
 }
