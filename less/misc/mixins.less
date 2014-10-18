@@ -1,14 +1,13 @@
-/**
- * I was inspired by ...
- *
- * http://css3please.com/
- * http://lesselements.com/
- * http://css-tricks.com/snippets/css/useful-css3-less-mixins/
- * https://github.com/madebysource/lesshat
- * https://github.com/mateuszkocz/3l/
- * https://github.com/twbs/bootstrap
- * https://github.com/uikit/uikit
- */
+// J!Blank Template for Joomla by JBlank.pro (JBZoo.com)
+// I was inspired by ...
+//
+// http://css3please.com/
+// http://lesselements.com/
+// http://css-tricks.com/snippets/css/useful-css3-less-mixins/
+// https://github.com/madebysource/lesshat
+// https://github.com/mateuszkocz/3l/
+// https://github.com/twbs/bootstrap
+// https://github.com/uikit/uikit
 
 // Align
 // ---------------------------------------------------------------------------------------------------------------------
@@ -719,10 +718,10 @@
 
     // Placeholder text
     .placeholder(@color: #00a) {
-        &:-moz-placeholder           { color: @color; } /* Firefox 4-18 */
-        &::-moz-placeholder          { color: @color; } /* Firefox 19+ */
-        &:-ms-input-placeholder      { color: @color; } /* IE 10+ */
-        &::-webkit-input-placeholder { color: @color; } /* Safari and Chrome */
+        &:-moz-placeholder           { color: @color; } // Firefox 4-18
+        &::-moz-placeholder          { color: @color; } // Firefox 19+
+        &:-ms-input-placeholder      { color: @color; } // IE 10+
+        &::-webkit-input-placeholder { color: @color; } // Safari and Chrome
     }
 
     // Selection
@@ -896,20 +895,12 @@
 // Hooks for retina display (experimental)
 // ---------------------------------------------------------------------------------------------------------------------
 #retina {
-
     // add image for different display resolutions
     .image(@file-1x, @file-2x, @width-1x, @height-1x) {
         background-image: url("@{file-1x}");
-
-        @media
-            only screen and (-webkit-min-device-pixel-ratio: 2),
-            only screen and (   min--moz-device-pixel-ratio: 2),
-            only screen and (     -o-min-device-pixel-ratio: 2/1),
-            only screen and (        min-device-pixel-ratio: 2),
-            only screen and (                min-resolution: 192dpi),
-            only screen and (                min-resolution: 2dppx) {
-                background-image: url("@{file-2x}");
-                background-size: @width-1x @height-1x;
+        @media @retina {
+            background-image: url("@{file-2x}");
+            background-size: @width-1x @height-1x;
         }
     }
 }

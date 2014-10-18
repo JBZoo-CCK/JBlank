@@ -1,8 +1,8 @@
-/**
- * J!Blank Template for Joomla by JBlank.pro (JBZoo.com)
- * Examples and test styles
- */
-@import "misc/vars";        // your template vars
+
+// J!Blank Template for Joomla by JBlank.pro (JBZoo.com)
+// Examples and test styles
+
+@import "misc/variables";   // your template vars
 @import "misc/mixins";      // custom mixin libs
 @import "misc/aliases";     // popuplar mixin's names
 @import "layouts/reset";    // Simple style resets
@@ -11,7 +11,7 @@
 @import "layouts/debug";    // Joomla profiler's styles (when debug is mode on)
 @import "layouts/offline";  // Joomla offline page (when offline is mode on)
 
-/****************************************** FRONTEND STYLES ***********************************************************/
+// ***************************************** FRONTEND STYLES ***********************************************************
 
 // classic clear fix
 .clearfix {
@@ -50,23 +50,18 @@ body {
     //-test3-background: data-uri('not-exists-image.gif');
 }
 
-/****************************************** MEDIA QUERIES *************************************************************/
-@media print {
-    @import "media/print.less";
-}
+// ***************************************** MEDIA QUERIES *************************************************************
+// see variables.less
+@media @print       { @import "media/print.less";       }
+@media @mobile-mini { @import "media/mobile-mini.less"; }
+@media @mobile      { @import "media/mobile.less";      }
+@media @tablet-mini { @import "media/tablet-mini.less"; }
+@media @tablet      { @import "media/tablet.less";      }
+@media @desktop     { @import "media/desktop.less";     }
+@media @desktop-xl  { @import "media/desktop-xl.less";  }
+@media @retina      { @import "media/retina.less";      }
 
-@media (min-width: 768px) {
-    @import "media/768.less";
-}
-
-@media (min-width: 992px) {
-    @import "media/992.less";
-}
-
-@media (min-width: 1200px) {
-    @import "media/1200.less";
-}
-
-@media screen and (-webkit-min-device-pixel-ratio: 1.5), screen and (max--moz-device-pixel-ratio: 1.5) {
-    @import "media/retina.less";
+// Combo example
+@media @retina, @tablet {
+    // @import "media/retina-tablet.less";
 }
