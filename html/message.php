@@ -23,14 +23,12 @@ $msgList = $displayData['msgList'];
 
                     <div class="alert alert-<?php echo $type; ?> alert-dismissible" role="<?php echo $type; ?>">
                         <a href="#close-alert" class="close" data-dismiss="alert">&times;</a>
-
                         <?php foreach ($msgs as $msg) : ?>
                             <p>
                                 <!-- <strong class="alert-heading"><?php echo JText::_($type); ?>:</strong> -->
                                 <?php echo $msg; ?>
                             </p>
                         <?php endforeach; ?>
-
                     </div>
 
                 <?php endforeach; ?>
@@ -39,7 +37,6 @@ $msgList = $displayData['msgList'];
         <?php endif; ?>
 
     </div>
-
 <?php
 
 $displayData['msgList'] = array(); // hack for double messages
