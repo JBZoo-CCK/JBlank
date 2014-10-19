@@ -31,17 +31,20 @@ $tpl
         // 'template.scss',// from jblank/scss folder
         // '//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css', // any external lib (you can use http:// or https:// urls)
     ))
+
     // include JavaScript files
     ->js(array(
         // '//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js', // any external lib (you can use http:// or https:// urls)
         // 'libs/jquery-1.x.min.js', // your own local lib
         'template.js',
     ))
+
     // exclude css files from system or components (experimental!)
     ->excludeCSS(array(
         // 'regex pattern or filename',
         // 'jbzoo\.css',
     ))
+
     // exclude JS files from system or components (experimental!)
     ->excludeJS(array(
         // 'regex pattern or filename',
@@ -49,11 +52,13 @@ $tpl
         // 'media\/jui\/js',       // remove jQuery lib
         // 'media\/system\/js',    // remove system libs
     ))
+
     // set custom generator
     ->generator('J!Blank.pro Joomla Template')// null for disable
 
     // set HTML5 mode (for <head> tag)
     ->html5(true)
+
     // add custom meta tags
     ->meta(array(
         // template customization
@@ -81,8 +86,7 @@ if ($tpl->isMobile()) {
     $tpl->css('media-tablet.less'); // css only for tablets
 }
 
-// USE IT ON YOUR OWN --> RISK <--
-// THIS IS EXPERIMENTAL FEATURES!
+// USE IT ON YOUR OWN --> RISK <-- THIS IS EXPERIMENTAL FEATURES!
 // After that all assets files will be included
 /*
 $tpl
