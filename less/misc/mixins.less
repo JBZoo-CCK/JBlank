@@ -306,19 +306,19 @@
     // Opacity You can use 0.5 or 50
     .opacity(@value) when (isnumber(@value)) and (@value =< 1) {
         zoom: 1;
-        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity="@value*100~")";
+        //-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity="@value*100~")";
             filter: ~"alpha(opacity="@value*100~")";
-        -khtml-opacity: @value;
-          -moz-opacity: @value;
+        //-khtml-opacity: @value;
+          //-moz-opacity: @value;
                opacity: @value;
     }
 
     .opacity(@value) when (isnumber(@value)) and (@value > 1) and not (ispercentage(@value)){
         zoom: 1;
-        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity="@value~")";
+        //-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity="@value~")";
             filter: ~"alpha(opacity="@value~")";
-        -khtml-opacity: @value/100;
-          -moz-opacity: @value/100;
+        //-khtml-opacity: @value/100;
+          //-moz-opacity: @value/100;
                opacity: @value/100;
     }
 
@@ -326,6 +326,7 @@
     .appearance(@appearance) {
         -webkit-appearance: @appearance;
            -moz-appearance: @appearance;
+                appearance: @appearance;
     }
 
     // Hide block
@@ -490,7 +491,7 @@
     }
 
     .resetIE() {
-        filter: e(%("progid:DXImageTransform.Microsoft.gradient(enabled = false)"));
+        filter: e(%("progid:DXImageTransform.Microsoft.gradient(enabled=false)"));
     }
 }
 
@@ -793,13 +794,11 @@
             font-family: @name;
             font-weight: @weight;
             font-style: @style;
-
-            src: url('@{path}@{filename}.eot');                                             // IE9 Compat Modes
-            src: url('@{path}@{filename}.eot?#iefix')          format('embedded-opentype'), // IE6-IE8
-                 url('@{path}@{filename}.woff')                format('woff'),              // Modern Browsers
-                 url('@{path}@{filename}.ttf')                 format('truetype'),          // Safari, Android, iOS
-                 url('@{path}@{filename}.svg#@{name}')         format('svg');               // Legacy iOS
-
+            src: url('@{path}@{filename}.eot');                                     // IE9 Compat Modes
+            src: url('@{path}@{filename}.eot?#iefix')  format('embedded-opentype'), // IE6-IE8
+                 url('@{path}@{filename}.woff')        format('woff'),              // Modern Browsers
+                 url('@{path}@{filename}.ttf')         format('truetype'),          // Safari, Android, iOS
+                 url('@{path}@{filename}.svg#@{name}') format('svg');               // Legacy iOS
         }
     }
 
@@ -959,8 +958,7 @@
 
         // Show empty
         meta[name="description"][content=""]:before,
-        meta[name="description"][content=" "]:before
-        {
+        meta[name="description"][content=" "]:before {
             content: "You've left description empty!";
         }
     }
@@ -998,25 +996,18 @@
         *zoom: 1;
     }
 
-    // For black backgrounds of couse =)
+     // For black backgrounds of couse =)
     .ninja(@color: black) {
         color: @color !important;
         #box > .invisible() !important;
     }
 }
 
-// Other stuff (sometimes it's useful)
+// Sprites
 // ---------------------------------------------------------------------------------------------------------------------
 #sprite {
 
-    // example:
-    // i {
-    //     #sprite > .init("icons.png", 20px, 5px);
-    //     &.github   { #sprite > .image(0, 0); }
-    //     &.dribbble { #sprite > .image(0, 1); }
-    //     &.twitter  { #sprite > .image(1, 0); }
-    //     &.google   { #sprite > .image(1, 1); }
-    // }
+    // Docs https://coderwall.com/p/oztebw
     .init (@path, @size, @pad: 0) when (isstring(@path)) {
         background-image: url(@path);
         width: @size;
