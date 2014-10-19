@@ -8,8 +8,11 @@
  * @link       http://jblank.pro/ JBlank project page
  */
 /* just example of css import */
-@import url('reset.css');
+
+/* just for test repaltive paths
 @import url('print.css');
+@import url('reset.css');
+*/
 
 /****************************************** FRONTEND STYLES ***********************************************************/
 
@@ -31,23 +34,7 @@
     height: 1%;
 }
 
-/****************************************** MEDIA QUERIES *************************************************************/
-/* Small devices (tablets, 768px and up) */
-@media (min-width: 768px) {
-
+.url-path-test {
+    background: url('../images/test.png');
 }
 
-/* Medium devices (desktops, 992px and up) */
-@media (min-width: 992px) {
-
-}
-
-/* Large devices (large desktops, 1200px and up) */
-@media (min-width: 1200px) {
-
-}
-
-/* for higher resolutions (android and retina) */
-@media screen and (-webkit-min-device-pixel-ratio: 1.5), screen and (max--moz-device-pixel-ratio: 1.5) {
-
-}
