@@ -25,7 +25,7 @@ $msgList = $displayData['msgList'];
                         <a href="#close-alert" class="close" data-dismiss="alert">&times;</a>
                         <?php foreach ($msgs as $msg) : ?>
                             <p>
-                                <!-- <strong class="alert-heading"><?php echo JText::_($type); ?>:</strong> -->
+                                <?php /* <strong class="alert-heading"><?php echo JText::_($type); ?>:</strong> */ ?>
                                 <?php echo $msg; ?>
                             </p>
                         <?php endforeach; ?>
