@@ -188,7 +188,7 @@ class JBlankMinifyCssRewriter
      * Get a root relative URI from a file relative URI
      *
      * <code>
-     * JBlanlCSSUriRewriter::rewriteRelative(
+     * JBlankMinifyCssRewriter::rewriteRelative(
      *       '../img/hello.gif'
      *     , '/home/user/www/css'  // path of CSS file
      *     , '/home/user/www'      // doc root
@@ -196,7 +196,7 @@ class JBlankMinifyCssRewriter
      * // returns '/img/hello.gif'
      *
      * // example where static files are stored in a symlinked directory
-     * JBlanlCSSUriRewriter::rewriteRelative(
+     * JBlankMinifyCssRewriter::rewriteRelative(
      *       'hello.gif'
      *     , '/var/staticFiles/theme'
      *     , '/home/user/www'
@@ -277,11 +277,11 @@ class JBlankMinifyCssRewriter
 
     /**
      * Defines which class to call as part of callbacks, change this
-     * if you extend JBlanlCSSUriRewriter
+     * if you extend JBlankMinifyCssRewriter
      *
      * @var string
      */
-    protected static $className = 'JBlanlCSSUriRewriter';
+    protected static $className = 'JBlankMinifyCssRewriter';
 
     /**
      * Get realpath with any trailing slash removed. If realpath() fails,
