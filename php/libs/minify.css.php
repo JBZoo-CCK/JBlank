@@ -22,7 +22,7 @@ class JBlankMinifyCss extends JBlankMinify
      */
     private $_simlinks = array(
         // for developers only!
-        '//templates/jblank' => 'D:\\git\\smetdenis\\jblank'
+        //'//templates/jblank' => 'D:\\git\\smetdenis\\jblank'
     );
 
     /**
@@ -75,7 +75,7 @@ class JBlankMinifyCss extends JBlankMinify
                 $css     = file_get_contents($file);
                 $fileDir = pathinfo($file, PATHINFO_DIRNAME);
 
-                $css = JBlanlCSSUriRewriter::rewrite($css, $fileDir, JPATH_ROOT, $this->_simlinks);
+                $css = JBlankMinifyCssRewriter::rewrite($css, $fileDir, JPATH_ROOT, $this->_simlinks);
 
                 $buffer[] = "/* file: $relPath */\n" . $css;
             }
@@ -93,7 +93,7 @@ class JBlankMinifyCss extends JBlankMinify
  * @package Minify
  * @author Stephen Clay <steve@mrclay.org>
  */
-class JBlanlCSSUriRewriter
+class JBlankMinifyCssRewriter
 {
     /**
      * rewrite() and rewriteRelative() append debugging information here
