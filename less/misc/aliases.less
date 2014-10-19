@@ -128,3 +128,11 @@
 .focusable() {
     #box > .focusable();
 }
+
+.sprite(@path, @size, @pad: 0) {
+    #sprite > .init(@path, @size, @pad);
+}
+
+.sprite(@x, @y) {
+    #sprite > .image(@x, @y);
+}
