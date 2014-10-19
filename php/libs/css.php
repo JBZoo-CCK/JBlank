@@ -85,12 +85,6 @@ abstract class JBlankCss
      */
     public function compile($file)
     {
-        static $random;
-
-        if (!isset($random)) {
-            $random = mt_rand(100, 999);
-        }
-
         $debug    = $this->_isDebug();
         $file     = JPath::clean($file);
         $filename = pathinfo($file, PATHINFO_FILENAME);
@@ -119,13 +113,6 @@ abstract class JBlankCss
 
         if ($updateFile) {
             $css = $this->_compile($file);
-
-            if (!$this->_isDebug()) { // more compressing!! =)
-                $css = preg_replace('#([a-z])(:\s)#ius', '$1:', $css);
-                $css = preg_replace('#\;}#ius', '}', $css);
-                $css = preg_replace('#(\s\!important)#ius', '!important', $css);
-            }
-
             $css = '/* cacheid:' . $hash . " */\n" . $css;
             $this->_save($cachePath, $css);
         }

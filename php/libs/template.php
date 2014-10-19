@@ -22,6 +22,7 @@ require_once $tmplPath . '/css.php';
 require_once $tmplPath . '/css.less.leafo.php';
 require_once $tmplPath . '/css.less.gpeasy.php';
 require_once $tmplPath . '/css.scss.leafo.php';
+require_once $tmplPath . '/minify.php';
 require_once $tmplPath . '/class.mobiledetect.php';
 
 /**
@@ -648,17 +649,7 @@ class JBlankTemplate
                     }
                 }
 
-                // hack for empty scripts or styles arrays
-                if (!empty($data[$type])) {
-                    $this->doc->setHeadData($data);
-
-                } else if ($type == 'scripts') {
-                    $this->doc->_scripts = array();
-
-                } else if ($type == 'styleSheets') {
-                    $this->doc->_styleSheets = array();
-                }
-
+                $this->setHeadData($type, $data);
             }
         }
 
@@ -782,6 +773,71 @@ class JBlankTemplate
     {
         $this->_debugMode = (bool)$state;
         return $this;
+    }
+
+    /**
+     * Spliting all css or js files (that already have been included via Joomla API)
+     *     USE IT ON YOUR OWN RISK!!!
+     * @param string $type
+     * @param bool $isCompress
+     * @return $this
+     */
+    public function split($type = 'css', $isCompress = false)
+    {
+        $splitFiles = array();
+
+        $dataKey = $type == 'css' ? 'styleSheets' : 'scripts';
+        $docData = $this->doc->getHeadData();
+        if (!empty($docData[$dataKey])) {
+            foreach ($docData[$dataKey] as $pathOrig => $attrs) {
+
+                // don't get external files
+                $path = str_replace($this->baseurl, '', $pathOrig);
+                $path = preg_replace('#(\?.*)$#', '', $path);
+                if ($this->_isExternal($path)) {
+                    continue;
+                }
+
+                $fullPath = JPath::clean(JPATH_ROOT . '/' . $path);
+                if (JFile::exists($fullPath)) {
+                    $splitFiles[] = $fullPath;
+                    unset($docData[$dataKey][$pathOrig]);
+                }
+            }
+        }
+
+        if (count($splitFiles)) {
+            $processor = JBlankMinify::getProcessor($type, $this);
+            if ($path = $processor->minify($splitFiles, $isCompress)) {
+                $this->setHeadData($dataKey, $docData);
+                if ('css' == $type) {
+                    $this->doc->addStylesheet($path, 'text/css');
+                } else if ('js' == $type) {
+                    $this->doc->addScript($path, "text/javascript", false, false);
+                }
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * Set head data
+     * Hack for empty scripts or styles arrays
+     * @param string $type
+     * @param array $data
+     */
+    protected function setHeadData($type, $data)
+    {
+        if (!empty($data[$type])) {
+            $this->doc->setHeadData($data);
+
+        } else if ($type == 'scripts') {
+            $this->doc->_scripts = array();
+
+        } else if ($type == 'styleSheets') {
+            $this->doc->_styleSheets = array();
+        }
     }
 
 }
