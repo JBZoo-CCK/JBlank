@@ -1,138 +1,36 @@
 // Popular simple aliases for mixins
 // ---------------------------------------------------------------------------------------------------------------------
-.animate(...) {
-    #animation > .simple(@arguments)
-}
-
-.anime(...) {
-    #animation > .simple(@arguments)
-}
-
-.background-size(@size) {
-    #background > .size(@size);
-}
-
-.border-image(...) {
-    #border-image > .simple(@arguments)
-}
-
-.border-radius(...) {
-    #border > .simple(@arguments);
-}
-
-.box-shadow(...) {
-    #box > .shadow(@arguments);
-}
-
-.center() {
-    #box > .center();
-}
-
-.clearfix() {
-    #box > .clearfix();
-}
-
-.clear() {
-    #box > .clear();
-}
-
-.columns(...) {
-    #columns > .simple(@arguments);
-}
-
-.content-columns(@count, @gap) {
-    #columns > .count(@count);
-    #columns > .gap(@gap);
-}
-
-.font-face(@name, @filename, @path:'@{fontpath}/', @weight:normal, @style:normal) {
-    #text > .font(@name, @filename, @path, @weight, @style);
-}
-
-.gradient(@startColor: #555, @endColor: #333) {
-    #gradient > .vertical(@startColor, @endColor);
-}
-
-.opacity(...) {
-    #box > .opacity(@arguments);
-}
-
-.overflow() {
-    #box > .overflow();
-}
-
-.no-transparent() {
-    #box > .opacity(1);
-}
-
-.scale (...) {
-    #scale > .simple(@arguments);
-}
-
-.selection (@text, @background) {
-    #box > .selection(@text, @background);
-}
-
-.size(@width, @height) {
-    #box > .size(@width, @height);
-}
-
-.skew(...) {
-    #skew > .simple(@arguments);
-}
-
-.square(@size) {
-    #box > .square(@size);
-}
-
-.transition(...) {
-    #transition > .simple(@arguments);
-}
-
-.translate(...) {
-    #translate > .simple(@arguments);
-}
-
-.transparent() {
-    #box > .opacity(0);
-}
-
-.text-shadow(...) {
-    #text > .shadow(@arguments);
-}
-
-.ir() {
-    #helpers > .ir();
-}
-
-.seo-helper() {
-    #helpers > .debug();
-}
-
-.hide() {
-    #box > .hide();
-}
-
-.hidden() {
-    #box > .hide();
-}
-
-.invisible() {
-    #box > .invisible();
-}
-
-.visuallyhidden() {
-    #box > .visuallyhidden();
-}
-
-.focusable() {
-    #box > .focusable();
-}
-
-.sprite(@path, @size, @pad: 0) {
-    #sprite > .init(@path, @size, @pad);
-}
-
-.sprite(@x, @y) {
-    #sprite > .image(@x, @y);
-}
+.animate(...)                   { #animation    > .simple(@arguments);  }
+.anime(...)                     { #animation    > .simple(@arguments);  }
+.background-size(@size)         { #background   > .size(@size);         }
+.border-image(...)              { #border-image > .simple(@arguments);  }
+.border-radius(...)             { #border       > .simple(@arguments);  }
+.box-shadow(...)                { #box          > .shadow(@arguments);  }
+.center()                       { #box          > .center();            }
+.clear()                        { #box          > .clear();             }
+.clearfix()                     { #box          > .clearfix();          }
+.columns(...)                   { #columns      > .simple(@arguments);  }
+.content-columns(@count, @gap)  { #columns      > .count(@count); #columns > .gap(@gap); }
+.focusable()                    { #box          > .focusable();         }
+.font-face(@name, @filename, @path:'@{fontpath}/', @weight:normal, @style:normal) { #text > .font(@name, @filename, @path, @weight, @style); }
+.gradient(@start, @end)         { #gradient     > .vertical(@start, @end); }
+.hidden()                       { #box          > .hide();              }
+.hide()                         { #box          > .hide();              }
+.invisible()                    { #box          > .invisible();         }
+.ir()                           { #helpers      > .ir();                }
+.no-transparent()               { #box          > .opacity(1);          }
+.opacity(...)                   { #box          > .opacity(@arguments); }
+.overflow()                     { #box          > .overflow();          }
+.scale (...)                    { #scale        > .simple(@arguments);  }
+.selection (@text, @background) { #box          > .selection(@text, @background); }
+.seo-helper()                   { #helpers      > .debug();             }
+.size(@width, @height)          { #box          > .size(@width, @height); }
+.skew(...)                      { #skew         > .simple(@arguments);  }
+.sprite(@path, @size, @pad: 0)  { #sprite       > .init(@path, @size, @pad);}
+.sprite(@x, @y)                 { #sprite       > .image(@x, @y);       }
+.square(@size)                  { #box          > .square(@size);       }
+.text-shadow(...)               { #text         > .shadow(@arguments);  }
+.transition(...)                { #transition   > .simple(@arguments);  }
+.translate(...)                 { #translate    > .simple(@arguments);  }
+.transparent()                  { #box          > .opacity(0);          }
+.visuallyhidden()               { #box          > .visuallyhidden();    }
