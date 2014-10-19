@@ -798,10 +798,15 @@ class JBlankTemplate
                     continue;
                 }
 
-                $fullPath = JPath::clean(JPATH_ROOT . '/' . $path);
-                if (JFile::exists($fullPath)) {
-                    $splitFiles[] = $fullPath;
-                    unset($docData[$dataKey][$pathOrig]);
+                // only media="all" and media=NULL
+                if (!isset($attrs['media']) || strtolower($attrs['media']) == 'all') {
+
+                    $fullPath = JPath::clean(JPATH_ROOT . '/' . $path);
+                    if (JFile::exists($fullPath)) {
+                        $splitFiles[] = $fullPath;
+                        unset($docData[$dataKey][$pathOrig]);
+                    }
+
                 }
             }
         }
