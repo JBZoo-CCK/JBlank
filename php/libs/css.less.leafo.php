@@ -76,8 +76,8 @@ class JBlankCssLessLeafo extends JBlankCss
         } else {
             // compress mode
             $formatter              = new lessc_formatter_compressed();
-            $formatter->closeSingle = "}\n";
-            $formatter->close       = "}\n";
+            //$formatter->closeSingle = "}\n";
+            //$formatter->close       = "}\n";
         }
 
         // set formatter

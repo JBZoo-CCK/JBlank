@@ -119,6 +119,13 @@ abstract class JBlankCss
 
         if ($updateFile) {
             $css = $this->_compile($file);
+
+            if (!$this->_isDebug()) { // more compressing!! =)
+                $css = preg_replace('#([a-z])(:\s)#ius', '$1:', $css);
+                $css = preg_replace('#\;}#ius', '}', $css);
+                $css = preg_replace('#(\s\!important)#ius', '!important', $css);
+            }
+
             $css = '/* cacheid:' . $hash . " */\n" . $css;
             $this->_save($cachePath, $css);
         }
