@@ -313,13 +313,13 @@ class JBlankTemplate
         $html = array(
             '<!doctype html>',
 
-            '<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7 ie6" '
+            '<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7 ie6 oldie" '
             . 'lang="' . $this->lang . '" dir="' . $this->dir . '"> <![endif]-->',
 
-            '<!--[if IE 7]><html class="no-js lt-ie9 lt-ie8 ie7" '
+            '<!--[if IE 7]><html class="no-js lt-ie9 lt-ie8 ie7 oldie" '
             . 'lang="' . $this->lang . '" dir="' . $this->dir . '"> <![endif]-->',
 
-            '<!--[if IE 8]><html class="no-js lt-ie9 ie8" '
+            '<!--[if IE 8]><html class="no-js lt-ie9 ie8 oldie" '
             . 'lang="' . $this->lang . '" dir="' . $this->dir . '"> <![endif]-->',
 
             '<!--[if gt IE 8]><!--><html class="no-js" xmlns="http://www.w3.org/1999/xhtml" '
