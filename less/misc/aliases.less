@@ -12,7 +12,7 @@
 .columns(...)                   { #columns      > .simple(@arguments);  }
 .content-columns(@count, @gap)  { #columns      > .count(@count); #columns > .gap(@gap); }
 .focusable()                    { #box          > .focusable();         }
-.font-face(@name, @filename, @path:'@{fontpath}/', @weight:normal, @style:normal) { #text > .font(@name, @filename, @path, @weight, @style); }
+.font-face(@name, @filename, @path:'@{fontpath}/', @weight:normal, @style:normal) { #font > .include(@name, @filename, @path, @weight, @style); }
 .gradient(@start, @end)         { #gradient     > .vertical(@start, @end); }
 .hidden()                       { #box          > .hide();              }
 .hide()                         { #box          > .hide();              }

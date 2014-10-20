@@ -788,20 +788,6 @@
         max-width: @width;
     }
 
-    // Font face
-    .font(@name, @filename, @path, @weight:normal, @style:normal) {
-        @font-face {
-            font-family: @name;
-            font-weight: @weight;
-            font-style: @style;
-            src: url('@{path}@{filename}.eot');                                     // IE9 Compat Modes
-            src: url('@{path}@{filename}.eot?#iefix')  format('embedded-opentype'), // IE6-IE8
-                 url('@{path}@{filename}.woff')        format('woff'),              // Modern Browsers
-                 url('@{path}@{filename}.ttf')         format('truetype'),          // Safari, Android, iOS
-                 url('@{path}@{filename}.svg#@{name}') format('svg');               // Legacy iOS
-        }
-    }
-
     .shadow(@string: 0 1px 3px rgba(0, 0, 0, 0.25)) {
         text-shadow: @string;
     }
@@ -964,7 +950,7 @@
     }
 
     // Image replacement
-    .ir () {
+    .ir() {
         border: 0;
         overflow: hidden;
         background-color: transparent;
@@ -1018,5 +1004,55 @@
 
     .image(@x, @y) {
         background-position: -@x * 1em -@y * 1em;
+    }
+}
+
+// Some HTML elements
+// ---------------------------------------------------------------------------------------------------------------------
+#elements {
+
+    .button(@color, @background, @text-shadow: none) {
+
+    }
+
+}
+
+// Some HTML elements
+// ---------------------------------------------------------------------------------------------------------------------
+#font {
+
+    // Font face
+    .include(@name, @filename, @path, @weight:normal, @style:normal) {
+        @font-face {
+            font-family: @name;
+            font-weight: @weight;
+            font-style: @style;
+            src: url('@{path}@{filename}.eot');                                     // IE9 Compat Modes
+            src: url('@{path}@{filename}.eot?#iefix')  format('embedded-opentype'), // IE6-IE8
+                 url('@{path}@{filename}.woff')        format('woff'),              // Modern Browsers
+                 url('@{path}@{filename}.ttf')         format('truetype'),          // Safari, Android, iOS
+                 url('@{path}@{filename}.svg#@{name}') format('svg');               // Legacy iOS
+        }
+    }
+
+    .sans-serif(@weight: normal, @size: 14px, @lineHeight: 20px) {
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-size: @size;
+        font-weight: @weight;
+        line-height: @lineHeight;
+    }
+
+    .serif(@weight: normal, @size: 14px, @lineHeight: 20px) {
+        font-family: "Georgia", Times New Roman, Times, sans-serif;
+        font-size: @size;
+        font-weight: @weight;
+        line-height: @lineHeight;
+    }
+
+    .monospace(@weight: normal, @size: 12px, @lineHeight: 20px) {
+        font-family: "Monaco", Courier New, monospace;
+        font-size: @size;
+        font-weight: @weight;
+        line-height: @lineHeight;
     }
 }
