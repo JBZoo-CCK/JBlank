@@ -88,10 +88,10 @@ if ($tpl->isMobile()) {
 
 // USE IT ON YOUR OWN --> RISK <-- THIS IS EXPERIMENTAL FEATURES!
 // After that all assets files will be included
-/*
+
 $tpl
-    // split css with compress (second arg)
-    ->split('css', true)
-    // split js with compress (second arg)
-    ->split('js', true);
-*/
+    // merge css with compress (second arg)
+    ->merge('css', true)
+    // merge js with compress (second arg)
+    ->merge('js', true);
+

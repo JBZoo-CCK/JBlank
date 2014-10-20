@@ -63,7 +63,7 @@ class JBlankMinifyCss extends JBlankMinify
      * @param array $files
      * @return string
      */
-    protected function _split(array $files)
+    protected function _merge(array $files)
     {
         $buffer = array();
 
@@ -81,7 +81,7 @@ class JBlankMinifyCss extends JBlankMinify
             }
         }
 
-        return implode($this->_splitSeparator, $buffer);
+        return implode($this->_mergeSeparator, $buffer);
     }
 
 

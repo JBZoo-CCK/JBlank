@@ -29,7 +29,7 @@ class JBlankMinifyJs extends JBlankMinify
     /**
      * @var
      */
-    protected $_splitSeparator = ";\n ";
+    protected $_mergeSeparator = ";\n ";
 
     /**
      * Google url

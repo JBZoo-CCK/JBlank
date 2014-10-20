@@ -776,15 +776,15 @@ class JBlankTemplate
     }
 
     /**
-     * Spliting all css or js files (that already have been included via Joomla API)
+     * Merging all css or js files (that already have been included via Joomla API)
      *     USE IT ON YOUR OWN RISK!!!
      * @param string $type
      * @param bool $isCompress
      * @return $this
      */
-    public function split($type = 'css', $isCompress = false)
+    public function merge($type = 'css', $isCompress = false)
     {
-        $splitFiles = array();
+        $mergeFiles = array();
 
         $dataKey = $type == 'css' ? 'styleSheets' : 'scripts';
         $docData = $this->doc->getHeadData();
@@ -803,7 +803,7 @@ class JBlankTemplate
 
                     $fullPath = JPath::clean(JPATH_ROOT . '/' . $path);
                     if (JFile::exists($fullPath)) {
-                        $splitFiles[] = $fullPath;
+                        $mergeFiles[] = $fullPath;
                         unset($docData[$dataKey][$pathOrig]);
                     }
 
@@ -811,9 +811,9 @@ class JBlankTemplate
             }
         }
 
-        if (count($splitFiles)) {
+        if (count($mergeFiles)) {
             $processor = JBlankMinify::getProcessor($type, $this);
-            if ($path = $processor->minify($splitFiles, $isCompress)) {
+            if ($path = $processor->minify($mergeFiles, $isCompress)) {
                 $this->setHeadData($dataKey, $docData);
                 if ('css' == $type) {
                     $this->doc->addStylesheet($path, 'text/css');

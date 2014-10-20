@@ -30,7 +30,7 @@ abstract class JBlankMinify
     /**
      * @var string
      */
-    protected $_splitSeparator = "\n";
+    protected $_mergeSeparator = "\n";
 
     /**
      * @param JBlankTemplate $tpl
@@ -81,7 +81,7 @@ abstract class JBlankMinify
         $cachePath = JPath::clean(JPATH_ROOT . '/' . $path);
 
         if (!JFile::exists($cachePath)) {
-            $codeList = $this->_split($files);
+            $codeList = $this->_merge($files);
 
             if ($isCompress) {
                 try {
@@ -149,11 +149,11 @@ abstract class JBlankMinify
     }
 
     /**
-     * File splitter
+     * File merger
      * @param array $files
      * @return string
      */
-    protected function _split(array $files)
+    protected function _merge(array $files)
     {
         $buffer = array();
 
@@ -164,7 +164,7 @@ abstract class JBlankMinify
             }
         }
 
-        return implode($this->_splitSeparator, $buffer);
+        return implode($this->_mergeSeparator, $buffer);
     }
 
     /**
