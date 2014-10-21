@@ -1019,14 +1019,12 @@
 
     .button(@color, @textColor: #fff, @fontSize: 16px) {
         // text
-        #font > .sans-serif();
+        #font > .sans-serif(normal, @fontSize, @fontSize);
         #text > .user-select(none);
         #text > .selection(@textColor, transparent);
         color: @textColor;
         text-align: center;
         white-space: nowrap;
-        line-height: @fontSize;
-        font-size: @fontSize;
 
         // spaces
         padding: @fontSize *  0.75px @fontSize * 1.5px;
