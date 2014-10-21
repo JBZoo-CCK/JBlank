@@ -24,7 +24,7 @@ class JBlankMinifyJs extends JBlankMinify
      *  2 - Google service
      * @var string
      */
-    private $_mode = '2';
+    private $_mode = 2;
 
     /**
      * @var
@@ -45,10 +45,10 @@ class JBlankMinifyJs extends JBlankMinify
     {
         $code = (string)$code;
 
-        if ($this->_mode == 1) { // remove comments
+        if (1 == $this->_mode) { // remove comments
             $code = $this->_simpleMinify($code);
 
-        } else if ($this->_mode == 2) { // use google service
+        } else if (2 == $this->_mode) { // use google service
             $code = $this->_closureCompiler($code);
         }
 

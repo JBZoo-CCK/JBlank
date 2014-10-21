@@ -798,12 +798,24 @@ class JBlankTemplate
                     continue;
                 }
 
-                // only media="all" and media=NULL
-                if (!isset($attrs['media']) || strtolower($attrs['media']) == 'all') {
+                if (
+                    // only media="all" and media=NULL
+                    ($attrs['mime'] == 'text/css' && (!isset($attrs['media']) || strtolower($attrs['media']) == 'all'))
+                    // any JavaScript
+                    || ($attrs['mime'] == 'text/javascript')
+                ) {
+                    $fullPath       = JPath::clean(JPATH_ROOT . '/' . $path);
+                    $fullPathFolder = JPath::clean($_SERVER['DOCUMENT_ROOT'] . '/' . $path);
+                    $resPath        = false;
 
-                    $fullPath = JPath::clean(JPATH_ROOT . '/' . $path);
                     if (JFile::exists($fullPath)) {
-                        $mergeFiles[] = $fullPath;
+                        $resPath = $fullPath;
+                    } else if (JFile::exists($fullPathFolder)) {
+                        $resPath = $fullPathFolder;
+                    }
+
+                    if ($resPath) {
+                        $mergeFiles[] = $resPath;
                         unset($docData[$dataKey][$pathOrig]);
                     }
 
