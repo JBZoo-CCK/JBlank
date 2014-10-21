@@ -1079,6 +1079,10 @@
 // ---------------------------------------------------------------------------------------------------------------------
 #font {
 
+    @serif     : "Georgia", Times New Roman, Times, sans-serif;
+    @sansSerif : "Helvetica Neue", Helvetica, Arial, sans-serif;
+    @monospace : "Monaco", Courier New, monospace;
+
     // Font face
     .include(@name, @filename, @path, @weight:normal, @style:normal) {
         @font-face {
@@ -1094,21 +1098,21 @@
     }
 
     .sans-serif(@weight: normal, @size: 14px, @lineHeight: 20px) {
-        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-family: @sansSerif;
         font-size: @size;
         font-weight: @weight;
         line-height: @lineHeight;
     }
 
     .serif(@weight: normal, @size: 14px, @lineHeight: 20px) {
-        font-family: "Georgia", Times New Roman, Times, sans-serif;
+        font-family: @serif;
         font-size: @size;
         font-weight: @weight;
         line-height: @lineHeight;
     }
 
     .monospace(@weight: normal, @size: 12px, @lineHeight: 20px) {
-        font-family: "Monaco", Courier New, monospace;
+        font-family: @monospace;
         font-size: @size;
         font-weight: @weight;
         line-height: @lineHeight;
