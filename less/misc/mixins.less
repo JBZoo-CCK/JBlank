@@ -838,6 +838,12 @@
              -o-transition-timing-function: @timing-function;
                 transition-timing-function: @timing-function;
     }
+
+    .perspective(@perspective) {
+        -webkit-perspective: @perspective;
+           -moz-perspective: @perspective;
+                perspective: @perspective;
+    }
 }
 
 // Translate
@@ -1011,8 +1017,62 @@
 // ---------------------------------------------------------------------------------------------------------------------
 #elements {
 
-    .button(@color, @background, @text-shadow: none) {
+    .button(@color, @textColor: #fff, @fontSize: 16px) {
+        // text
+        #font > .sans-serif();
+        #text > .user-select(none);
+        #text > .selection(@textColor, transparent);
+        color: @textColor;
+        text-align: center;
+        white-space: nowrap;
+        line-height: @fontSize;
+        font-size: @fontSize;
 
+        // spaces
+        padding: @fontSize *  0.75px @fontSize * 1.5px;
+
+        // border
+        #border > .simple(@fontSize * 0.375px);
+        border: 1px solid lighten(@color, 10%);
+
+        // theme
+        #gradient > .vertical(lighten(@color, 10%), darken(@color, 10%));
+        #box > .shadow(0 5px 24px fade(@color, 50%));
+
+        // display
+        #box > .backface-visibility(hidden);
+        display: inline-block;
+        text-decoration: none;
+        vertical-align: middle;
+        touch-action: manipulation;
+        cursor: pointer;
+
+        // effects
+        #transition > .perspective(1000);
+        #transition > .simple(all 100ms ease);
+
+        &:hover,
+        &:active,
+        &:focus {
+            cursor: pointer;
+            #gradient > .vertical(lighten(@color, 3%), darken(@color, 3%));
+            #translate > .y(2px);
+            #box> .shadow(0 3px 24px fade(@color, 50%));
+            text-decoration: none;
+        }
+
+        &:focus {
+            #box > .focus();
+        }
+
+        &[disabled],
+        fieldset[disabled] & {
+            cursor: not-allowed;
+            pointer-events: none; // Future-proof disabling of clicks
+            background: @color;
+            #box > .opacity(.5);
+            #box > .shadow(none);
+        }
     }
 
 }
