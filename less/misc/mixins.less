@@ -7,10 +7,11 @@
 // https://github.com/mateuszkocz/3l/
 // https://github.com/twbs/bootstrap
 // https://github.com/uikit/uikit
-//
 // http://css3please.com/
-// http://caniuse.com/ (IMPORTANT!)
-// http://simevidas.jsbin.com/gufoko/quiet (IMPORTANT!)
+
+// --> IMPORTANT!!! <--
+// http://caniuse.com/
+// http://simevidas.jsbin.com/gufoko/quiet
 
 // Align
 // ---------------------------------------------------------------------------------------------------------------------
@@ -110,10 +111,10 @@
 // ---------------------------------------------------------------------------------------------------------------------
 #border {
 
-    .simple(@radius) {
+    .radius(@radius) {
       //-webkit-border-radius: @radius; // deprecated
          //-moz-border-radius: @radius; // deprecated
-                border-radius: @radius;
+                border-radius: @radius; // Yeap! It's ok. See http://caniuse.com/#search=border-radius
     }
 
     .radius-fix() {
@@ -311,27 +312,23 @@
 
     // Opacity You can use 0.5 or 50
     .opacity(@value) when (isnumber(@value)) and (@value =< 1) {
-        zoom: 1;
-        //-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity="@value*100~")";
-            filter: ~"alpha(opacity="@value*100~")";
-        //-khtml-opacity: @value;
-          //-moz-opacity: @value;
-               opacity: @value;
+        zoom: 1; // IE hack
+        opacity: @value;
+        filter: ~"alpha(opacity="@value*100~")";
+        //-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity="@value*100~")"; // very old IE
     }
 
     .opacity(@value) when (isnumber(@value)) and (@value > 1) and not (ispercentage(@value)){
-        zoom: 1;
-        //-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity="@value~")";
-            filter: ~"alpha(opacity="@value~")";
-        //-khtml-opacity: @value/100;
-          //-moz-opacity: @value/100;
-               opacity: @value/100;
+        zoom: 1; // IE hack
+        opacity: @value/100;
+        filter: ~"alpha(opacity="@value~")";
+        //-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity="@value~")"; // very old IE
     }
 
     // Appearance
     .appearance(@appearance) {
-      //-webkit-appearance: @appearance; // deprecated
-         //-moz-appearance: @appearance; // deprecated
+        -webkit-appearance: @appearance;
+           -moz-appearance: @appearance;
                 appearance: @appearance;
     }
 
