@@ -4,7 +4,7 @@
 .anime(...)                     { #animation    > .simple(@arguments);  }
 .background-size(@size)         { #background   > .size(@size);         }
 .border-image(...)              { #border-image > .simple(@arguments);  }
-.border-radius(...)             { #border       > .simple(@arguments);  }
+.border-radius(...)             { #border       > .radius(@arguments);  }
 .box-shadow(...)                { #box          > .shadow(@arguments);  }
 .center()                       { #box          > .center();            }
 .clear()                        { #box          > .clear();             }
@@ -22,7 +22,7 @@
 .opacity(...)                   { #box          > .opacity(@arguments); }
 .overflow()                     { #box          > .overflow();          }
 .scale (...)                    { #scale        > .simple(@arguments);  }
-.selection (@text, @background) { #box          > .selection(@text, @background); }
+.selection (@text, @background) { #text         > .selection(@text, @background); }
 .seo-helper()                   { #helpers      > .debug();             }
 .size(@width, @height)          { #box          > .size(@width, @height); }
 .skew(...)                      { #skew         > .simple(@arguments);  }
