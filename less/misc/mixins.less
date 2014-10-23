@@ -1025,6 +1025,7 @@
         color: @textColor;
         text-align: center;
         white-space: nowrap;
+        text-transform: none;
 
         // spaces
         padding: @fontSize *  0.75px @fontSize * 1.5px;
@@ -1039,11 +1040,15 @@
 
         // display
         #box > .backface-visibility(hidden);
+        #box > .appearance(none);
+        #box > .box-sizing(border-box);
         display: inline-block;
         text-decoration: none;
         vertical-align: middle;
         touch-action: manipulation;
         cursor: pointer;
+        min-height: @fontSize + 4px;
+        overflow: visible;
 
         // effects
         #transition > .perspective(1000);
