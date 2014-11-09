@@ -291,7 +291,7 @@ class JBlankTemplate
         return implode(' ', array(
             'tmpl-' . $this->request->get('tmpl', 'index'),
             'itemid-' . $this->request->get('Itemid', 0),
-            'lang-' . $this->request->get('lang', $this->langDef),
+            'lang-' . $this->request->get('lang', $this->lang),
             'com-' . str_replace('com_', '', $this->request->get('option')),
             'view-' . $this->request->get('view', 'none'),
             'layout-' . $this->request->get('layout', 'none'),
