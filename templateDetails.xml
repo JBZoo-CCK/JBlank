@@ -4,13 +4,13 @@
 
 <extension version="2.5" type="template" client="site" method="upgrade">
     <name>J!Blank</name>
-    <creationDate>2014 09</creationDate>
+    <creationDate>2014 11</creationDate>
     <author>SmetDenis</author>
     <authorEmail>admin@jbzoo.com</authorEmail>
     <authorUrl>http://JBlank.pro/</authorUrl>
     <copyright>Copyright (C) 2011 - 2014 J!Blank.Pro, All rights reserved.</copyright>
     <license>http://www.gnu.org/licenses/gpl.html GNU/GPL</license>
-    <version>3.0.5</version>
+    <version>3.0.6</version>
     <description><![CDATA[
         <p>Joomla blank template for fast developing your own design.</p>
         <ul>
