@@ -47,11 +47,11 @@ class JBlankMinifyCss extends JBlankMinify
         $code = str_replace(';;', ';', $code); // typos
         $code = str_replace(';}', '}', $code); // last ";"
 
-        // remove space after colons
-        $code = preg_replace('#([a-z])(:\s)#ius', '$1:', $code);
+        // remove spaces after and before colons
+        $code = preg_replace('#([a-z\-])(:\s*|\s*:\s*|\s*:)#ius', '$1:', $code);
 
         // spaces before "!important"
-        $code = preg_replace('#(\s\!important)#ius', '!important', $code);
+        $code = preg_replace('#(\s*\!important)#ius', '!important', $code);
 
         // trim
         $code = JString::trim($code);
