@@ -604,7 +604,7 @@ class JBlankTemplate
     public function html5($state)
     {
         if (method_exists($this->doc, 'setHtml5')) {
-            $this->doc->setHtml5((int)$state);
+            $this->doc->setHtml5((bool)$state);
         }
 
         return $this;
