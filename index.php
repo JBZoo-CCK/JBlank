@@ -32,11 +32,11 @@ require dirname(__FILE__) . '/php/init.php';
 
     <?php if ($tpl->isMobile()) : ?>
         <!-- only for mobiles  -->
-    <? endif; ?>
+    <?php endif; ?>
 
     <?php if ($tpl->isTablet()) : ?>
         <!-- only for tablets  -->
-    <? endif; ?>
+    <?php endif; ?>
 
     <?php
     // test Joomla messages

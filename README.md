@@ -5,7 +5,9 @@ Joomla blank template for fast developing your own theme.
 
 Website
 ======
-http://jblank.pro/
+English - http://en.jblank.pro/
+
+Russian - http://jblank.pro/
 
 
 Live Demo
