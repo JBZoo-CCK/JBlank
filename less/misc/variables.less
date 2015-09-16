@@ -9,12 +9,13 @@
 // ***************************************** Media queries for different devices ***************************************
 // more info https://gist.github.com/gitawego/5803557
 @print:       ~"print";                               // print version of website
-@mobile-mini: ~"only screen and (min-width: 320px)";  // smartphones, iPhone, portrait 480x320 phones
-@mobile:      ~"only screen and (min-width: 480px)";  // portrait e-readers (Nook/Kindle), smaller tablets 600 or 640 wide
-@tablet-mini: ~"only screen and (min-width: 600px)";  // portrait tablets, portrait iPad, landscape e-readers, landscape 800x480 or 854x480 phones
-@tablet:      ~"only screen and (min-width: 801px)";  // tablet, landscape iPad, lo-res laptops ands desktops
-@desktop:     ~"only screen and (min-width: 1025px)"; // big landscape tablets, laptops, and desktops
-@desktop-xl:  ~"only screen and (min-width: 1281px)"; // hi-res laptops and desktops
+@mobile-mini: ~"only screen and (min-width: 220px) and (max-width: 479px)";  // smartphones, iPhone, portrait 480x320 phones
+@mobile:      ~"only screen and (min-width: 480px) and (max-width: 599px)";  // smaller tablets 600 or 640 wide
+@tablet-mini: ~"only screen and (min-width: 600px) and (max-width: 800px)";  // portrait tablets, portrait iPad
+@tablet:      ~"only screen and (min-width: 801px) and (max-width: 1024px)";  // tablet, landscape iPad
+@desktop:     ~"only screen and (min-width: 1025px) and (max-width: 1280px)"; // big landscape tablets, laptops
+@desktop-xl:  ~"only screen and (min-width: 1281px) and (max-width: 1365px)"; // hi-res laptops and desktops
+@desktop-xxl: ~"only screen and (min-width: 1366px)"; //  desktops
 
 // devices with retina display (http://css-tricks.com/snippets/css/retina-display-media-query/)
 @retina: ~"only screen and (-webkit-min-device-pixel-ratio: 2)",
