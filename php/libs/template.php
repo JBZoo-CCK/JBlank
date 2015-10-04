@@ -339,8 +339,13 @@ class JBlankTemplate
     public function renderHead()
     {
         $document = $this->doc;
-        $docData  = $document->getHeadData();
-        $html     = array();
+        if (method_exists($document, 'getHeadData')) {
+            $docData = $document->getHeadData();
+        } else {
+            return null;
+        }
+
+        $html = array();
 
         $isHtml5 = method_exists($this->doc, 'isHtml5') && $this->doc->isHtml5();
 
@@ -438,9 +443,11 @@ class JBlankTemplate
                 $this->meta($metaRow);
             }
         } else {
-            $data = $this->doc->getHeadData();
-            if (!in_array($metaRows, $data['custom'])) {
-                $this->doc->addCustomTag($metaRows);
+            if (method_exists($this->doc, 'getHeadData')) {
+                $data = $this->doc->getHeadData();
+                if (!in_array($metaRows, $data['custom'])) {
+                    $this->doc->addCustomTag($metaRows);
+                }
             }
         }
 
@@ -637,7 +644,11 @@ class JBlankTemplate
      */
     protected function _excludeAssets(array $allPatterns)
     {
-        $data = $this->doc->getHeadData();
+        if (method_exists($this->doc, 'getHeadData')) {
+            $data = $this->doc->getHeadData();
+        } else {
+            return $this;
+        }
 
         foreach ($allPatterns as $type => $patterns) {
             foreach ($data[$type] as $path => $meta) {
@@ -787,8 +798,12 @@ class JBlankTemplate
         $mergeFiles = array();
 
         $dataKey = $type == 'css' ? 'styleSheets' : 'scripts';
-        $docData = $this->doc->getHeadData();
-        if (!empty($docData[$dataKey])) {
+        
+        if (method_exists($this->doc, 'getHeadData')) {
+            $docData = $this->doc->getHeadData();
+        }
+        
+        if (isset($docData) && !empty($docData[$dataKey])) {
             foreach ($docData[$dataKey] as $pathOrig => $attrs) {
 
                 // don't get external files
