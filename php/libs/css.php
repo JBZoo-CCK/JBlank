@@ -88,9 +88,10 @@ abstract class JBlankCss
         $debug    = $this->_isDebug();
         $file     = JPath::clean($file);
         $filename = pathinfo($file, PATHINFO_FILENAME);
+        $tplName  = $this->_tpl->doc->template;
 
         $hash      = $this->_getHash($file, $this->_path, $this->_filter);
-        $path      = '/cache/jblank/styles-' . $filename . '-' . $this->type . ($debug ? '-debug' : '') . '.css';
+        $path      = '/cache/' . $tplName . '/styles-' . $filename . '-' . $this->type . ($debug ? '-debug' : '') . '.css';
         $relPath   = rtrim($this->_tpl->baseurl, '/') . $path;
         $cachePath = JPath::clean(JPATH_ROOT . '/' . $path);
 
