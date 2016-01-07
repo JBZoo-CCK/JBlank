@@ -162,6 +162,17 @@ class JBlankTemplate
 
         $this->_debugMode = defined('JDEBUG') && JDEBUG;
     }
+    
+    /**
+     * Create joomla module.
+     * @param $name
+     * @param string $style
+     * @return string
+     */
+    public function module($name, $style = 'no')
+    {
+        return '<jdoc:include type="modules" name="' . $name . '" style="' . $style . '" />';
+    }
 
     /**
      * @return bool
