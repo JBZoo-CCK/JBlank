@@ -15,3 +15,7 @@ Live Demo
 http://jblank.pro/demo
 
 
+License
+======
+MIT
+
