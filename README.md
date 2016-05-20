@@ -17,5 +17,5 @@ http://jblank.pro/demo
 
 License
 ======
-MIT
+MIT (not GPL!)
 
