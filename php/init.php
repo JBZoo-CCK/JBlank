@@ -16,6 +16,8 @@ defined('_JEXEC') or die;
 !version_compare(PHP_VERSION, '5.3.10', '=>') or die('Your host needs to use PHP 5.3.10 or higher to run JBlank Template');
 require_once dirname(__FILE__) . '/libs/template.php';
 
+JHtml::_('jquery.framework'); // Add jQuery from Joomla
+
 /************************* runtime configurations *********************************************************************/
 $tpl = JBlankTemplate::getInstance();
 $tpl
