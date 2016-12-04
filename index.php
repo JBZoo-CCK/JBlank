@@ -19,7 +19,10 @@ require dirname(__FILE__) . '/php/init.php';
 <head>
     <jdoc:include type="head" />
 </head>
-<body class="<?php echo $tpl->getBodyClasses(); ?>">
+<?php
+  $pageClassSuffix = JFactory::getApplication()->getMenu()->getActive()? JFactory::getApplication()->getMenu()->getActive()->params->get('pageclass_sfx', '-default') : '-default';
+?>
+<body class="<?php echo $tpl->getBodyClasses(); ?> <?php echo $pageClassSuffix ?>">
 
     <!--[if lt IE 7]><p class="browsehappy">
         You are using an <strong>outdated</strong> browser. Please
